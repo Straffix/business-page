@@ -1,0 +1,156 @@
+@use "colors" as c;
+
+.tiles {
+  @include c.frame;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 0.8rem;
+  padding-bottom: 1rem;
+}
+
+.tile {
+  @include c.button-reset;
+  --spot-x: 50%;
+  --spot-y: 50%;
+  position: relative;
+  width: 100%;
+  min-height: 13rem;
+  padding: 1.15rem;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.2rem;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text-main);
+  transition:
+    transform var(--transition-soft),
+    border-color var(--transition-soft),
+    box-shadow var(--transition-soft),
+    filter var(--transition-soft);
+}
+
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--spot-x) var(--spot-y), rgba(255, 255, 255, 0.24), transparent 54%);
+  opacity: 0;
+  transition: opacity var(--transition-soft);
+  z-index: -1;
+}
+
+.tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015));
+  box-shadow: var(--shadow-strong);
+  z-index: -2;
+}
+
+.tile:hover,
+.tile:focus-visible {
+  transform: translateY(-0.4rem);
+  filter: brightness(1.08);
+}
+
+.tile:hover::before,
+.tile:focus-visible::before {
+  opacity: 1;
+}
+
+.tile:focus-visible {
+  outline: 2px solid rgba(71, 206, 230, 0.78);
+  outline-offset: 0.22rem;
+}
+
+.tile__meta {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.tile__body {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.tile__logo {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.2rem, 10vw, 4rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+.tile__logo--italic {
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.08em;
+}
+
+.tile__label {
+  margin: 0;
+  font-family: "Michroma", sans-serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tile__text {
+  margin: 0;
+  max-width: 19rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.tile__icon {
+  width: 3rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tile__icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tile--strategic {
+  background: linear-gradient(145deg, rgba(9, 119, 194, 0.72), rgba(8, 23, 34, 0.58));
+}
+
+.tile--host {
+  background: linear-gradient(145deg, rgba(160, 17, 82, 0.72), rgba(45, 5, 21, 0.58));
+}
+
+.tile--tech {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(38, 38, 38, 0.58));
+}
+
+.tile--projects {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(55, 55, 55, 0.55));
+}
+
+.tile--titanium {
+  background: linear-gradient(145deg, rgba(48, 191, 219, 0.64), rgba(8, 28, 34, 0.58));
+}
+
+.tile--contact {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(49, 49, 49, 0.56));
+}

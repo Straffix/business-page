@@ -1,0 +1,56 @@
+$bp-medium: 48rem;
+$bp-large: 75rem;
+
+$bg: #020202;
+$text: #f1efeb;
+$muted: rgba(241, 239, 235, 0.72);
+$line: rgba(255, 255, 255, 0.12);
+$line-strong: rgba(255, 255, 255, 0.24);
+$shadow: 0 2rem 4rem rgba(0, 0, 0, 0.32);
+
+:root {
+  --page-bg: #{$bg};
+  --text-main: #{$text};
+  --text-muted: #{$muted};
+  --line: #{$line};
+  --line-strong: #{$line-strong};
+  --glow-blue: rgba(15, 145, 221, 0.45);
+  --glow-pink: rgba(159, 22, 84, 0.48);
+  --glow-cyan: rgba(71, 206, 230, 0.42);
+  --panel: rgba(255, 255, 255, 0.05);
+  --shadow-strong: #{$shadow};
+  --radius-card: 1.35rem;
+  --transition-soft: 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == medium {
+    @media (min-width: $bp-medium) {
+      @content;
+    }
+  } @else if $breakpoint == large {
+    @media (min-width: $bp-large) {
+      @content;
+    }
+  }
+}
+
+@mixin frame {
+  width: min(100% - 1.5rem, 76rem);
+  margin-inline: auto;
+}
+
+@mixin glass($tint: rgba(255, 255, 255, 0.05), $border: rgba(255, 255, 255, 0.1)) {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015)), $tint;
+  border: 1px solid $border;
+  box-shadow: $shadow;
+  backdrop-filter: blur(18px);
+}
+
+@mixin button-reset {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}

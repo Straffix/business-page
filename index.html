@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arkadiusz Lisiecki TM</title>
+  <meta
+    name="description"
+    content="Interaktywny landing page z animowanym intro, siatką kafelków i efektem sieci reagującym na ruch kursora."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Michroma&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles/css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body class="is-intro-lock">
+  <div class="intro" aria-hidden="true">
+    <div class="intro__inner">
+      <p class="intro__brand">Arkadiusz Lisiecki <span class="intro__mark">TM</span></p>
+      <p class="intro__tag">digital systems / web / motion direction</p>
+    </div>
+  </div>
+
+  <canvas class="network-canvas" aria-hidden="true"></canvas>
+  <div class="cursor-halo" aria-hidden="true"></div>
+
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="site-header__brand" href="#top">
+        Arkadiusz Lisiecki <span class="site-header__mark">TM</span>
+      </a>
+      <button class="site-header__link" type="button" data-scroll-target="kontakt">Kontakt</button>
+    </header>
+
+    <main class="landing" id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__copy">
+          <p class="hero__eyebrow">#IT TWOJEGO ZASIĘGU</p>
+          <h1 class="hero__title" id="hero-title">
+            Interaktywne doświadczenia dla marek, produktów i technologii.
+          </h1>
+          <p class="hero__lead">
+            Strona otwiera się jak intro prezentacji, a potem odsłania modułowy ekran startowy
+            z kafelkami i responsywną siatką zaprojektowaną mobile first.
+          </p>
+          <div class="hero__meta" aria-label="Specjalizacje">
+            <span>Web</span>
+            <span>Motion</span>
+            <span>Systems</span>
+          </div>
+        </div>
+
+        <div class="hero__signal">
+          <p class="hero__signal-label">Live interface</p>
+          <p class="hero__signal-text">
+            Siatka reaguje na ruch kursora i buduje subtelną pajęczynę połączeń nad tłem.
+          </p>
+        </div>
+      </section>
+
+      <section class="tiles" aria-label="Główne moduły">
+        <button class="tile tile--strategic" type="button">
+          <span class="tile__meta">Strategic clients</span>
+          <div class="tile__body">
+            <p class="tile__logo tile__logo--italic">MAPEI</p>
+            <p class="tile__label">Klienci strategiczni</p>
+          </div>
+          <p class="tile__text">
+            Stała obsługa ekranów, komunikacji i wdrożeń dla dużych marek.
+          </p>
+        </button>
+
+        <button class="tile tile--host" type="button">
+          <span class="tile__meta">Hosting / cloud</span>
+          <div class="tile__body">
+            <span class="tile__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <path d="M17 42h26a11 11 0 0 0 2-21 15 15 0 0 0-29 4A9 9 0 0 0 17 42Z" />
+                <path d="M22 47h20" />
+              </svg>
+            </span>
+            <p class="tile__label">HOST24</p>
+          </div>
+          <p class="tile__text">
+            Warstwa techniczna dla usług online, SLA i szybkich publikacji.
+          </p>
+        </button>
+
+        <button class="tile tile--tech" type="button">
+          <span class="tile__meta">Framework / stack</span>
+          <div class="tile__body">
+            <span class="tile__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <path d="M16 16h32v32H16z" />
+                <path d="M24 24h16v16H24z" />
+                <path d="M30 30h4v4h-4z" />
+              </svg>
+            </span>
+            <p class="tile__label">Technologia</p>
+          </div>
+          <p class="tile__text">
+            Front-end, Sass modules, animacje i interfejsy budowane warstwowo.
+          </p>
+        </button>
+
+        <button class="tile tile--projects" type="button">
+          <span class="tile__meta">Selected work</span>
+          <div class="tile__body">
+            <span class="tile__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <path d="M18 18h20l8 8v20H18z" />
+                <path d="M38 18v12h12" />
+              </svg>
+            </span>
+            <p class="tile__label">Realizacje</p>
+          </div>
+          <p class="tile__text">
+            Układy, landing pages, motion hero i moduły pod konkretne wdrożenia.
+          </p>
+        </button>
+
+        <button class="tile tile--titanium" type="button">
+          <span class="tile__meta">Product line</span>
+          <div class="tile__body">
+            <span class="tile__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <path d="M16 18h32" />
+                <path d="M24 18l8 28 8-28" />
+                <path d="M32 46v8" />
+              </svg>
+            </span>
+            <p class="tile__label">Titanium</p>
+          </div>
+          <p class="tile__text">
+            Mocne, minimalistyczne layouty z wyrazistą typografią i światłem.
+          </p>
+        </button>
+
+        <button class="tile tile--contact" type="button" data-scroll-target="kontakt">
+          <span class="tile__meta">Start a project</span>
+          <div class="tile__body">
+            <span class="tile__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <path d="M16 18h32v22H30l-12 10V18Z" />
+              </svg>
+            </span>
+            <p class="tile__label">Kontakt</p>
+          </div>
+          <p class="tile__text">
+            Przejdź niżej, jeśli chcesz ten układ rozwinąć o kolejne podstrony i sekcje.
+          </p>
+        </button>
+      </section>
+
+      <section class="contact-strip" id="kontakt" aria-labelledby="contact-title">
+        <div>
+          <p class="contact-strip__eyebrow">Arkadiusz Lisiecki TM</p>
+          <h2 class="contact-strip__title" id="contact-title">
+            Projekt startowy gotowy pod dalszą rozbudowę.
+          </h2>
+        </div>
+        <p class="contact-strip__text">
+          Masz już intro, responsywną siatkę, efekt rozjaśniania kafelków i sieciową animację
+          reagującą na kursor.
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
