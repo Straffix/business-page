@@ -1,81 +1,44 @@
-@use "../colors" as c;
+@use "../colors" as colors;
 
-@include c.respond(large) {
-  body.is-revealed .intro__brand {
-    transform: translate(-40vw, -39vh) scale(0.28);
-  }
+@mixin render {
+  @media (min-width: 1180px) {
+    .social {
+      top: 2rem;
+      right: 2.2rem;
+      text-shadow: 0 0 14px rgba(colors.$white, 0.18);
+    }
 
-  .site-header {
-    top: 1.5rem;
-    width: min(100% - 3rem, 86rem);
-  }
+    .brand {
+      top: 25.5%;
+      left: 6.3%;
+      font-size: clamp(2.7rem, 4.2vw, 5rem);
+      letter-spacing: 0.21em;
+    }
 
-  .landing {
-    padding-top: 5.5rem;
-  }
+    .tagline {
+      top: 26.4%;
+      right: 8%;
+      max-width: 42rem;
+      font-size: clamp(1.9rem, 3vw, 4rem);
+    }
 
-  .hero {
-    grid-template-columns: 0.95fr 1.05fr;
-    padding-top: 8.5rem;
-    padding-bottom: 3rem;
-  }
+    .network {
+      left: 35%;
+      width: min(44vw, 44rem);
+      opacity: 0.5;
+      filter: drop-shadow(0 0 16px rgba(colors.$white, 0.1));
+    }
 
-  .hero__copy {
-    max-width: 40rem;
-  }
+    .tile--strategic {
+      padding: clamp(2rem, 4vw, 5.2rem) clamp(1.5rem, 3vw, 3rem) clamp(2rem, 4vh, 4rem) clamp(2rem, 6vw, 12rem);
+    }
 
-  .hero__title {
-    max-width: 10ch;
-    font-size: clamp(3.65rem, 5.5vw, 5.75rem);
-  }
+    .iab-main {
+      font-size: clamp(4.2rem, 7vw, 7rem);
+    }
 
-  .hero__signal {
-    max-width: 20rem;
-    padding: 1.2rem 1.35rem;
-  }
-
-  .tiles {
-    grid-template-columns: 1.1fr 1fr 1fr 0.9fr;
-    grid-template-areas:
-      "strategic host host tech"
-      "strategic projects titanium contact";
-    gap: 0.45rem;
-  }
-
-  .tile {
-    min-height: 12rem;
-    padding: 1.4rem;
-    border-radius: 0.35rem;
-  }
-
-  .tile--strategic {
-    grid-area: strategic;
-    min-height: 26rem;
-  }
-
-  .tile--host {
-    grid-area: host;
-    min-height: 14rem;
-  }
-
-  .tile--tech {
-    grid-area: tech;
-  }
-
-  .tile--projects {
-    grid-area: projects;
-  }
-
-  .tile--titanium {
-    grid-area: titanium;
-  }
-
-  .tile--contact {
-    grid-area: contact;
-  }
-
-  .contact-strip {
-    margin-top: 2.5rem;
-    padding: 1.5rem 1.4rem;
+    .iab-vertical {
+      font-size: clamp(1.35rem, 1.65vw, 2rem);
+    }
   }
 }

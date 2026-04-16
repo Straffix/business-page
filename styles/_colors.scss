@@ -1,56 +1,31 @@
-$bp-medium: 48rem;
-$bp-large: 75rem;
+$white: #ffffff;
+$black: #000000;
 
-$bg: #020202;
-$text: #f1efeb;
-$muted: rgba(241, 239, 235, 0.72);
-$line: rgba(255, 255, 255, 0.12);
-$line-strong: rgba(255, 255, 255, 0.24);
-$shadow: 0 2rem 4rem rgba(0, 0, 0, 0.32);
+$background-base: #020305;
+$bg-top: #040507;
+$bg-bottom: #070a0d;
 
-:root {
-  --page-bg: #{$bg};
-  --text-main: #{$text};
-  --text-muted: #{$muted};
-  --line: #{$line};
-  --line-strong: #{$line-strong};
-  --glow-blue: rgba(15, 145, 221, 0.45);
-  --glow-pink: rgba(159, 22, 84, 0.48);
-  --glow-cyan: rgba(71, 206, 230, 0.42);
-  --panel: rgba(255, 255, 255, 0.05);
-  --shadow-strong: #{$shadow};
-  --radius-card: 1.35rem;
-  --transition-soft: 0.38s cubic-bezier(0.22, 1, 0.36, 1);
-}
+$panel: #12151a;
+$panel-strong: #0e1116;
 
-@mixin respond($breakpoint) {
-  @if $breakpoint == medium {
-    @media (min-width: $bp-medium) {
-      @content;
-    }
-  } @else if $breakpoint == large {
-    @media (min-width: $bp-large) {
-      @content;
-    }
-  }
-}
+$rose: #ba1956;
+$rose-dark: #700e36;
+$rose-light: #ff5a90;
 
-@mixin frame {
-  width: min(100% - 1.5rem, 76rem);
-  margin-inline: auto;
-}
+$cyan: #56d4f2;
+$cyan-dark: #125b76;
+$cyan-light: #48cbff;
+$cyan-bright: #4fcaff;
 
-@mixin glass($tint: rgba(255, 255, 255, 0.05), $border: rgba(255, 255, 255, 0.1)) {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015)), $tint;
-  border: 1px solid $border;
-  box-shadow: $shadow;
-  backdrop-filter: blur(18px);
-}
+$blue-dust: #76bcd6;
+$blue-soft: #76d3ff;
+$blue-mid: #6ccaff;
+$blue-glow: #84d0ff;
 
-@mixin button-reset {
-  appearance: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: none;
-}
+$gold: #ffd59a;
+$gold-soft: #ffe39f;
+$gold-light: #fff1c1;
+
+$city-window: #e1eaff;
+$city-frame: #222d34;
+$city-shadow: #06080c;

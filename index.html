@@ -1,174 +1,186 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arkadiusz Lisiecki TM</title>
-  <meta
-    name="description"
-    content="Interaktywny landing page z animowanym intro, siatką kafelków i efektem sieci reagującym na ruch kursora."
-  >
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Michroma&family=Space+Grotesk:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  >
-  <link rel="stylesheet" href="styles/css/style.css">
-  <script src="js/script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celerise</title>
+    <link rel="stylesheet" href="styles/css/style.css">
+    <script src="js/script.js" defer></script>
 </head>
-<body class="is-intro-lock">
-  <div class="intro" aria-hidden="true">
-    <div class="intro__inner">
-      <p class="intro__brand">Arkadiusz Lisiecki <span class="intro__mark">TM</span></p>
-      <p class="intro__tag">digital systems / web / motion direction</p>
-    </div>
-  </div>
 
-  <canvas class="network-canvas" aria-hidden="true"></canvas>
-  <div class="cursor-halo" aria-hidden="true"></div>
+<body>
+    <svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute;">
+        <symbol id="icon-cloud" viewBox="0 0 100 100">
+            <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M31 69h36c10 0 18-6 18-17s-8-17-18-17h-2C61 22 51 14 38 14c-17 0-30 12-31 29C-2 46 5 69 31 69Z" />
+        </symbol>
+        <symbol id="icon-spiral" viewBox="0 0 100 100">
+            <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M18 18h64v64H18V18Zm14 14h36v36H46V46h14" />
+        </symbol>
+        <symbol id="icon-project" viewBox="0 0 100 100">
+            <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M25 20h34l16 16v44H25V20Zm34 0v16h16" />
+        </symbol>
+        <symbol id="icon-titanium" viewBox="0 0 100 100">
+            <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M22 25h56M50 25v50m-14 0h28" />
+        </symbol>
+        <symbol id="icon-contact" viewBox="0 0 100 100">
+            <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M22 28h56v30H40L22 72V28Z" />
+        </symbol>
+    </svg>
 
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="site-header__brand" href="#top">
-        Arkadiusz Lisiecki <span class="site-header__mark">TM</span>
-      </a>
-      <button class="site-header__link" type="button" data-scroll-target="kontakt">Kontakt</button>
-    </header>
+    <main class="page">
+        <div class="background" aria-hidden="true">
+            <div class="ambient ambient--left"></div>
+            <div class="ambient ambient--center"></div>
+            <div class="ambient ambient--right"></div>
 
-    <main class="landing" id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero__copy">
-          <p class="hero__eyebrow">#IT TWOJEGO ZASIĘGU</p>
-          <h1 class="hero__title" id="hero-title">
-            Interaktywne doświadczenia dla marek, produktów i technologii.
-          </h1>
-          <p class="hero__lead">
-            Strona otwiera się jak intro prezentacji, a potem odsłania modułowy ekran startowy
-            z kafelkami i responsywną siatką zaprojektowaną mobile first.
-          </p>
-          <div class="hero__meta" aria-label="Specjalizacje">
-            <span>Web</span>
-            <span>Motion</span>
-            <span>Systems</span>
-          </div>
+            <div class="city">
+                <div class="horizon"></div>
+                <div class="road road--1"></div>
+                <div class="road road--2"></div>
+                <div class="road road--3"></div>
+                <div class="road road--4"></div>
+
+                <span class="building building--1"></span>
+                <span class="building building--2"></span>
+                <span class="building building--3"></span>
+                <span class="building building--4"></span>
+                <span class="building building--5"></span>
+                <span class="building building--6"></span>
+                <span class="building building--7"></span>
+                <span class="building building--8"></span>
+
+                <span class="light-cluster light-cluster--1"></span>
+                <span class="light-cluster light-cluster--2"></span>
+                <span class="light-cluster light-cluster--3"></span>
+                <span class="light-cluster light-cluster--4"></span>
+            </div>
+
+            <svg class="network" viewBox="0 0 820 560" aria-hidden="true">
+                <g class="mesh">
+                    <polyline points="145,80 205,132 190,182 255,215 315,170 298,108 365,82 420,126 390,196 456,236 515,212 500,146 570,118" />
+                    <polyline points="190,182 132,262 194,320 286,304 255,215 318,276 390,196 420,126" />
+                    <polyline points="194,320 162,392 238,438 322,388 318,276 390,344 456,236 500,314 580,286" />
+                    <polyline points="322,388 410,440 500,402 500,314 560,366 632,326 580,286" />
+                    <line x1="205" y1="132" x2="315" y2="170" />
+                    <line x1="145" y1="80" x2="298" y2="108" />
+                    <line x1="132" y1="262" x2="255" y2="215" />
+                    <line x1="162" y1="392" x2="286" y2="304" />
+                    <line x1="238" y1="438" x2="390" y2="344" />
+                    <line x1="390" y1="344" x2="500" y2="402" />
+                    <line x1="456" y1="236" x2="632" y2="326" />
+                    <line x1="365" y1="82" x2="500" y2="146" />
+                    <line x1="420" y1="126" x2="570" y2="118" />
+                    <line x1="500" y1="146" x2="580" y2="286" />
+                    <line x1="318" y1="276" x2="500" y2="314" />
+                    <line x1="255" y1="215" x2="390" y2="344" />
+                </g>
+
+                <circle class="node node--pulse" cx="145" cy="80" r="5" />
+                <circle class="node node--soft" cx="205" cy="132" r="4.5" />
+                <circle class="node node--pulse" cx="190" cy="182" r="5" />
+                <circle class="node node--soft" cx="255" cy="215" r="4.5" />
+                <circle class="node node--pulse" cx="315" cy="170" r="5" />
+                <circle class="node node--soft" cx="298" cy="108" r="4" />
+                <circle class="node node--soft" cx="365" cy="82" r="4" />
+                <circle class="node node--pulse" cx="420" cy="126" r="5" />
+                <circle class="node node--soft" cx="390" cy="196" r="4.5" />
+                <circle class="node node--pulse" cx="456" cy="236" r="5" />
+                <circle class="node node--soft" cx="515" cy="212" r="4.5" />
+                <circle class="node node--soft" cx="500" cy="146" r="4" />
+                <circle class="node node--soft" cx="570" cy="118" r="4" />
+                <circle class="node node--soft" cx="132" cy="262" r="4" />
+                <circle class="node node--pulse" cx="194" cy="320" r="5" />
+                <circle class="node node--soft" cx="286" cy="304" r="4.5" />
+                <circle class="node node--soft" cx="318" cy="276" r="4" />
+                <circle class="node node--pulse" cx="162" cy="392" r="5" />
+                <circle class="node node--soft" cx="238" cy="438" r="4.5" />
+                <circle class="node node--soft" cx="322" cy="388" r="4.5" />
+                <circle class="node node--pulse" cx="390" cy="344" r="5" />
+                <circle class="node node--soft" cx="410" cy="440" r="4" />
+                <circle class="node node--soft" cx="500" cy="402" r="4.5" />
+                <circle class="node node--soft" cx="500" cy="314" r="4.5" />
+                <circle class="node node--soft" cx="560" cy="366" r="4" />
+                <circle class="node node--soft" cx="580" cy="286" r="4" />
+                <circle class="node node--soft" cx="632" cy="326" r="4" />
+
+                <circle class="spark" cx="42" cy="184" r="5" />
+                <circle class="spark" cx="96" cy="278" r="4" />
+                <circle class="spark" cx="610" cy="64" r="3.5" />
+                <circle class="spark" cx="702" cy="214" r="4" />
+                <circle class="spark" cx="668" cy="424" r="4.5" />
+                <circle class="spark" cx="538" cy="36" r="3" />
+            </svg>
         </div>
 
-        <div class="hero__signal">
-          <p class="hero__signal-label">Live interface</p>
-          <p class="hero__signal-text">
-            Siatka reaguje na ruch kursora i buduje subtelną pajęczynę połączeń nad tłem.
-          </p>
-        </div>
-      </section>
+        <div class="lower-band" aria-hidden="true"></div>
 
-      <section class="tiles" aria-label="Główne moduły">
-        <button class="tile tile--strategic" type="button">
-          <span class="tile__meta">Strategic clients</span>
-          <div class="tile__body">
-            <p class="tile__logo tile__logo--italic">MAPEI</p>
-            <p class="tile__label">Klienci strategiczni</p>
-          </div>
-          <p class="tile__text">
-            Stała obsługa ekranów, komunikacji i wdrożeń dla dużych marek.
-          </p>
-        </button>
+        <a class="social" href="#" aria-label="Facebook">f</a>
+        <h1 class="brand">Arkadiusz Lisiecki<small>tm</small></h1>
+        <p class="tagline">#IT TWOJEGO ZASIĘGU</p>
 
-        <button class="tile tile--host" type="button">
-          <span class="tile__meta">Hosting / cloud</span>
-          <div class="tile__body">
-            <span class="tile__icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="none">
-                <path d="M17 42h26a11 11 0 0 0 2-21 15 15 0 0 0-29 4A9 9 0 0 0 17 42Z" />
-                <path d="M22 47h20" />
-              </svg>
-            </span>
-            <p class="tile__label">HOST24</p>
-          </div>
-          <p class="tile__text">
-            Warstwa techniczna dla usług online, SLA i szybkich publikacji.
-          </p>
-        </button>
+        <section class="tiles" aria-label="Sekcje strony">
+            <article class="tile tile--strategic">
+                <div class="tile-content">
+                    <div class="iab-lockup" aria-hidden="true">
+                        <span class="iab-main">iab</span>
+                        <span class="iab-vertical">polska</span>
+                    </div>
+                    <p class="label">Klienci strategiczni</p>
+                </div>
+            </article>
 
-        <button class="tile tile--tech" type="button">
-          <span class="tile__meta">Framework / stack</span>
-          <div class="tile__body">
-            <span class="tile__icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="none">
-                <path d="M16 16h32v32H16z" />
-                <path d="M24 24h16v16H24z" />
-                <path d="M30 30h4v4h-4z" />
-              </svg>
-            </span>
-            <p class="tile__label">Technologia</p>
-          </div>
-          <p class="tile__text">
-            Front-end, Sass modules, animacje i interfejsy budowane warstwowo.
-          </p>
-        </button>
+            <article class="tile tile--hosti">
+                <div class="tile-content">
+                    <svg class="icon" viewBox="0 0 100 100" aria-hidden="true">
+                        <use href="#icon-cloud"></use>
+                    </svg>
+                    <p class="label">Hosti24</p>
+                </div>
+            </article>
 
-        <button class="tile tile--projects" type="button">
-          <span class="tile__meta">Selected work</span>
-          <div class="tile__body">
-            <span class="tile__icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="none">
-                <path d="M18 18h20l8 8v20H18z" />
-                <path d="M38 18v12h12" />
-              </svg>
-            </span>
-            <p class="tile__label">Realizacje</p>
-          </div>
-          <p class="tile__text">
-            Układy, landing pages, motion hero i moduły pod konkretne wdrożenia.
-          </p>
-        </button>
+            <article class="tile tile--tech">
+                <div class="tile-content">
+                    <svg class="icon" viewBox="0 0 100 100" aria-hidden="true">
+                        <use href="#icon-spiral"></use>
+                    </svg>
+                    <p class="label">Technologia</p>
+                </div>
+            </article>
 
-        <button class="tile tile--titanium" type="button">
-          <span class="tile__meta">Product line</span>
-          <div class="tile__body">
-            <span class="tile__icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="none">
-                <path d="M16 18h32" />
-                <path d="M24 18l8 28 8-28" />
-                <path d="M32 46v8" />
-              </svg>
-            </span>
-            <p class="tile__label">Titanium</p>
-          </div>
-          <p class="tile__text">
-            Mocne, minimalistyczne layouty z wyrazistą typografią i światłem.
-          </p>
-        </button>
+            <article class="tile tile--projects">
+                <div class="tile-content">
+                    <svg class="icon" viewBox="0 0 100 100" aria-hidden="true">
+                        <use href="#icon-project"></use>
+                    </svg>
+                    <p class="label">Realizacje</p>
+                </div>
+            </article>
 
-        <button class="tile tile--contact" type="button" data-scroll-target="kontakt">
-          <span class="tile__meta">Start a project</span>
-          <div class="tile__body">
-            <span class="tile__icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="none">
-                <path d="M16 18h32v22H30l-12 10V18Z" />
-              </svg>
-            </span>
-            <p class="tile__label">Kontakt</p>
-          </div>
-          <p class="tile__text">
-            Przejdź niżej, jeśli chcesz ten układ rozwinąć o kolejne podstrony i sekcje.
-          </p>
-        </button>
-      </section>
+            <article class="tile tile--titanium">
+                <div class="tile-content">
+                    <svg class="icon" viewBox="0 0 100 100" aria-hidden="true">
+                        <use href="#icon-titanium"></use>
+                    </svg>
+                    <p class="label">Titanium</p>
+                </div>
+            </article>
 
-      <section class="contact-strip" id="kontakt" aria-labelledby="contact-title">
-        <div>
-          <p class="contact-strip__eyebrow">Arkadiusz Lisiecki TM</p>
-          <h2 class="contact-strip__title" id="contact-title">
-            Projekt startowy gotowy pod dalszą rozbudowę.
-          </h2>
-        </div>
-        <p class="contact-strip__text">
-          Masz już intro, responsywną siatkę, efekt rozjaśniania kafelków i sieciową animację
-          reagującą na kursor.
-        </p>
-      </section>
+            <article class="tile tile--contact">
+                <div class="tile-content">
+                    <svg class="icon" viewBox="0 0 100 100" aria-hidden="true">
+                        <use href="#icon-contact"></use>
+                    </svg>
+                    <p class="label">Kontakt</p>
+                </div>
+            </article>
+        </section>
     </main>
-  </div>
 </body>
+
 </html>
