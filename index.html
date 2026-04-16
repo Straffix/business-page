@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arkadiusz Lisiecki</title>
+    <script>document.documentElement.classList.add('has-js');</script>
     <link rel="stylesheet" href="styles/css/style.css">
     <script src="js/background-scene.js" defer></script>
     <script src="js/script.js" defer></script>
@@ -39,11 +40,17 @@
 
         <div class="lower-band" aria-hidden="true"></div>
 
+        <div class="intro" data-site-intro aria-hidden="true">
+            <div class="intro-brand" data-site-intro-brand>
+                <span class="intro-brand-word">Arkadiusz Lisiecki</span><sup class="intro-brand-trademark">TM</sup>
+            </div>
+        </div>
+
         <a class="social" href="#" aria-label="Facebook">f</a>
         <h1 class="brand" aria-label="Arkadiusz Lisiecki">
-            <span class="brand-word">arkadiusz lisiecki</span><sup class="brand-trademark">TM</sup>
+            <span class="brand-word">Arkadiusz Lisiecki</span><sup class="brand-trademark">TM</sup>
         </h1>
-        <p class="tagline">#Kod twojego biznesu</p>
+        <p class="tagline">#<span>Kod</span> twojego biznesu</p>
 
         <section class="tiles" aria-label="Sekcje strony">
             <article class="tile tile--strategic project-slider" data-project-slider data-slider-interval="2400"
@@ -76,30 +83,150 @@
                 </p>
             </article>
 
-            <article class="tile tile--hosti">
-                <img class="tile-icon" src="img/hosting.png" alt="" aria-hidden="true">
+            <article class="tile tile--hosti" data-expand-trigger data-expand-target="portfolio-panel" role="button"
+                tabindex="0" aria-controls="portfolio-panel" aria-expanded="false">
+                <img class="tile-icon" src="img/projects.svg" alt="" aria-hidden="true">
                 <p class="label">Portfolio</p>
             </article>
 
-            <article class="tile tile--tech">
-                <img class="tile-icon" src="img/technology.png" alt="" aria-hidden="true">
+            <article class="tile tile--tech" data-expand-trigger data-expand-target="stack-panel" role="button"
+                tabindex="0" aria-controls="stack-panel" aria-expanded="false">
+                <img class="tile-icon" src="img/stack.svg" alt="" aria-hidden="true">
                 <p class="label">Stack</p>
             </article>
 
-            <article class="tile tile--projects">
-                <img class="tile-icon" src="img/realizations.png" alt="" aria-hidden="true">
+            <article class="tile tile--projects" data-expand-trigger data-expand-target="about-panel" role="button"
+                tabindex="0" aria-controls="about-panel" aria-expanded="false">
+                <img class="tile-icon" src="img/about.svg" alt="" aria-hidden="true">
                 <p class="label">O mnie</p>
             </article>
 
             <article class="tile tile--titanium">
-                <img class="tile-icon" src="img/titanium.png" alt="" aria-hidden="true">
+                <img class="tile-icon" src="img/new.svg" alt="" aria-hidden="true">
                 <p class="label">Najnowszy projekt</p>
             </article>
 
-            <article class="tile tile--contact">
-                <img class="tile-icon" src="img/contact.png" alt="" aria-hidden="true">
+            <article class="tile tile--contact" data-expand-trigger data-expand-target="contact-panel" role="button"
+                tabindex="0" aria-controls="contact-panel" aria-expanded="false">
+                <img class="tile-icon" src="img/contact.svg" alt="" aria-hidden="true">
                 <p class="label">Kontakt</p>
             </article>
+        </section>
+
+        <section class="contact-panel" id="stack-panel" data-expand-panel role="dialog" aria-modal="true" tabindex="-1"
+            aria-hidden="true" aria-labelledby="stack-panel-title" hidden>
+            <button class="contact-panel__close" type="button" data-expand-close aria-label="Zamknij stack">
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="contact-panel__tile-mark" aria-hidden="true">
+                <img class="contact-panel__tile-icon" src="img/stack.svg" alt="">
+                <p class="contact-panel__tile-label">Stack</p>
+            </div>
+
+            <div class="contact-panel__content">
+                <img class="contact-panel__icon" src="img/stack.svg" alt="" aria-hidden="true">
+                <p class="contact-panel__eyebrow">Technologie i narzedzia</p>
+                <h2 class="contact-panel__title" id="stack-panel-title">Stack</h2>
+                <p class="contact-panel__lead">
+                    Pracuje na lekkim, czytelnym froncie: semantyczny HTML, uporzadkowany SCSS i JavaScript tam, gdzie
+                    naprawde wnosi ruch, interakcje albo automatyzacje.
+                </p>
+                <div class="contact-panel__details" aria-label="Technologie">
+                    <p>HTML</p>
+                    <p>SCSS</p>
+                    <p>JavaScript</p>
+                    <p>React</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-panel" id="portfolio-panel" data-expand-panel role="dialog" aria-modal="true"
+            tabindex="-1" aria-hidden="true" aria-labelledby="portfolio-panel-title" hidden>
+            <button class="contact-panel__close" type="button" data-expand-close aria-label="Zamknij portfolio">
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="contact-panel__tile-mark" aria-hidden="true">
+                <img class="contact-panel__tile-icon" src="img/projects.svg" alt="">
+                <p class="contact-panel__tile-label">Portfolio</p>
+            </div>
+
+            <div class="contact-panel__content">
+                <img class="contact-panel__icon" src="img/projects.svg" alt="" aria-hidden="true">
+                <p class="contact-panel__eyebrow">Wybrane realizacje</p>
+                <h2 class="contact-panel__title" id="portfolio-panel-title">Portfolio</h2>
+                <p class="contact-panel__lead">
+                    Projekty, w ktorych liczy sie czytelny interfejs, szybkie dzialanie i dopracowany detal. Od prostych
+                    stron po bardziej rozbudowane widoki aplikacji.
+                </p>
+                <div class="contact-panel__details" aria-label="Typy realizacji">
+                    <p>Landing page</p>
+                    <p>Dashboard</p>
+                    <p>React</p>
+                    <p>E-commerce</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-panel" id="about-panel" data-expand-panel role="dialog" aria-modal="true" tabindex="-1"
+            aria-hidden="true" aria-labelledby="about-panel-title" hidden>
+            <button class="contact-panel__close" type="button" data-expand-close aria-label="Zamknij O mnie">
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="contact-panel__tile-mark" aria-hidden="true">
+                <img class="contact-panel__tile-icon" src="img/about.svg" alt="">
+                <p class="contact-panel__tile-label">O mnie</p>
+            </div>
+
+            <div class="contact-panel__content">
+                <img class="contact-panel__icon" src="img/about.svg" alt="" aria-hidden="true">
+                <p class="contact-panel__eyebrow">Kilka slow o mnie</p>
+                <h2 class="contact-panel__title" id="about-panel-title">O mnie</h2>
+                <p class="contact-panel__lead">
+                    Tworze front-end, animacje i interfejsy, ktore maja dzialac szybko, jasno i bez przypadkowego
+                    chaosu. Lubie projekty, w ktorych detal robi roznice.
+                </p>
+                <div class="contact-panel__details" aria-label="Obszary pracy">
+                    <p>HTML</p>
+                    <p>SCSS</p>
+                    <p>JavaScript</p>
+                    <p>UI</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-panel" id="contact-panel" data-expand-panel role="dialog" aria-modal="true" tabindex="-1"
+            aria-hidden="true" aria-labelledby="contact-panel-title" hidden>
+            <button class="contact-panel__close" type="button" data-expand-close aria-label="Zamknij kontakt">
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="contact-panel__tile-mark" aria-hidden="true">
+                <img class="contact-panel__tile-icon" src="img/contact.svg" alt="">
+                <p class="contact-panel__tile-label">Kontakt</p>
+            </div>
+
+            <div class="contact-panel__content">
+                <img class="contact-panel__icon" src="img/contact.svg" alt="" aria-hidden="true">
+                <p class="contact-panel__eyebrow">Porozmawiajmy o projekcie</p>
+                <h2 class="contact-panel__title" id="contact-panel-title">Kontakt</h2>
+                <p class="contact-panel__lead">
+                    Opowiedz mi, co chcesz zbudowac, poprawic albo przyspieszyc. Najlepiej krotko, konkretnie i z
+                    miejscem na dobry start.
+                </p>
+                <div class="contact-panel__details" aria-label="Tematy rozmowy">
+                    <p>Front-end</p>
+                    <p>Animacje</p>
+                    <p>Interfejsy</p>
+                    <p>Prototypy</p>
+                </div>
+            </div>
         </section>
     </main>
 </body>
