@@ -48,7 +48,7 @@ a {
   min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
-  --page-bg-image: url('../../img/celerise-bg.jpg');
+  --page-bg-image: url('../../img/lisiecki-bg.jpg');
   --page-bg-position: 0 0;
   background-color: #070a0d;
   background-image: var(--page-bg-image);
@@ -835,10 +835,39 @@ a {
   text-transform: uppercase;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html.has-js:not(.intro-complete),
+  html.has-js:not(.intro-complete) body {
+    overflow: auto;
+  }
+  .has-js:not(.intro-complete) .brand {
+    opacity: 1;
+  }
+  .has-js .intro {
+    display: none;
+  }
+}
 @media (min-width: 621px) and (max-width: 979px) {
   .page {
-    --page-bg-image: url('../../img/celerise-bg.jpg');
+    --page-bg-image: url('../../img/lisiecki-bg.jpg');
     --page-bg-position: 0 0;
+  }
+  .tiles {
+    margin-top: clamp(22rem, 44vw, 28rem);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: "strategic strategic" "hosti tech" "projects titanium" "contact contact";
+  }
+  .tile {
+    min-height: 10rem;
+  }
+  .tile--strategic {
+    min-height: 16rem;
   }
   .social {
     top: 1.5rem;
@@ -861,52 +890,16 @@ a {
     max-width: 78%;
     letter-spacing: 0.12em;
   }
-  .tiles {
-    margin-top: clamp(22rem, 44vw, 28rem);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas: "strategic strategic" "hosti tech" "projects titanium" "contact contact";
-  }
-  .tile {
-    min-height: 10rem;
-  }
-  .tile--strategic {
-    min-height: 16rem;
-  }
 }
 @media (min-width: 980px) {
   .page {
-    --page-bg-image: url('../../img/celerise-bg.jpg');
+    --page-bg-image: url('../../img/lisiecki-bg.jpg');
     --page-bg-position: 0 0;
-  }
-  .brand-word {
-    font-size: 3rem;
-  }
-  .intro-brand-word {
-    font-size: 4.6rem;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-  html.has-js:not(.intro-complete),
-  html.has-js:not(.intro-complete) body {
-    overflow: auto;
-  }
-  .has-js:not(.intro-complete) .brand {
-    opacity: 1;
-  }
-  .has-js .intro {
-    display: none;
-  }
-}
-@media (min-width: 980px) {
-  .page {
     height: 100vh;
     min-height: 100vh;
+  }
+  .lower-band {
+    height: min(53vh, 34rem);
   }
   .social {
     top: 1.75rem;
@@ -919,6 +912,12 @@ a {
     font-size: clamp(2.4rem, 2.45vw, 3.4rem);
     letter-spacing: 0.22em;
   }
+  .brand-word {
+    font-size: 3rem;
+  }
+  .intro-brand-word {
+    font-size: 4.6rem;
+  }
   .tagline {
     top: 23.8%;
     left: 57.4%;
@@ -926,9 +925,6 @@ a {
     max-width: 34rem;
     font-size: clamp(1.25rem, 1.55vw, 2rem);
     letter-spacing: 0.12em;
-  }
-  .lower-band {
-    height: min(53vh, 34rem);
   }
   .tiles {
     position: absolute;

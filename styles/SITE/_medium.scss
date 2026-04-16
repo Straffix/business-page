@@ -1,63 +1,52 @@
-@use '../colors' as colors;
-
 @mixin render {
-	@media (min-width: 980px) {
+	@media (min-width: 621px) and (max-width: 979px) {
 		.page {
-			height: 100vh;
-			min-height: 100vh;
-		}
-
-		.social {
-			top: 1.75rem;
-			right: 1.75rem;
-			text-shadow: 0 0 14px rgba(colors.$white, 0.18);
-		}
-
-		.brand {
-			top: 23.6%;
-			left: 8.9%;
-			font-size: clamp(2.4rem, 2.45vw, 3.4rem);
-			letter-spacing: 0.22em;
-		}
-
-		.tagline {
-			top: 23.8%;
-			left: 57.4%;
-			right: auto;
-			max-width: 34rem;
-			font-size: clamp(1.25rem, 1.55vw, 2rem);
-			letter-spacing: 0.12em;
-		}
-
-		.lower-band {
-			height: min(53vh, 34rem);
+			--page-bg-image: url('../../img/lisiecki-bg.jpg');
+			--page-bg-position: 0 0;
 		}
 
 		.tiles {
-			position: absolute;
-			inset: auto 0 0;
-			margin-top: 0;
-			padding: 0;
-			height: 50%;
-			gap: 0.5rem;
-			grid-template-columns: repeat(6, minmax(0, 1fr));
-			grid-template-rows: 1fr 1fr;
+			margin-top: clamp(22rem, 44vw, 28rem);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 			grid-template-areas:
-				'strategic strategic hosti hosti tech tech'
-				'strategic strategic projects titanium contact .';
+				'strategic strategic'
+				'hosti tech'
+				'projects titanium'
+				'contact contact';
 		}
 
 		.tile {
-			min-height: 0;
+			min-height: 10rem;
 		}
 
 		.tile--strategic {
-			min-height: 0;
-			padding: clamp(2rem, 4vw, 4rem);
+			min-height: 16rem;
 		}
 
-		.tile--contact {
-			min-height: 0;
+		.social {
+			top: 1.5rem;
+			right: 1.5rem;
+		}
+
+		.brand {
+			top: 11%;
+			left: 5%;
+			font-size: clamp(2.6rem, 6vw, 4.2rem);
+			letter-spacing: 0.21em;
+		}
+
+		.brand-word {
+			font-size: 3rem;
+		}
+
+		.intro-brand-word {
+			font-size: 4rem;
+		}
+
+		.tagline {
+			top: 18%;
+			max-width: 78%;
+			letter-spacing: 0.12em;
 		}
 	}
 }

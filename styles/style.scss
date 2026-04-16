@@ -53,7 +53,7 @@ a {
 	min-height: 100svh;
 	overflow: hidden;
 	isolation: isolate;
-	--page-bg-image: url('../../img/celerise-bg.jpg');
+	--page-bg-image: url('../../img/lisiecki-bg.jpg');
 	--page-bg-position: 0 0;
 	background-color: colors.$bg-bottom;
 	background-image: var(--page-bg-image);
@@ -902,72 +902,6 @@ a {
 	font-weight: 400;
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
-}
-
-@media (min-width: 621px) and (max-width: 979px) {
-	.page {
-		--page-bg-image: url('../../img/celerise-bg.jpg');
-		--page-bg-position: 0 0;
-	}
-
-	.social {
-		top: 1.5rem;
-		right: 1.5rem;
-	}
-
-	.brand {
-		top: 11%;
-		left: 5%;
-		font-size: clamp(2.6rem, 6vw, 4.2rem);
-		letter-spacing: 0.21em;
-	}
-
-	.brand-word {
-		font-size: 3rem;
-	}
-
-	.intro-brand-word {
-		font-size: 4rem;
-	}
-
-	.tagline {
-		top: 18%;
-		max-width: 78%;
-		letter-spacing: 0.12em;
-	}
-
-	.tiles {
-		margin-top: clamp(22rem, 44vw, 28rem);
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		grid-template-areas:
-			'strategic strategic'
-			'hosti tech'
-			'projects titanium'
-			'contact contact';
-	}
-
-	.tile {
-		min-height: 10rem;
-	}
-
-	.tile--strategic {
-		min-height: 16rem;
-	}
-}
-
-@media (min-width: 980px) {
-	.page {
-		--page-bg-image: url('../../img/celerise-bg.jpg');
-		--page-bg-position: 0 0;
-	}
-
-	.brand-word {
-		font-size: 3rem;
-	}
-
-	.intro-brand-word {
-		font-size: 4.6rem;
-	}
 }
 
 @media (prefers-reduced-motion: reduce) {
