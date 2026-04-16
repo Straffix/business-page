@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Jura";
+  src: url("../../font/jura/Jura-VariableFont_wght.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
 * {
   box-sizing: border-box;
 }
@@ -8,11 +15,16 @@ body {
   min-height: 100%;
   background: #020305;
   color: rgba(255, 255, 255, 0.94);
-  font-family: "Helvetica Neue", "Arial Narrow", Arial, sans-serif;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 body {
   overflow-x: hidden;
+  font-family: "Jura", "Helvetica Neue", "Arial Narrow", Arial, sans-serif;
+  font-size: 1.6rem;
 }
 
 a {
@@ -26,7 +38,13 @@ a {
   min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
-  background: radial-gradient(circle at 50% 44%, rgba(118, 188, 214, 0.08), transparent 16%), radial-gradient(circle at 18% 74%, rgba(255, 227, 159, 0.08), transparent 22%), radial-gradient(circle at 82% 78%, rgba(79, 202, 255, 0.08), transparent 18%), linear-gradient(180deg, #040507, #070a0d);
+  --page-bg-image: url('../../img/celerise-bg.jpg');
+  --page-bg-position: 0 0;
+  background-color: #070a0d;
+  background-image: var(--page-bg-image);
+  background-position: var(--page-bg-position);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
 }
 
 .page::before {
@@ -38,6 +56,7 @@ a {
   opacity: 0.14;
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0.65px, transparent 0.8px);
   background-size: 4px 4px;
+  display: none;
   mix-blend-mode: screen;
 }
 
@@ -48,6 +67,7 @@ a {
   z-index: 2;
   pointer-events: none;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.1) 26%, rgba(0, 0, 0, 0.44) 62%, rgba(0, 0, 0, 0.78)), radial-gradient(circle at 50% 50%, transparent 42%, rgba(0, 0, 0, 0.38) 100%);
+  display: none;
 }
 
 .background {
@@ -55,10 +75,12 @@ a {
   inset: -6% -4% -1%;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .ambient {
   position: absolute;
+  display: none;
   border-radius: 999px;
   filter: blur(70px);
   opacity: 0.42;
@@ -92,6 +114,7 @@ a {
 
 .city {
   position: absolute;
+  display: none;
   inset: 10% 0 0;
 }
 
@@ -274,43 +297,26 @@ a {
 
 .network {
   position: absolute;
-  top: 10%;
-  left: 24%;
-  width: min(68vw, 30rem);
-  height: auto;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 1;
-  opacity: 0.34;
-  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.1));
-  animation: float-network 18s ease-in-out infinite;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
-.network .mesh {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.18);
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.background--network-active .network {
+  opacity: 1;
 }
 
-.network .node {
-  fill: rgba(255, 255, 255, 0.75);
-}
-
-.network .node--soft {
-  fill: rgba(255, 255, 255, 0.34);
-}
-
-.network .node--pulse {
-  animation: pulse-node 3.8s ease-in-out infinite;
-  transform-origin: center;
-}
-
-.network .spark {
-  fill: rgba(255, 255, 255, 0.14);
+.background--network-active.background--network-muted .network {
+  opacity: 0;
 }
 
 .lower-band {
   position: absolute;
+  display: none;
   inset: auto 0 0;
   z-index: 1;
   height: 60%;
@@ -334,20 +340,30 @@ a {
   top: 10%;
   left: 5%;
   z-index: 4;
+  display: inline-flex;
+  align-items: flex-start;
   margin: 0;
-  font-size: clamp(2rem, 6vw, 3rem);
-  font-weight: 200;
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  font-weight: 300;
   line-height: 0.92;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-transform: lowercase;
   text-shadow: 0 0 24px rgba(255, 255, 255, 0.12);
 }
 
-.brand small {
-  font-size: 0.2em;
+.brand-word {
+  display: inline-block;
+  opacity: 0.94;
+  font-size: 3rem;
+}
+
+.brand-trademark {
+  margin-left: 0.2em;
+  font-size: 1rem;
   font-weight: 400;
-  vertical-align: top;
-  letter-spacing: 0.12em;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .tagline {
@@ -358,20 +374,20 @@ a {
   z-index: 4;
   margin: 0;
   max-width: 86%;
-  font-size: clamp(1.35rem, 4vw, 2.2rem);
-  font-weight: 200;
+  font-size: 1rem;
+  font-weight: 100;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   text-shadow: 0 0 18px rgba(255, 255, 255, 0.08);
 }
 
 .tiles {
-  position: relative;
-  z-index: 4;
   display: grid;
+  height: auto;
+  position: relative;
   margin-top: 18rem;
   padding: 0 1rem 1rem;
-  height: auto;
+  z-index: 4;
   gap: 1rem;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
@@ -386,20 +402,20 @@ a {
   min-height: 8.8rem;
   overflow: hidden;
   padding: clamp(1.45rem, 2vw, 2.7rem);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  background: rgba(18, 21, 26, 0.36);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.12);
   text-align: center;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: transform 240ms ease, box-shadow 240ms ease, background 240ms ease;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .tile::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 34%, rgba(0, 0, 0, 0.08));
-  opacity: 0.78;
+  background: rgba(255, 255, 255, 0.16);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .tile > * {
@@ -407,27 +423,30 @@ a {
   z-index: 1;
 }
 
-.tile:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24);
+.tile:hover::before {
+  opacity: 1;
 }
 
 .tile-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.65rem;
 }
 
-.icon {
-  width: clamp(4.3rem, 5vw, 5.8rem);
-  height: clamp(4.3rem, 5vw, 5.8rem);
-  color: rgba(255, 255, 255, 0.9);
+.tile-icon {
+  width: clamp(2.5rem, 2.7vw, 3.2rem);
+  height: auto;
+  opacity: 0.88;
+}
+
+.tile-icon--titanium {
+  width: clamp(2.5rem, 2.7vw, 3.2rem);
 }
 
 .tile .label {
   margin: 0;
-  font-size: clamp(1.1rem, 1.5vw, 2rem);
+  font-size: clamp(1rem, 1.05vw, 1.35rem);
   font-weight: 300;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -435,11 +454,14 @@ a {
 
 .tile--strategic {
   grid-area: strategic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   align-items: flex-end;
   justify-content: flex-start;
   min-height: 14rem;
   padding: 2rem 1.5rem 2rem 2rem;
-  background: linear-gradient(180deg, rgba(34, 45, 52, 0.2), rgba(14, 17, 22, 0.44));
+  background: repeating-linear-gradient(60deg, rgba(3, 105, 55, 0.6), rgba(3, 105, 55, 0.3));
   text-align: left;
 }
 
@@ -448,88 +470,60 @@ a {
   position: absolute;
   inset: auto 0 0;
   height: 58%;
-  background: radial-gradient(circle at 34% 22%, rgba(255, 255, 255, 0.08), transparent 48%), linear-gradient(180deg, rgba(14, 17, 22, 0.04), rgba(7, 10, 13, 0.5));
+  background: transparent;
 }
 
 .tile--strategic .label {
-  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  font-size: clamp(1.1rem, 1.2vw, 1.45rem);
 }
 
 .tile--strategic .tile-content {
-  align-items: flex-start;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(3.5rem, 10vh, 7.2rem);
+  width: 100%;
+  height: 100%;
 }
 
 .tile--hosti {
   grid-area: hosti;
-  background: linear-gradient(135deg, rgba(186, 25, 86, 0.8), rgba(112, 14, 54, 0.62));
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 0 34px rgba(186, 25, 86, 0.18);
+  background: repeating-linear-gradient(60deg, rgba(244, 0, 98, 0.6), rgba(244, 0, 98, 0.3));
+  box-shadow: inset 0 0 0 1px rgba(255, 90, 144, 0.08), 0 0 34px rgba(186, 25, 86, 0.14);
 }
 
 .tile--tech {
   grid-area: tech;
-  background: linear-gradient(180deg, rgba(18, 21, 26, 0.18), rgba(18, 21, 26, 0.3));
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .tile--projects {
   grid-area: projects;
-  background: linear-gradient(180deg, rgba(34, 45, 52, 0.42), rgba(18, 21, 26, 0.54));
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .tile--titanium {
   grid-area: titanium;
-  background: linear-gradient(180deg, rgba(86, 212, 242, 0.7), rgba(18, 91, 118, 0.58));
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 0 34px rgba(86, 212, 242, 0.16);
+  background: repeating-linear-gradient(60deg, rgba(8, 202, 237, 0.6), rgba(8, 202, 237, 0.3));
+  box-shadow: inset 0 0 0 1px rgba(72, 203, 255, 0.08), 0 0 34px rgba(86, 212, 242, 0.12);
 }
 
 .tile--contact {
   grid-area: contact;
   min-height: 9rem;
-  background: linear-gradient(180deg, rgba(34, 45, 52, 0.42), rgba(18, 21, 26, 0.54));
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.iab-lockup {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
+.client-logo {
+  display: block;
+  width: min(72%, 22rem);
+  height: auto;
 }
 
-.iab-main {
-  font-size: 4rem;
-  line-height: 0.82;
-  font-weight: 700;
-  letter-spacing: -0.08em;
-  text-transform: lowercase;
-}
-
-.iab-vertical {
-  font-size: 1.2rem;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-transform: lowercase;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-}
-
-@keyframes pulse-node {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.75;
-  }
-  50% {
-    transform: scale(1.28);
-    opacity: 1;
-  }
-}
-@keyframes float-network {
-  0%, 100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, 10px, 0);
-  }
-}
 @media (min-width: 621px) and (max-width: 979px) {
+  .page {
+    --page-bg-image: url('../../img/celerise-bg.jpg');
+    --page-bg-position: 0 0;
+  }
   .social {
     top: 1.5rem;
     right: 1.5rem;
@@ -537,19 +531,13 @@ a {
   .brand {
     top: 11%;
     left: 5%;
-    font-size: clamp(2rem, 6vw, 3rem);
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
     letter-spacing: 0.21em;
   }
   .tagline {
     top: 18%;
     max-width: 78%;
     letter-spacing: 0.12em;
-  }
-  .network {
-    top: 10%;
-    left: 27%;
-    width: min(64vw, 32rem);
-    opacity: 0.36;
   }
   .tiles {
     margin-top: clamp(22rem, 44vw, 28rem);
@@ -562,6 +550,12 @@ a {
   .tile--strategic {
     min-height: 16rem;
     padding-left: 2rem;
+  }
+}
+@media (min-width: 980px) {
+  .page {
+    --page-bg-image: url('../../img/celerise-bg.jpg');
+    --page-bg-position: 0 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -583,39 +577,32 @@ a {
     text-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
   }
   .brand {
-    top: 23%;
-    left: 5%;
-    font-size: clamp(2.3rem, 4vw, 4.6rem);
-    letter-spacing: 0.2em;
+    top: 23.6%;
+    left: 8.9%;
+    font-size: clamp(2.4rem, 2.45vw, 3.4rem);
+    letter-spacing: 0.22em;
   }
   .tagline {
-    top: 24%;
-    left: auto;
-    right: 5%;
+    top: 23.8%;
+    left: 57.4%;
+    right: auto;
     max-width: 34rem;
-    font-size: clamp(1.8rem, 2.8vw, 3.4rem);
+    font-size: clamp(1.25rem, 1.55vw, 2rem);
     letter-spacing: 0.12em;
   }
-  .network {
-    top: 10%;
-    left: 31%;
-    width: min(52vw, 40rem);
-    opacity: 0.46;
-    filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.1));
-  }
   .lower-band {
-    height: min(50vh, 34rem);
+    height: min(53vh, 34rem);
   }
   .tiles {
     position: absolute;
     inset: auto 0 0;
     margin-top: 0;
     padding: 0;
-    height: min(49vh, 33rem);
-    gap: 0;
-    grid-template-columns: 1.85fr 0.95fr 1fr 1fr 0.92fr;
+    height: 50%;
+    gap: clamp(0.15rem, 0.25vw, 0.35rem);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: "strategic strategic hosti hosti tech" "strategic strategic projects titanium contact";
+    grid-template-areas: "strategic strategic hosti hosti tech tech" "strategic strategic projects titanium contact .";
   }
   .tile {
     min-height: 0;
@@ -627,11 +614,8 @@ a {
   .tile--contact {
     min-height: 0;
   }
-  .iab-main {
-    font-size: clamp(4.6rem, 6vw, 6rem);
-  }
-  .iab-vertical {
-    font-size: clamp(1.35rem, 1.65vw, 1.75rem);
+  .client-logo {
+    width: min(72%, 22rem);
   }
 }
 @media (min-width: 1180px) {
@@ -641,30 +625,22 @@ a {
     text-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
   }
   .brand {
-    top: 25.5%;
-    left: 6.3%;
-    font-size: clamp(2.7rem, 4.2vw, 5rem);
-    letter-spacing: 0.21em;
+    top: 24%;
+    left: 8.9%;
+    font-size: 1rem;
+    letter-spacing: 0.24em;
   }
   .tagline {
-    top: 26.4%;
-    right: 8%;
+    top: 23.7%;
+    left: 57.4%;
+    right: auto;
     max-width: 42rem;
-    font-size: clamp(1.9rem, 3vw, 4rem);
-  }
-  .network {
-    left: 35%;
-    width: min(44vw, 44rem);
-    opacity: 0.5;
-    filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.1));
+    font-size: 2.6rem;
   }
   .tile--strategic {
     padding: clamp(2rem, 4vw, 5.2rem) clamp(1.5rem, 3vw, 3rem) clamp(2rem, 4vh, 4rem) clamp(2rem, 6vw, 12rem);
   }
-  .iab-main {
-    font-size: clamp(4.2rem, 7vw, 7rem);
-  }
-  .iab-vertical {
-    font-size: clamp(1.35rem, 1.65vw, 2rem);
+  .client-logo {
+    width: min(72%, 22rem);
   }
 }/*# sourceMappingURL=style.css.map */

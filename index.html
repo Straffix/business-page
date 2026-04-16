@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celerise</title>
+    <title>Arkadiusz Lisiecki</title>
     <link rel="stylesheet" href="styles/css/style.css">
+    <script src="js/background-scene.js" defer></script>
     <script src="js/script.js" defer></script>
 </head>
 
@@ -34,148 +35,54 @@
     </svg>
 
     <main class="page">
-        <div class="background" aria-hidden="true">
-            <div class="ambient ambient--left"></div>
-            <div class="ambient ambient--center"></div>
-            <div class="ambient ambient--right"></div>
-
-            <div class="city">
-                <div class="horizon"></div>
-                <div class="road road--1"></div>
-                <div class="road road--2"></div>
-                <div class="road road--3"></div>
-                <div class="road road--4"></div>
-
-                <span class="building building--1"></span>
-                <span class="building building--2"></span>
-                <span class="building building--3"></span>
-                <span class="building building--4"></span>
-                <span class="building building--5"></span>
-                <span class="building building--6"></span>
-                <span class="building building--7"></span>
-                <span class="building building--8"></span>
-
-                <span class="light-cluster light-cluster--1"></span>
-                <span class="light-cluster light-cluster--2"></span>
-                <span class="light-cluster light-cluster--3"></span>
-                <span class="light-cluster light-cluster--4"></span>
-            </div>
-
-            <svg class="network" viewBox="0 0 820 560" aria-hidden="true">
-                <g class="mesh">
-                    <polyline points="145,80 205,132 190,182 255,215 315,170 298,108 365,82 420,126 390,196 456,236 515,212 500,146 570,118" />
-                    <polyline points="190,182 132,262 194,320 286,304 255,215 318,276 390,196 420,126" />
-                    <polyline points="194,320 162,392 238,438 322,388 318,276 390,344 456,236 500,314 580,286" />
-                    <polyline points="322,388 410,440 500,402 500,314 560,366 632,326 580,286" />
-                    <line x1="205" y1="132" x2="315" y2="170" />
-                    <line x1="145" y1="80" x2="298" y2="108" />
-                    <line x1="132" y1="262" x2="255" y2="215" />
-                    <line x1="162" y1="392" x2="286" y2="304" />
-                    <line x1="238" y1="438" x2="390" y2="344" />
-                    <line x1="390" y1="344" x2="500" y2="402" />
-                    <line x1="456" y1="236" x2="632" y2="326" />
-                    <line x1="365" y1="82" x2="500" y2="146" />
-                    <line x1="420" y1="126" x2="570" y2="118" />
-                    <line x1="500" y1="146" x2="580" y2="286" />
-                    <line x1="318" y1="276" x2="500" y2="314" />
-                    <line x1="255" y1="215" x2="390" y2="344" />
-                </g>
-
-                <circle class="node node--pulse" cx="145" cy="80" r="5" />
-                <circle class="node node--soft" cx="205" cy="132" r="4.5" />
-                <circle class="node node--pulse" cx="190" cy="182" r="5" />
-                <circle class="node node--soft" cx="255" cy="215" r="4.5" />
-                <circle class="node node--pulse" cx="315" cy="170" r="5" />
-                <circle class="node node--soft" cx="298" cy="108" r="4" />
-                <circle class="node node--soft" cx="365" cy="82" r="4" />
-                <circle class="node node--pulse" cx="420" cy="126" r="5" />
-                <circle class="node node--soft" cx="390" cy="196" r="4.5" />
-                <circle class="node node--pulse" cx="456" cy="236" r="5" />
-                <circle class="node node--soft" cx="515" cy="212" r="4.5" />
-                <circle class="node node--soft" cx="500" cy="146" r="4" />
-                <circle class="node node--soft" cx="570" cy="118" r="4" />
-                <circle class="node node--soft" cx="132" cy="262" r="4" />
-                <circle class="node node--pulse" cx="194" cy="320" r="5" />
-                <circle class="node node--soft" cx="286" cy="304" r="4.5" />
-                <circle class="node node--soft" cx="318" cy="276" r="4" />
-                <circle class="node node--pulse" cx="162" cy="392" r="5" />
-                <circle class="node node--soft" cx="238" cy="438" r="4.5" />
-                <circle class="node node--soft" cx="322" cy="388" r="4.5" />
-                <circle class="node node--pulse" cx="390" cy="344" r="5" />
-                <circle class="node node--soft" cx="410" cy="440" r="4" />
-                <circle class="node node--soft" cx="500" cy="402" r="4.5" />
-                <circle class="node node--soft" cx="500" cy="314" r="4.5" />
-                <circle class="node node--soft" cx="560" cy="366" r="4" />
-                <circle class="node node--soft" cx="580" cy="286" r="4" />
-                <circle class="node node--soft" cx="632" cy="326" r="4" />
-
-                <circle class="spark" cx="42" cy="184" r="5" />
-                <circle class="spark" cx="96" cy="278" r="4" />
-                <circle class="spark" cx="610" cy="64" r="3.5" />
-                <circle class="spark" cx="702" cy="214" r="4" />
-                <circle class="spark" cx="668" cy="424" r="4.5" />
-                <circle class="spark" cx="538" cy="36" r="3" />
-            </svg>
-        </div>
+        <div class="background" aria-hidden="true" data-background-scene></div>
 
         <div class="lower-band" aria-hidden="true"></div>
 
         <a class="social" href="#" aria-label="Facebook">f</a>
-        <h1 class="brand">Arkadiusz Lisiecki<small>tm</small></h1>
-        <p class="tagline">#IT TWOJEGO ZASIĘGU</p>
+        <h1 class="brand" aria-label="Arkadiusz Lisiecki">
+            <span class="brand-word">arkadiusz lisiecki</span><sup class="brand-trademark">TM</sup>
+        </h1>
+        <p class="tagline">#Kod twojego biznesu</p>
 
         <section class="tiles" aria-label="Sekcje strony">
             <article class="tile tile--strategic">
                 <div class="tile-content">
-                    <div class="iab-lockup" aria-hidden="true">
-                        <span class="iab-main">iab</span>
-                        <span class="iab-vertical">polska</span>
-                    </div>
                     <p class="label">Klienci strategiczni</p>
                 </div>
             </article>
 
             <article class="tile tile--hosti">
                 <div class="tile-content">
-                    <svg class="icon" viewBox="0 0 100 100" aria-hidden="true">
-                        <use href="#icon-cloud"></use>
-                    </svg>
-                    <p class="label">Hosti24</p>
+                    <img class="tile-icon" src="img/hosting.png" alt="" aria-hidden="true">
+                    <p class="label">Portfolio</p>
                 </div>
             </article>
 
             <article class="tile tile--tech">
                 <div class="tile-content">
-                    <svg class="icon" viewBox="0 0 100 100" aria-hidden="true">
-                        <use href="#icon-spiral"></use>
-                    </svg>
-                    <p class="label">Technologia</p>
+                    <img class="tile-icon" src="img/technology.png" alt="" aria-hidden="true">
+                    <p class="label">Stack</p>
                 </div>
             </article>
 
             <article class="tile tile--projects">
                 <div class="tile-content">
-                    <svg class="icon" viewBox="0 0 100 100" aria-hidden="true">
-                        <use href="#icon-project"></use>
-                    </svg>
-                    <p class="label">Realizacje</p>
+                    <img class="tile-icon" src="img/realizations.png" alt="" aria-hidden="true">
+                    <p class="label">O mnie</p>
                 </div>
             </article>
 
             <article class="tile tile--titanium">
                 <div class="tile-content">
-                    <svg class="icon" viewBox="0 0 100 100" aria-hidden="true">
-                        <use href="#icon-titanium"></use>
-                    </svg>
-                    <p class="label">Titanium</p>
+                    <img class="tile-icon tile-icon--titanium" src="img/titanium.png" alt="" aria-hidden="true">
+                    <p class="label">Najnowszy projekt</p>
                 </div>
             </article>
 
             <article class="tile tile--contact">
                 <div class="tile-content">
-                    <svg class="icon" viewBox="0 0 100 100" aria-hidden="true">
-                        <use href="#icon-contact"></use>
-                    </svg>
+                    <img class="tile-icon" src="img/contact.png" alt="" aria-hidden="true">
                     <p class="label">Kontakt</p>
                 </div>
             </article>

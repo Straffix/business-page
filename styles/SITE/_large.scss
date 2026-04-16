@@ -1,44 +1,34 @@
-@use "../colors" as colors;
+@use '../colors' as colors;
 
 @mixin render {
-  @media (min-width: 1180px) {
-    .social {
-      top: 2rem;
-      right: 2.2rem;
-      text-shadow: 0 0 14px rgba(colors.$white, 0.18);
-    }
+	@media (min-width: 1180px) {
+		.social {
+			top: 2rem;
+			right: 2.2rem;
+			text-shadow: 0 0 14px rgba(colors.$white, 0.18);
+		}
 
-    .brand {
-      top: 25.5%;
-      left: 6.3%;
-      font-size: clamp(2.7rem, 4.2vw, 5rem);
-      letter-spacing: 0.21em;
-    }
+		.brand {
+			top: 24%;
+			left: 8.9%;
+			font-size: 1rem;
+			letter-spacing: 0.24em;
+		}
 
-    .tagline {
-      top: 26.4%;
-      right: 8%;
-      max-width: 42rem;
-      font-size: clamp(1.9rem, 3vw, 4rem);
-    }
+		.tagline {
+			top: 23.7%;
+			left: 57.4%;
+			right: auto;
+			max-width: 42rem;
+			font-size: 2.6rem;
+		}
 
-    .network {
-      left: 35%;
-      width: min(44vw, 44rem);
-      opacity: 0.5;
-      filter: drop-shadow(0 0 16px rgba(colors.$white, 0.1));
-    }
+		.tile--strategic {
+			padding: clamp(2rem, 4vw, 5.2rem) clamp(1.5rem, 3vw, 3rem) clamp(2rem, 4vh, 4rem) clamp(2rem, 6vw, 12rem);
+		}
 
-    .tile--strategic {
-      padding: clamp(2rem, 4vw, 5.2rem) clamp(1.5rem, 3vw, 3rem) clamp(2rem, 4vh, 4rem) clamp(2rem, 6vw, 12rem);
-    }
-
-    .iab-main {
-      font-size: clamp(4.2rem, 7vw, 7rem);
-    }
-
-    .iab-vertical {
-      font-size: clamp(1.35rem, 1.65vw, 2rem);
-    }
-  }
+		.client-logo {
+			width: min(72%, 22rem);
+		}
+	}
 }
