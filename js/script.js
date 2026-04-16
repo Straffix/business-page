@@ -3,6 +3,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   document.documentElement.classList.add("has-js");
 
+  initProjectSliders();
+
   const backgroundScene = document.querySelector("[data-background-scene]");
   if (!backgroundScene) {
     return;
@@ -14,6 +16,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initNetworkCanvas(backgroundScene);
 });
+
+function initProjectSliders() {
+  const sliders = document.querySelectorAll("[data-project-slider]");
+  for (const slider of sliders) {
+    initProjectSlider(slider);
+  }
+}
+
+function initProjectSlider(slider) {
+  const slides = Array.from(slider.querySelectorAll("[data-project-slide]"));
+  if (slides.length < 2) {
+    return;
+  }
+
+  const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const interval = Number(slider.dataset.sliderInterval) || 3200;
+  let activeIndex = Math.max(slides.findIndex((slide) => slide.classList.contains("is-active")), 0);
+  let timerId = 0;
+
+  const showSlide = (nextIndex) => {
+    slides[activeIndex].classList.remove("is-active");
+    slides[activeIndex].setAttribute("aria-hidden", "true");
+
+    activeIndex = (nextIndex + slides.length) % slides.length;
+    const activeSlide = slides[activeIndex];
+
+    activeSlide.classList.add("is-active");
+    activeSlide.removeAttribute("aria-hidden");
+    slider.style.setProperty("--tile-bg", activeSlide.dataset.tileBg || "");
+    slider.style.setProperty("--tile-hover-bg", activeSlide.dataset.tileHoverBg || "");
+  };
+
+  const pause = () => {
+    if (timerId) {
+      window.clearInterval(timerId);
+      timerId = 0;
+    }
+    slider.classList.add("is-paused");
+  };
+
+  const start = () => {
+    if (timerId || reduceMotionQuery.matches) {
+      return;
+    }
+    slider.classList.remove("is-paused");
+    timerId = window.setInterval(() => showSlide(activeIndex + 1), interval);
+  };
+
+  slider.addEventListener("mouseenter", pause);
+  slider.addEventListener("mouseleave", start);
+  slider.addEventListener("focusin", pause);
+  slider.addEventListener("focusout", start);
+  addMediaQueryListener(reduceMotionQuery, () => {
+    if (reduceMotionQuery.matches) {
+      pause();
+      return;
+    }
+    start();
+  });
+
+  showSlide(activeIndex);
+  if (reduceMotionQuery.matches) {
+    pause();
+    return;
+  }
+  start();
+}
 
 function initNetworkCanvas(backgroundScene) {
   const canvas = backgroundScene.querySelector("[data-network-canvas]");

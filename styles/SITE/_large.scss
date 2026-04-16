@@ -24,11 +24,7 @@
 		}
 
 		.tile--strategic {
-			padding: clamp(2rem, 4vw, 5.2rem) clamp(1.5rem, 3vw, 3rem) clamp(2rem, 4vh, 4rem) clamp(2rem, 6vw, 12rem);
-		}
-
-		.client-logo {
-			width: min(72%, 22rem);
+			padding: clamp(2rem, 4vw, 5.2rem);
 		}
 	}
 }

@@ -439,134 +439,160 @@ a {
 }
 
 .tile {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 8.8rem;
-	overflow: hidden;
-	padding: clamp(1.45rem, 2vw, 2.7rem);
-	border: 1px solid rgba(colors.$white, 0.1);
-	background: rgba(colors.$black, 0.12);
-	text-align: center;
-	backdrop-filter: none;
-	-webkit-backdrop-filter: none;
-}
-
-.tile::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	background: rgba(colors.$white, 0.16);
-	opacity: 0;
-	transition: opacity 0.3s ease-in-out;
-}
-
-.tile > * {
-	position: relative;
-	z-index: 1;
-}
-
-.tile:hover {
-	&::before {
-		opacity: 1;
-	}
-}
-
-.tile-content {
+	--tile-bg: #{rgba(colors.$black, 0.12)};
+	--tile-hover-bg: #{rgba(colors.$white, 0.24)};
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	gap: 0.65rem;
+	min-height: 8.8rem;
+	padding: clamp(1.45rem, 2vw, 2.7rem);
+	border: 1px solid rgba(colors.$white, 0.1);
+	background-color: var(--tile-bg);
+	cursor: pointer;
+	text-align: center;
+	transition: background-color 0.3s ease-in-out;
+}
+
+.tile:hover {
+	background-color: var(--tile-hover-bg);
 }
 
 .tile-icon {
-	width: clamp(2.5rem, 2.7vw, 3.2rem);
+	width: clamp(5rem, 3vw, 3rem);
 	height: auto;
 	opacity: 0.88;
 }
 
-.tile-icon--titanium {
-	width: clamp(2.5rem, 2.7vw, 3.2rem);
-}
-
 .tile .label {
 	margin: 0;
+	margin-top: 10px;
 	font-size: clamp(1rem, 1.05vw, 1.35rem);
+	font-size: 2.3rem;
 	font-weight: 300;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
 }
 
 .tile--strategic {
+	--tile-bg: rgba(3, 105, 55, 0.62);
+	--tile-hover-bg: rgba(28, 145, 82, 0.76);
 	grid-area: strategic;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	align-items: flex-end;
-	justify-content: flex-start;
 	min-height: 14rem;
-	padding: 2rem 1.5rem 2rem 2rem;
-	background: repeating-linear-gradient(60deg, rgba(3, 105, 55, 0.6), rgba(3, 105, 55, 0.3));
-	text-align: left;
-}
-
-.tile--strategic::after {
-	content: '';
-	position: absolute;
-	inset: auto 0 0;
-	height: 58%;
-	background: transparent;
+	padding: 2rem;
 }
 
 .tile--strategic .label {
 	font-size: clamp(1.1rem, 1.2vw, 1.45rem);
 }
 
-.tile--strategic .tile-content {
+.project-slider {
+	position: relative;
+	overflow: hidden;
+}
+
+.project-slider-status {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	z-index: 1;
+	display: flex;
 	align-items: center;
-	justify-content: flex-end;
-	gap: clamp(3.5rem, 10vh, 7.2rem);
-	width: 100%;
-	height: 100%;
+	color: rgba(colors.$white, 0.78);
+	opacity: 0;
+	transform: scale(0.94);
+	transition:
+		opacity 0.3s ease-in-out,
+		transform 0.3s ease-in-out;
+}
+
+.project-slider:hover .project-slider-status,
+.project-slider:focus-within .project-slider-status {
+	animation: slider-pause-pulse 1.25s ease-in-out infinite;
+	opacity: 1;
+	transform: scale(1);
+}
+
+.project-slider-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.4rem;
+	height: 1.4rem;
+}
+
+.project-slider-icon--pause {
+	gap: 0.25rem;
+}
+
+.project-slider-icon--pause span {
+	width: 0.28rem;
+	height: 0.95rem;
+	background: currentColor;
+}
+
+.project-slide {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 2rem;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(0.8rem);
+	transition:
+		opacity 0.45s ease,
+		transform 0.45s ease;
+}
+
+.project-slide.is-active {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@keyframes slider-pause-pulse {
+	0%,
+	100% {
+		opacity: 0.72;
+		transform: scale(1);
+	}
+
+	50% {
+		opacity: 1;
+		transform: scale(1.12);
+	}
 }
 
 .tile--hosti {
+	background-color: #d5ec095b;
 	grid-area: hosti;
-	background: repeating-linear-gradient(60deg, rgba(244, 0, 98, 0.6), rgba(244, 0, 98, 0.3));
-	box-shadow:
-		inset 0 0 0 1px rgba(colors.$rose-light, 0.08),
-		0 0 34px rgba(colors.$rose, 0.14);
 }
 
 .tile--tech {
+	background-color: #ff00b348;
 	grid-area: tech;
-	background: rgba(colors.$black, 0.08);
 }
 
 .tile--projects {
+	--tile-bg: #{rgba(colors.$white, 0.2)};
+	--tile-hover-bg: #{rgba(colors.$white, 0.34)};
 	grid-area: projects;
-	background: rgba(colors.$white, 0.2);
 }
 
 .tile--titanium {
+	--tile-bg: rgba(8, 202, 237, 0.54);
+	--tile-hover-bg: rgba(54, 220, 248, 0.7);
 	grid-area: titanium;
-	background: repeating-linear-gradient(60deg, rgba(8, 202, 237, 0.6), rgba(8, 202, 237, 0.3));
-	box-shadow:
-		inset 0 0 0 1px rgba(colors.$cyan-light, 0.08),
-		0 0 34px rgba(colors.$cyan, 0.12);
 }
 
 .tile--contact {
+	--tile-bg: #{rgba(colors.$white, 0.2)};
+	--tile-hover-bg: #{rgba(colors.$white, 0.34)};
 	grid-area: contact;
 	min-height: 9rem;
-	background: rgba(colors.$white, 0.2);
-}
-
-.client-logo {
-	display: block;
-	width: min(72%, 22rem);
-	height: auto;
 }
 
 @media (min-width: 621px) and (max-width: 979px) {
@@ -609,7 +635,6 @@ a {
 
 	.tile--strategic {
 		min-height: 16rem;
-		padding-left: 2rem;
 	}
 }
 
