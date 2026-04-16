@@ -33,6 +33,22 @@
             <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
                 d="M22 28h56v30H40L22 72V28Z" />
         </symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+                d="M3.5 6.5h17v11h-17zM4.5 7.5l7.5 6 7.5-6" />
+        </symbol>
+        <symbol id="icon-phone" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+                d="M7.2 4.7c.7-.7 1.9-.7 2.6 0l1.7 1.7c.6.6.7 1.6.1 2.3l-1.4 1.8a15.2 15.2 0 0 0 3.3 3.3l1.8-1.4c.7-.5 1.7-.5 2.3.1l1.7 1.7c.7.7.7 1.9 0 2.6l-1 1c-.9.9-2.2 1.3-3.5 1.1-2.6-.4-5.4-2-7.9-4.5s-4.1-5.3-4.5-7.9c-.2-1.3.2-2.6 1.1-3.5l1-1Z" />
+        </symbol>
+        <symbol id="icon-arrow-up-right" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+                d="M7 17 17 7M8 7h9v9" />
+        </symbol>
+        <symbol id="icon-github" viewBox="0 0 16 16">
+            <path fill="currentColor"
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+        </symbol>
     </svg>
 
     <main class="page">
@@ -46,7 +62,12 @@
             </div>
         </div>
 
-        <a class="social" href="#" aria-label="Facebook">f</a>
+        <a class="social" href="https://github.com/Straffix" target="_blank" rel="noreferrer"
+            aria-label="GitHub Straffix">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <use href="#icon-github"></use>
+            </svg>
+        </a>
         <h1 class="brand" aria-label="Arkadiusz Lisiecki">
             <span class="brand-word">Arkadiusz Lisiecki</span><sup class="brand-trademark">TM</sup>
         </h1>
@@ -61,8 +82,8 @@
                         <span></span>
                     </span>
                 </span>
-                <p class="label project-slide is-active" data-project-slide
-                    data-tile-bg="rgba(3, 105, 55, 0.62)" data-tile-hover-bg="rgba(28, 145, 82, 0.76)">
+                <p class="label project-slide is-active" data-project-slide data-tile-bg="rgba(3, 105, 55, 0.62)"
+                    data-tile-hover-bg="rgba(28, 145, 82, 0.76)">
                     Landing page
                 </p>
                 <p class="label project-slide" data-project-slide data-tile-bg="rgba(36, 116, 132, 0.62)"
@@ -127,18 +148,58 @@
 
             <div class="contact-panel__content">
                 <img class="contact-panel__icon" src="img/stack.svg" alt="" aria-hidden="true">
-                <p class="contact-panel__eyebrow">Technologie i narzedzia</p>
+                <p class="contact-panel__eyebrow">Technologie i narzędzia</p>
                 <h2 class="contact-panel__title" id="stack-panel-title">Stack</h2>
                 <p class="contact-panel__lead">
-                    Pracuje na lekkim, czytelnym froncie: semantyczny HTML, uporzadkowany SCSS i JavaScript tam, gdzie
-                    naprawde wnosi ruch, interakcje albo automatyzacje.
+                    Najbliżej mi do czytelnego front-endu, ale pracuję szerzej: od makiet i wdrożeń po animację,
+                    multimedia i narzedzia AI.
                 </p>
-                <div class="contact-panel__details" aria-label="Technologie">
-                    <p>HTML</p>
-                    <p>SCSS</p>
-                    <p>JavaScript</p>
-                    <p>React</p>
+                <div class="stack-panel__grid" aria-label="Kategorie stacku">
+                    <section class="stack-panel__group stack-panel__group--core" aria-labelledby="stack-core-title">
+                        <p class="stack-panel__group-eyebrow">Na co dzień</p>
+                        <h3 class="stack-panel__group-title" id="stack-core-title">Front-end i wdrożenia</h3>
+                        <ul class="stack-panel__tags" aria-label="Technologie front-endowe">
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>JavaScript</li>
+                            <li>SASS</li>
+                            <li>Bootstrap</li>
+                            <li>WordPress</li>
+                        </ul>
+                    </section>
+
+                    <section class="stack-panel__group stack-panel__group--creative"
+                        aria-labelledby="stack-creative-title">
+                        <p class="stack-panel__group-eyebrow">Projekt i kreacja</p>
+                        <h3 class="stack-panel__group-title" id="stack-creative-title">Design, motion i workflow</h3>
+                        <ul class="stack-panel__tags" aria-label="Narzedia projektowe i kreatywne">
+                            <li>Figma</li>
+                            <li>ChatGPT</li>
+                            <li>Codex</li>
+                            <li>Suno AI</li>
+                            <li>Adobe Photoshop</li>
+                            <li>Adobe Illustrator</li>
+                            <li>Adobe After Effects</li>
+                            <li>Logic Pro</li>
+                        </ul>
+                    </section>
+
+                    <section class="stack-panel__group stack-panel__group--learning"
+                        aria-labelledby="stack-learning-title">
+                        <p class="stack-panel__group-eyebrow">Jeszcze się uczę</p>
+                        <h3 class="stack-panel__group-title" id="stack-learning-title">Rozwijam dalej</h3>
+                        <ul class="stack-panel__tags" aria-label="Technologie w trakcie nauki">
+                            <li>React</li>
+                            <li>Vue</li>
+                            <li>TypeScript</li>
+                            <li>Node.js</li>
+                        </ul>
+                    </section>
                 </div>
+                <p class="stack-panel__note">
+                    Najbardziej lubię łaczyć czytelny interfejs, ruch i estetykę z praktycznym wdrożeniem, które po
+                    prostu dobrze działa.
+                </p>
             </div>
         </section>
 
@@ -159,7 +220,7 @@
                 <p class="contact-panel__eyebrow">Wybrane realizacje</p>
                 <h2 class="contact-panel__title" id="portfolio-panel-title">Portfolio</h2>
                 <p class="contact-panel__lead">
-                    Projekty, w ktorych liczy sie czytelny interfejs, szybkie dzialanie i dopracowany detal. Od prostych
+                    Projekty, w których liczy się czytelny interfejs, szybkie działanie i dopracowany detal. Od prostych
                     stron po bardziej rozbudowane widoki aplikacji.
                 </p>
                 <div class="contact-panel__details" aria-label="Typy realizacji">
@@ -185,11 +246,11 @@
 
             <div class="contact-panel__content">
                 <img class="contact-panel__icon" src="img/about.svg" alt="" aria-hidden="true">
-                <p class="contact-panel__eyebrow">Kilka slow o mnie</p>
+                <p class="contact-panel__eyebrow">Kilka słów na mój temat</p>
                 <h2 class="contact-panel__title" id="about-panel-title">O mnie</h2>
                 <p class="contact-panel__lead">
-                    Tworze front-end, animacje i interfejsy, ktore maja dzialac szybko, jasno i bez przypadkowego
-                    chaosu. Lubie projekty, w ktorych detal robi roznice.
+                    Tworzę front-end, animację i interfejsy, które mają działać szybko, jasno i bez przypadkowego
+                    chaosu. Lubię projekty, w których detal robi różnice.
                 </p>
                 <div class="contact-panel__details" aria-label="Obszary pracy">
                     <p>HTML</p>
@@ -200,8 +261,8 @@
             </div>
         </section>
 
-        <section class="contact-panel" id="contact-panel" data-expand-panel role="dialog" aria-modal="true" tabindex="-1"
-            aria-hidden="true" aria-labelledby="contact-panel-title" hidden>
+        <section class="contact-panel" id="contact-panel" data-expand-panel role="dialog" aria-modal="true"
+            tabindex="-1" aria-hidden="true" aria-labelledby="contact-panel-title" hidden>
             <button class="contact-panel__close" type="button" data-expand-close aria-label="Zamknij kontakt">
                 <span></span>
                 <span></span>
@@ -212,19 +273,136 @@
                 <p class="contact-panel__tile-label">Kontakt</p>
             </div>
 
-            <div class="contact-panel__content">
-                <img class="contact-panel__icon" src="img/contact.svg" alt="" aria-hidden="true">
-                <p class="contact-panel__eyebrow">Porozmawiajmy o projekcie</p>
-                <h2 class="contact-panel__title" id="contact-panel-title">Kontakt</h2>
-                <p class="contact-panel__lead">
-                    Opowiedz mi, co chcesz zbudowac, poprawic albo przyspieszyc. Najlepiej krotko, konkretnie i z
-                    miejscem na dobry start.
-                </p>
-                <div class="contact-panel__details" aria-label="Tematy rozmowy">
-                    <p>Front-end</p>
-                    <p>Animacje</p>
-                    <p>Interfejsy</p>
-                    <p>Prototypy</p>
+            <div class="contact-panel__content contact-panel__content--contact">
+                <div class="contact-panel__scene">
+                    <div class="contact-panel__cube" data-contact-cube>
+                        <section class="contact-panel__face contact-panel__face--front"
+                            aria-labelledby="contact-panel-title">
+                            <div class="contact-panel__face-shell contact-panel__face-shell--front">
+                                <img class="contact-panel__icon" src="img/contact.svg" alt="" aria-hidden="true">
+                                <p class="contact-panel__eyebrow">Porozmawiajmy o Twoim projekcie</p>
+                                <h2 class="contact-panel__title" id="contact-panel-title">Kontakt</h2>
+                                <p class="contact-panel__lead">
+                                    Opowiedz mi, co chcesz zbudować, poprawić albo przyspieszyć realizację.
+                                </p>
+                                <div class="contact-panel__cta-wrap">
+                                    <button class="contact-panel__cta" type="button" data-contact-flip
+                                        data-contact-primary>
+                                        Napisz do mnie
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="contact-panel__face contact-panel__face--back"
+                            aria-labelledby="contact-form-title">
+                            <div class="contact-panel__face-shell contact-panel__face-shell--back">
+                                <div class="contact-back">
+                                    <div class="contact-back__aside">
+                                        <p class="contact-back__eyebrow">Kontakt</p>
+                                        <h3 class="contact-back__title" id="contact-form-title">Napisz do mnie</h3>
+                                        <p class="contact-back__lead">
+                                            Jeśli wolisz, możesz od razu podesłać szczegóły projektu albo skorzystać z
+                                            szybkich namiarow obok.
+                                        </p>
+
+                                        <div class="contact-back__cards">
+                                            <a class="contact-back__card" href="mailto:kontakt@lisieckidev.pl">
+                                                <span class="contact-back__card-icon" aria-hidden="true">
+                                                    <svg viewBox="0 0 24 24" focusable="false">
+                                                        <use href="#icon-mail"></use>
+                                                    </svg>
+                                                </span>
+                                                <span class="contact-back__card-copy">
+                                                    <span class="contact-back__card-label">Email</span>
+                                                    <span class="contact-back__card-value">kontakt@lisieckidev.pl</span>
+                                                </span>
+                                            </a>
+
+                                            <a class="contact-back__card" href="tel:+48791947493">
+                                                <span class="contact-back__card-icon" aria-hidden="true">
+                                                    <svg viewBox="0 0 24 24" focusable="false">
+                                                        <use href="#icon-phone"></use>
+                                                    </svg>
+                                                </span>
+                                                <span class="contact-back__card-copy">
+                                                    <span class="contact-back__card-label">Telefon</span>
+                                                    <span class="contact-back__card-value">+48 791 947 493</span>
+                                                </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="contact-back__socials" aria-label="Szybkie akcje kontaktowe">
+                                            <a class="contact-back__social" href="mailto:kontakt@lisieckidev.pl"
+                                                aria-label="Napisz email">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                                    <use href="#icon-mail"></use>
+                                                </svg>
+                                            </a>
+                                            <a class="contact-back__social" href="tel:+48791947493"
+                                                aria-label="Zadzwon">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                                    <use href="#icon-phone"></use>
+                                                </svg>
+                                            </a>
+                                            <a class="contact-back__social" href="https://github.com/Straffix"
+                                                target="_blank" rel="noreferrer" aria-label="GitHub Straffix">
+                                                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                                                    <use href="#icon-github"></use>
+                                                </svg>
+                                            </a>
+                                        </div>
+
+                                        <p class="contact-back__badge">Zazwyczaj odpisuję w ciagu 24h</p>
+
+                                        <button class="contact-back__return" type="button" data-contact-flip-back>
+                                            Wroc do intro
+                                        </button>
+                                    </div>
+
+                                    <form class="contact-form" data-contact-form
+                                        data-contact-mail="kontakt@lisieckidev.pl">
+                                        <div class="contact-form__row">
+                                            <label class="contact-form__field">
+                                                <span class="contact-form__label">Imię / Firma</span>
+                                                <input type="text" name="name" autocomplete="name"
+                                                    placeholder="Twoje imie lub nazwa firmy" required>
+                                            </label>
+
+                                            <label class="contact-form__field">
+                                                <span class="contact-form__label">Email</span>
+                                                <input type="email" name="email" autocomplete="email"
+                                                    placeholder="twoj@email.pl" required>
+                                            </label>
+                                        </div>
+
+                                        <label class="contact-form__field">
+                                            <span class="contact-form__label">Temat</span>
+                                            <input type="text" name="subject" placeholder="W czym moge pomoc?" required>
+                                        </label>
+
+                                        <label class="contact-form__field">
+                                            <span class="contact-form__label">Wiadomość</span>
+                                            <textarea name="message" rows="8"
+                                                placeholder="Opisz swoj projekt, pomysl albo problem..." required
+                                                data-contact-focus></textarea>
+                                        </label>
+
+                                        <div class="contact-form__actions">
+                                            <button class="contact-form__submit" type="submit">
+                                                <span>Wyślij wiadomość</span>
+                                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                                    <use href="#icon-arrow-up-right"></use>
+                                                </svg>
+                                            </button>
+                                            <p class="contact-form__hint">Po kliknięciu otworzy się Twoja domyślna
+                                                aplikacja pocztowa.</p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
                 </div>
             </div>
         </section>

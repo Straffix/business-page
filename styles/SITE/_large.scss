@@ -3,10 +3,10 @@
 @mixin render {
 	@media (min-width: 980px) {
 		.page {
-			--page-bg-image: url('../../img/lisiecki-bg.jpg');
-			--page-bg-position: 0 0;
-			height: 100vh;
-			min-height: 100vh;
+			--page-bg-image: url('../../img/bg/bg_1920x1080.jpg');
+			--page-bg-position: 50% 50%;
+			height: 100svh;
+			min-height: 100svh;
 		}
 
 		.lower-band {
@@ -68,6 +68,18 @@
 
 		.tile--contact {
 			min-height: 0;
+		}
+	}
+
+	@media (min-width: 1440px) {
+		.page {
+			--page-bg-image: url('../../img/bg/bg_2560x1440.jpg');
+		}
+	}
+
+	@media (min-width: 1600px) and (min-aspect-ratio: 2 / 1) {
+		.page {
+			--page-bg-image: url('../../img/bg/bg_3440x1440.jpg');
 		}
 	}
 
