@@ -1620,8 +1620,8 @@ a {
 @media (max-width: 640px) {
   #stack-panel.tile-panel {
     --panel-section-top-margin: clamp(8.4rem, 12vh, 9.8rem);
-    --stack-panel-header-icon-size: clamp(3rem, 7vw, 3.6rem);
-    --stack-panel-title-size: clamp(2.1rem, 6.4vw, 3rem);
+    --stack-panel-header-icon-size: clamp(2.4rem, 5.4vw, 3rem);
+    --stack-panel-title-size: clamp(1.65rem, 5.8vw, 2.35rem);
     --stack-panel-category-font-size: 1.35rem;
     --stack-panel-category-padding-y: 1.05rem;
     --stack-panel-category-padding-x: 1.25rem;
@@ -1636,11 +1636,26 @@ a {
   #stack-panel.tile-panel.is-open {
     padding: 0;
   }
+  #stack-panel .tile-panel__close {
+    top: max(1rem, env(safe-area-inset-top));
+    right: max(1rem, env(safe-area-inset-right));
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+  #stack-panel .tile-panel__close span {
+    width: 2.6rem;
+  }
   #stack-panel .tile-panel__content {
     overflow: hidden;
   }
-  .stack-panel__header {
-    padding-inline: 1rem;
+  #stack-panel .stack-panel__header {
+    gap: 0.75rem;
+    padding-left: 1rem;
+    padding-right: clamp(4.8rem, 16vw, 5.8rem);
+  }
+  #stack-panel .tile-panel__title {
+    line-height: 1.08;
+    letter-spacing: 0.08em;
   }
   #stack-panel .tile-panel__lead {
     font-size: 1.45rem;
