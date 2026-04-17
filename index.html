@@ -45,6 +45,10 @@
             <path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
                 d="M7 17 17 7M8 7h9v9" />
         </symbol>
+        <symbol id="icon-paperclip" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+                d="M9 7.5v8.5a3 3 0 0 0 6 0V6.5a4.5 4.5 0 0 0-9 0v10.5a6 6 0 0 0 12 0V8" />
+        </symbol>
         <symbol id="icon-github" viewBox="0 0 16 16">
             <path fill="currentColor"
                 d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
@@ -254,8 +258,8 @@
             </div>
         </section>
 
-        <section class="tile-panel" id="portfolio-panel" data-expand-panel role="dialog" aria-modal="true"
-            tabindex="-1" aria-hidden="true" aria-labelledby="portfolio-panel-title" hidden>
+        <section class="tile-panel" id="portfolio-panel" data-expand-panel role="dialog" aria-modal="true" tabindex="-1"
+            aria-hidden="true" aria-labelledby="portfolio-panel-title" hidden>
             <button class="tile-panel__close" type="button" data-expand-close aria-label="Zamknij portfolio">
                 <span></span>
                 <span></span>
@@ -312,8 +316,8 @@
             </div>
         </section>
 
-        <section class="tile-panel" id="contact-panel" data-expand-panel role="dialog" aria-modal="true"
-            tabindex="-1" aria-hidden="true" aria-labelledby="contact-panel-current-title" hidden>
+        <section class="tile-panel" id="contact-panel" data-expand-panel role="dialog" aria-modal="true" tabindex="-1"
+            aria-hidden="true" aria-labelledby="contact-panel-current-title" hidden>
             <button class="tile-panel__close" type="button" data-expand-close aria-label="Zamknij kontakt">
                 <span></span>
                 <span></span>
@@ -338,13 +342,6 @@
 
                 <div class="contact-layout">
                     <aside class="contact-back" aria-label="Dane kontaktowe i social media">
-                        <p class="contact-back__eyebrow">Kontakt</p>
-                        <h3 class="contact-back__title" id="contact-form-current-title">Porozmawiajmy</h3>
-                        <p class="contact-back__intro">
-                            Najszybciej odpowiadam mailowo. Jeżeli masz makiety, grafiki albo brief, możesz dołączyć
-                            je od razu do formularza.
-                        </p>
-
                         <div class="contact-back__cards">
                             <a class="contact-back__card" href="mailto:kontakt@lisieckidev.pl">
                                 <span class="contact-back__card-icon" aria-hidden="true">
@@ -402,17 +399,21 @@
                             <input type="text" name="subject" placeholder="W czym mogę pomóc?" required>
                         </label>
 
-                        <label class="contact-form__field">
+                        <label class="contact-form__field contact-form__field--message">
                             <span class="contact-form__label">Wiadomość</span>
                             <textarea name="message" rows="7" placeholder="Opisz swój projekt, pomysł albo problem..."
                                 required data-contact-focus></textarea>
                         </label>
 
                         <label class="contact-form__file">
-                            <span class="contact-form__label">Pliki</span>
                             <span class="contact-form__file-box">
-                                <span data-file-label>Dołącz grafiki, brief albo projekt</span>
-                                <small>PNG, JPG, PDF, ZIP, FIG, PSD, AI, XD</small>
+                                <span class="contact-form__file-copy">
+                                    <svg class="contact-form__file-icon" viewBox="0 0 24 24" aria-hidden="true"
+                                        focusable="false">
+                                        <use href="#icon-paperclip"></use>
+                                    </svg>
+                                    <span data-file-label>Dołącz plik</span>
+                                </span>
                                 <input type="file" name="attachments" multiple
                                     accept="image/*,.pdf,.zip,.fig,.psd,.ai,.xd,.sketch">
                             </span>
@@ -423,7 +424,6 @@
                             <span class="contact-check__box" aria-hidden="true"></span>
                             <span class="contact-check__copy">
                                 <strong>Nie jestem robotem</strong>
-                                <small>Krótka weryfikacja przed wysłaniem.</small>
                             </span>
                         </label>
 

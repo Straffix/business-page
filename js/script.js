@@ -202,6 +202,7 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
   let isOpen = false;
   let closeTimerId = 0;
   let focusTimerId = 0;
+  let shouldReturnFocusToTrigger = false;
 
   const syncPanelStart = () => {
     const rect = trigger.getBoundingClientRect();
@@ -224,12 +225,13 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
       (element) => element.getClientRects().length > 0 && !element.closest("[inert]"),
     );
 
-  const openPanel = () => {
+  const openPanel = (openedWithKeyboard = false) => {
     if (isOpen) {
       return;
     }
 
     isOpen = true;
+    shouldReturnFocusToTrigger = openedWithKeyboard;
     window.clearTimeout(closeTimerId);
     window.clearTimeout(focusTimerId);
     syncPanelStart();
@@ -246,7 +248,9 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
 
     if (reduceMotionQuery.matches) {
       panel.classList.add("is-open");
-      focusCloseButton();
+      if (openedWithKeyboard) {
+        focusCloseButton();
+      }
       return;
     }
 
@@ -255,7 +259,9 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
       panel.classList.add("is-open");
     });
 
-    focusTimerId = window.setTimeout(focusCloseButton, 720);
+    if (openedWithKeyboard) {
+      focusTimerId = window.setTimeout(focusCloseButton, 720);
+    }
   };
 
   const finishClose = () => {
@@ -272,7 +278,10 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
     panel.dispatchEvent(new CustomEvent("tilepanel:closed"));
     document.documentElement.classList.remove("tile-panel-active");
     document.body.classList.remove("tile-panel-active");
-    trigger.focus({ preventScroll: true });
+
+    if (shouldReturnFocusToTrigger) {
+      trigger.focus({ preventScroll: true });
+    }
   };
 
   const closePanel = () => {
@@ -296,14 +305,16 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
     closeTimerId = window.setTimeout(finishClose, 900);
   };
 
-  trigger.addEventListener("click", openPanel);
+  trigger.addEventListener("click", () => {
+    openPanel(false);
+  });
   trigger.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" && event.key !== " ") {
       return;
     }
 
     event.preventDefault();
-    openPanel();
+    openPanel(true);
   });
 
   closeButton.addEventListener("click", closePanel);
@@ -359,12 +370,13 @@ function initContactPanel() {
   const focusField = panel.querySelector("[data-contact-focus]");
   const form = panel.querySelector("[data-contact-form]");
   const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const mobileContactQuery = window.matchMedia("(max-width: 640px)");
   let focusTimerId = 0;
 
   const focusContactField = () => {
     window.clearTimeout(focusTimerId);
 
-    if (!focusField) {
+    if (!focusField || mobileContactQuery.matches) {
       return;
     }
 
