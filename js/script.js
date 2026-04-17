@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSiteIntro();
   initProjectSliders();
   initExpandingPanels();
-  initContactPanelFlip();
+  initContactPanel();
 
   const backgroundScene = document.querySelector("[data-background-scene]");
   if (!backgroundScene) {
@@ -205,10 +205,14 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
 
   const syncPanelStart = () => {
     const rect = trigger.getBoundingClientRect();
-    panel.style.setProperty("--contact-panel-x", `${rect.left}px`);
-    panel.style.setProperty("--contact-panel-y", `${rect.top}px`);
-    panel.style.setProperty("--contact-panel-width", `${Math.max(rect.width, 1)}px`);
-    panel.style.setProperty("--contact-panel-height", `${Math.max(rect.height, 1)}px`);
+    const triggerStyle = window.getComputedStyle(trigger);
+    const triggerBackground = triggerStyle.backgroundColor;
+
+    panel.style.setProperty("--tile-panel-x", `${rect.left}px`);
+    panel.style.setProperty("--tile-panel-y", `${rect.top}px`);
+    panel.style.setProperty("--tile-panel-width", `${Math.max(rect.width, 1)}px`);
+    panel.style.setProperty("--tile-panel-height", `${Math.max(rect.height, 1)}px`);
+    panel.style.setProperty("--tile-panel-bg-start", triggerBackground);
   };
 
   const focusCloseButton = () => {
@@ -232,6 +236,7 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
 
     panel.hidden = false;
     panel.setAttribute("aria-hidden", "false");
+    panel.classList.remove("is-closing");
     panel.classList.remove("is-open");
     panel.classList.add("is-visible");
     panel.dispatchEvent(new CustomEvent("tilepanel:open"));
@@ -260,6 +265,7 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
 
     window.clearTimeout(closeTimerId);
     window.clearTimeout(focusTimerId);
+    panel.classList.remove("is-closing");
     panel.classList.remove("is-visible");
     panel.hidden = true;
     panel.setAttribute("aria-hidden", "true");
@@ -279,6 +285,7 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
     syncPanelStart();
     panel.dispatchEvent(new CustomEvent("tilepanel:close-start"));
     trigger.setAttribute("aria-expanded", "false");
+    panel.classList.add("is-closing");
     panel.classList.remove("is-open");
 
     if (reduceMotionQuery.matches) {
@@ -286,7 +293,7 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
       return;
     }
 
-    closeTimerId = window.setTimeout(finishClose, 850);
+    closeTimerId = window.setTimeout(finishClose, 900);
   };
 
   trigger.addEventListener("click", openPanel);
@@ -343,77 +350,49 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
   });
 }
 
-function initContactPanelFlip() {
+function initContactPanel() {
   const panel = document.getElementById("contact-panel");
   if (!panel) {
     return;
   }
 
-  const flipButtons = panel.querySelectorAll("[data-contact-flip]");
-  const backButtons = panel.querySelectorAll("[data-contact-flip-back]");
-  const primaryButton = panel.querySelector("[data-contact-primary]");
   const focusField = panel.querySelector("[data-contact-focus]");
   const form = panel.querySelector("[data-contact-form]");
-  const frontFace = panel.querySelector(".contact-panel__face--front");
-  const backFace = panel.querySelector(".contact-panel__face--back");
   const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   let focusTimerId = 0;
 
-  const syncFaceAccessibility = (shouldFlip) => {
-    const activeFace = shouldFlip ? backFace : frontFace;
-    const inactiveFace = shouldFlip ? frontFace : backFace;
-
-    if (activeFace) {
-      activeFace.removeAttribute("inert");
-      activeFace.setAttribute("aria-hidden", "false");
-    }
-
-    if (inactiveFace) {
-      inactiveFace.setAttribute("inert", "");
-      inactiveFace.setAttribute("aria-hidden", "true");
-    }
-  };
-
-  const setFlipped = (shouldFlip, { focusTarget = true } = {}) => {
+  const focusContactField = () => {
     window.clearTimeout(focusTimerId);
-    panel.classList.toggle("is-flipped", shouldFlip);
-    syncFaceAccessibility(shouldFlip);
 
-    if (!focusTarget) {
+    if (!focusField) {
       return;
     }
 
-    const nextTarget = shouldFlip ? focusField : primaryButton;
-    if (!nextTarget) {
-      return;
-    }
-
-    const focusDelay = reduceMotionQuery.matches ? 0 : shouldFlip ? 460 : 260;
+    const focusDelay = reduceMotionQuery.matches ? 0 : 620;
     focusTimerId = window.setTimeout(() => {
-      nextTarget.focus({ preventScroll: true });
+      focusField.focus({ preventScroll: true });
     }, focusDelay);
   };
 
-  for (const button of flipButtons) {
-    button.addEventListener("click", () => setFlipped(true));
-  }
-
-  for (const button of backButtons) {
-    button.addEventListener("click", () => setFlipped(false));
-  }
-
-  syncFaceAccessibility(false);
-
-  panel.addEventListener("tilepanel:open", () => {
-    setFlipped(false, { focusTarget: false });
-  });
+  panel.addEventListener("tilepanel:open", focusContactField);
 
   panel.addEventListener("tilepanel:closed", () => {
-    setFlipped(false, { focusTarget: false });
+    window.clearTimeout(focusTimerId);
   });
 
   if (!form) {
     return;
+  }
+
+  const fileInput = form.querySelector('input[name="attachments"]');
+  const fileLabel = form.querySelector("[data-file-label]");
+
+  if (fileInput && fileLabel) {
+    fileInput.addEventListener("change", () => {
+      const count = fileInput.files ? fileInput.files.length : 0;
+      fileLabel.textContent =
+        count === 0 ? "Dołącz grafiki, brief albo projekt" : `Wybrane pliki: ${count}`;
+    });
   }
 
   form.addEventListener("submit", (event) => {
@@ -428,15 +407,26 @@ function initContactPanelFlip() {
     const email = String(formData.get("email") || "").trim();
     const subject = String(formData.get("subject") || "").trim();
     const message = String(formData.get("message") || "").trim();
+    const attachments = fileInput && fileInput.files ? Array.from(fileInput.files) : [];
     const targetEmail = form.dataset.contactMail || "kontakt@lisieckidev.pl";
     const mailSubject = subject || `Zapytanie ze strony od ${name}`;
     const bodyLines = [
-      `Imie / firma: ${name}`,
+      `Imię / firma: ${name}`,
       `Email: ${email}`,
       "",
-      "Wiadomosc:",
+      "Wiadomość:",
       message,
     ];
+
+    if (attachments.length > 0) {
+      bodyLines.push(
+        "",
+        "Pliki wybrane w formularzu:",
+        ...attachments.map((file) => `- ${file.name}`),
+        "",
+        "Uwaga: formularz otwiera klienta poczty. Dołącz wybrane pliki w wiadomości email.",
+      );
+    }
 
     window.location.href = `mailto:${targetEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(
       bodyLines.join("\n"),

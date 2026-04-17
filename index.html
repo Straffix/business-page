@@ -25,7 +25,7 @@
             <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
                 d="M25 20h34l16 16v44H25V20Zm34 0v16h16" />
         </symbol>
-        <symbol id="icon-titanium" viewBox="0 0 100 100">
+        <symbol id="icon-latest" viewBox="0 0 100 100">
             <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
                 d="M22 25h56M50 25v50m-14 0h28" />
         </symbol>
@@ -104,7 +104,7 @@
                 </p>
             </article>
 
-            <article class="tile tile--hosti" data-expand-trigger data-expand-target="portfolio-panel" role="button"
+            <article class="tile tile--portfolio" data-expand-trigger data-expand-target="portfolio-panel" role="button"
                 tabindex="0" aria-controls="portfolio-panel" aria-expanded="false">
                 <img class="tile-icon" src="img/projects.svg" alt="" aria-hidden="true">
                 <p class="label">Portfolio</p>
@@ -122,7 +122,7 @@
                 <p class="label">O mnie</p>
             </article>
 
-            <article class="tile tile--titanium">
+            <article class="tile tile--latest">
                 <img class="tile-icon" src="img/new.svg" alt="" aria-hidden="true">
                 <p class="label">Najnowszy projekt</p>
             </article>
@@ -134,96 +134,147 @@
             </article>
         </section>
 
-        <section class="contact-panel" id="stack-panel" data-expand-panel role="dialog" aria-modal="true" tabindex="-1"
+        <section class="tile-panel" id="stack-panel" data-expand-panel role="dialog" aria-modal="true" tabindex="-1"
             aria-hidden="true" aria-labelledby="stack-panel-title" hidden>
-            <button class="contact-panel__close" type="button" data-expand-close aria-label="Zamknij stack">
+            <button class="tile-panel__close" type="button" data-expand-close aria-label="Zamknij stack">
                 <span></span>
                 <span></span>
             </button>
 
-            <div class="contact-panel__tile-mark" aria-hidden="true">
-                <img class="contact-panel__tile-icon" src="img/stack.svg" alt="">
-                <p class="contact-panel__tile-label">Stack</p>
+            <div class="tile-panel__tile-mark" aria-hidden="true">
+                <img class="tile-panel__tile-icon" src="img/stack.svg" alt="">
+                <p class="tile-panel__tile-label">Stack</p>
             </div>
 
-            <div class="contact-panel__content">
-                <img class="contact-panel__icon" src="img/stack.svg" alt="" aria-hidden="true">
-                <p class="contact-panel__eyebrow">Technologie i narzędzia</p>
-                <h2 class="contact-panel__title" id="stack-panel-title">Stack</h2>
-                <p class="contact-panel__lead">
-                    Najbliżej mi do czytelnego front-endu, ale pracuję szerzej: od makiet i wdrożeń po animację,
-                    multimedia i narzedzia AI.
-                </p>
-                <div class="stack-panel__grid" aria-label="Kategorie stacku">
-                    <section class="stack-panel__group stack-panel__group--core" aria-labelledby="stack-core-title">
-                        <p class="stack-panel__group-eyebrow">Na co dzień</p>
-                        <h3 class="stack-panel__group-title" id="stack-core-title">Front-end i wdrożenia</h3>
-                        <ul class="stack-panel__tags" aria-label="Technologie front-endowe">
-                            <li>HTML5</li>
-                            <li>CSS3</li>
-                            <li>JavaScript</li>
-                            <li>SASS</li>
-                            <li>Bootstrap</li>
-                            <li>WordPress</li>
-                        </ul>
-                    </section>
-
-                    <section class="stack-panel__group stack-panel__group--creative"
-                        aria-labelledby="stack-creative-title">
-                        <p class="stack-panel__group-eyebrow">Projekt i kreacja</p>
-                        <h3 class="stack-panel__group-title" id="stack-creative-title">Design, motion i workflow</h3>
-                        <ul class="stack-panel__tags" aria-label="Narzedia projektowe i kreatywne">
-                            <li>Figma</li>
-                            <li>ChatGPT</li>
-                            <li>Codex</li>
-                            <li>Suno AI</li>
-                            <li>Adobe Photoshop</li>
-                            <li>Adobe Illustrator</li>
-                            <li>Adobe After Effects</li>
-                            <li>Logic Pro</li>
-                        </ul>
-                    </section>
-
-                    <section class="stack-panel__group stack-panel__group--learning"
-                        aria-labelledby="stack-learning-title">
-                        <p class="stack-panel__group-eyebrow">Jeszcze się uczę</p>
-                        <h3 class="stack-panel__group-title" id="stack-learning-title">Rozwijam dalej</h3>
-                        <ul class="stack-panel__tags" aria-label="Technologie w trakcie nauki">
-                            <li>React</li>
-                            <li>Vue</li>
-                            <li>TypeScript</li>
-                            <li>Node.js</li>
-                        </ul>
-                    </section>
+            <div class="tile-panel__content">
+                <div class="stack-panel__header">
+                    <img class="stack-panel__header-icon" src="img/stack.svg" alt="" aria-hidden="true">
+                    <h2 class="tile-panel__title" id="stack-panel-title">Moje umiejętności</h2>
                 </div>
-                <p class="stack-panel__note">
-                    Najbardziej lubię łaczyć czytelny interfejs, ruch i estetykę z praktycznym wdrożeniem, które po
-                    prostu dobrze działa.
-                </p>
+                <div class="stack-panel__matrix-wrap">
+                    <div class="stack-panel__matrix" aria-label="Stack technologiczny">
+                        <p class="stack-panel__category">Front-end</p>
+                        <article class="stack-panel__item" style="--stack-accent: #ff8a4c;">
+                            <img class="stack-panel__logo" src="img/stack-logos/html5.svg" alt="" aria-hidden="true">
+                            <span class="stack-panel__name">HTML5</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #aeea72;">
+                            <img class="stack-panel__logo" src="img/stack-logos/css3.svg" alt="" aria-hidden="true">
+                            <span class="stack-panel__name">CSS3</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #f8d84a;">
+                            <img class="stack-panel__logo" src="img/stack-logos/javascript.svg" alt=""
+                                aria-hidden="true">
+                            <span class="stack-panel__name">JavaScript</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #f08ac0;">
+                            <img class="stack-panel__logo" src="img/stack-logos/sass.svg" alt="" aria-hidden="true">
+                            <span class="stack-panel__name">SCSS</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #85d7ff;">
+                            <img class="stack-panel__logo" src="img/stack-logos/bootstrap.svg" alt=""
+                                aria-hidden="true">
+                            <span class="stack-panel__name">Bootstrap</span>
+                        </article>
+
+                        <p class="stack-panel__category">Wdrożenia</p>
+                        <article class="stack-panel__item" style="--stack-accent: #8ed6ff;">
+                            <img class="stack-panel__logo" src="img/stack-logos/wordpress.svg" alt=""
+                                aria-hidden="true">
+                            <span class="stack-panel__name">WordPress</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #ffb86b;">
+                            <img class="stack-panel__logo" src="img/stack-logos/git.svg" alt="" aria-hidden="true">
+                            <span class="stack-panel__name">Git</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #b8e986;">
+                            <img class="stack-panel__logo" src="img/stack-logos/responsive.svg" alt=""
+                                aria-hidden="true">
+                            <span class="stack-panel__name">Responsive</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #d6c6ff;">
+                            <img class="stack-panel__logo" src="img/stack-logos/seo.svg" alt="" aria-hidden="true">
+                            <span class="stack-panel__name">SEO basics</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #9ee6d6;">
+                            <img class="stack-panel__logo" src="img/stack-logos/ui.svg" alt="" aria-hidden="true">
+                            <span class="stack-panel__name">Interface</span>
+                        </article>
+
+                        <p class="stack-panel__category">Design i motion</p>
+                        <article class="stack-panel__item" style="--stack-accent: #ff9fda;">
+                            <img class="stack-panel__logo" src="img/stack-logos/figma.svg" alt="" aria-hidden="true">
+                            <span class="stack-panel__name">Figma</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #b8d9ff;">
+                            <img class="stack-panel__logo" src="img/stack-logos/photoshop.svg" alt=""
+                                aria-hidden="true">
+                            <span class="stack-panel__name">Photoshop</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #ffd36e;">
+                            <img class="stack-panel__logo" src="img/stack-logos/illustrator.svg" alt=""
+                                aria-hidden="true">
+                            <span class="stack-panel__name">Illustrator</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #c8b6ff;">
+                            <img class="stack-panel__logo" src="img/stack-logos/after-effects.svg" alt=""
+                                aria-hidden="true">
+                            <span class="stack-panel__name">After Effects</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #ffb4a2;">
+                            <img class="stack-panel__logo" src="img/stack-logos/logic-pro.svg" alt=""
+                                aria-hidden="true">
+                            <span class="stack-panel__name">Logic Pro</span>
+                        </article>
+
+                        <p class="stack-panel__category">AI i rozwój</p>
+                        <article class="stack-panel__item" style="--stack-accent: #7ee2b8;">
+                            <img class="stack-panel__logo" src="img/stack-logos/chatgpt.svg" alt="" aria-hidden="true">
+                            <span class="stack-panel__name">ChatGPT</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #9cc9ff;">
+                            <img class="stack-panel__logo" src="img/stack-logos/codex.svg" alt="" aria-hidden="true">
+                            <span class="stack-panel__name">Codex</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #7dd3fc;">
+                            <img class="stack-panel__logo" src="img/stack-logos/react.svg" alt="" aria-hidden="true">
+                            <span class="stack-panel__name">React</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #8bd3ff;">
+                            <img class="stack-panel__logo" src="img/stack-logos/typescript.svg" alt=""
+                                aria-hidden="true">
+                            <span class="stack-panel__name">TypeScript</span>
+                        </article>
+                        <article class="stack-panel__item" style="--stack-accent: #98e58e;">
+                            <img class="stack-panel__logo" src="img/stack-logos/nodejs.svg" alt="" aria-hidden="true">
+                            <span class="stack-panel__name">Node.js</span>
+                        </article>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="contact-panel" id="portfolio-panel" data-expand-panel role="dialog" aria-modal="true"
+        <section class="tile-panel" id="portfolio-panel" data-expand-panel role="dialog" aria-modal="true"
             tabindex="-1" aria-hidden="true" aria-labelledby="portfolio-panel-title" hidden>
-            <button class="contact-panel__close" type="button" data-expand-close aria-label="Zamknij portfolio">
+            <button class="tile-panel__close" type="button" data-expand-close aria-label="Zamknij portfolio">
                 <span></span>
                 <span></span>
             </button>
 
-            <div class="contact-panel__tile-mark" aria-hidden="true">
-                <img class="contact-panel__tile-icon" src="img/projects.svg" alt="">
-                <p class="contact-panel__tile-label">Portfolio</p>
+            <div class="tile-panel__tile-mark" aria-hidden="true">
+                <img class="tile-panel__tile-icon" src="img/projects.svg" alt="">
+                <p class="tile-panel__tile-label">Portfolio</p>
             </div>
 
-            <div class="contact-panel__content">
-                <img class="contact-panel__icon" src="img/projects.svg" alt="" aria-hidden="true">
-                <p class="contact-panel__eyebrow">Wybrane realizacje</p>
-                <h2 class="contact-panel__title" id="portfolio-panel-title">Portfolio</h2>
-                <p class="contact-panel__lead">
+            <div class="tile-panel__content">
+                <img class="tile-panel__icon" src="img/projects.svg" alt="" aria-hidden="true">
+                <p class="tile-panel__eyebrow">Wybrane realizacje</p>
+                <h2 class="tile-panel__title" id="portfolio-panel-title">Portfolio</h2>
+                <p class="tile-panel__lead">
                     Projekty, w których liczy się czytelny interfejs, szybkie działanie i dopracowany detal. Od prostych
                     stron po bardziej rozbudowane widoki aplikacji.
                 </p>
-                <div class="contact-panel__details" aria-label="Typy realizacji">
+                <div class="tile-panel__details" aria-label="Typy realizacji">
                     <p>Landing page</p>
                     <p>Dashboard</p>
                     <p>React</p>
@@ -232,27 +283,27 @@
             </div>
         </section>
 
-        <section class="contact-panel" id="about-panel" data-expand-panel role="dialog" aria-modal="true" tabindex="-1"
+        <section class="tile-panel" id="about-panel" data-expand-panel role="dialog" aria-modal="true" tabindex="-1"
             aria-hidden="true" aria-labelledby="about-panel-title" hidden>
-            <button class="contact-panel__close" type="button" data-expand-close aria-label="Zamknij O mnie">
+            <button class="tile-panel__close" type="button" data-expand-close aria-label="Zamknij O mnie">
                 <span></span>
                 <span></span>
             </button>
 
-            <div class="contact-panel__tile-mark" aria-hidden="true">
-                <img class="contact-panel__tile-icon" src="img/about.svg" alt="">
-                <p class="contact-panel__tile-label">O mnie</p>
+            <div class="tile-panel__tile-mark" aria-hidden="true">
+                <img class="tile-panel__tile-icon" src="img/about.svg" alt="">
+                <p class="tile-panel__tile-label">O mnie</p>
             </div>
 
-            <div class="contact-panel__content">
-                <img class="contact-panel__icon" src="img/about.svg" alt="" aria-hidden="true">
-                <p class="contact-panel__eyebrow">Kilka słów na mój temat</p>
-                <h2 class="contact-panel__title" id="about-panel-title">O mnie</h2>
-                <p class="contact-panel__lead">
+            <div class="tile-panel__content">
+                <img class="tile-panel__icon" src="img/about.svg" alt="" aria-hidden="true">
+                <p class="tile-panel__eyebrow">Kilka słów na mój temat</p>
+                <h2 class="tile-panel__title" id="about-panel-title">O mnie</h2>
+                <p class="tile-panel__lead">
                     Tworzę front-end, animację i interfejsy, które mają działać szybko, jasno i bez przypadkowego
                     chaosu. Lubię projekty, w których detal robi różnice.
                 </p>
-                <div class="contact-panel__details" aria-label="Obszary pracy">
+                <div class="tile-panel__details" aria-label="Obszary pracy">
                     <p>HTML</p>
                     <p>SCSS</p>
                     <p>JavaScript</p>
@@ -261,150 +312,133 @@
             </div>
         </section>
 
-        <section class="contact-panel" id="contact-panel" data-expand-panel role="dialog" aria-modal="true"
-            tabindex="-1" aria-hidden="true" aria-labelledby="contact-panel-title" hidden>
-            <button class="contact-panel__close" type="button" data-expand-close aria-label="Zamknij kontakt">
+        <section class="tile-panel" id="contact-panel" data-expand-panel role="dialog" aria-modal="true"
+            tabindex="-1" aria-hidden="true" aria-labelledby="contact-panel-current-title" hidden>
+            <button class="tile-panel__close" type="button" data-expand-close aria-label="Zamknij kontakt">
                 <span></span>
                 <span></span>
             </button>
 
-            <div class="contact-panel__tile-mark" aria-hidden="true">
-                <img class="contact-panel__tile-icon" src="img/contact.svg" alt="">
-                <p class="contact-panel__tile-label">Kontakt</p>
+            <div class="tile-panel__tile-mark" aria-hidden="true">
+                <img class="tile-panel__tile-icon" src="img/contact.svg" alt="">
+                <p class="tile-panel__tile-label">Kontakt</p>
             </div>
 
-            <div class="contact-panel__content contact-panel__content--contact">
-                <div class="contact-panel__scene">
-                    <div class="contact-panel__cube" data-contact-cube>
-                        <section class="contact-panel__face contact-panel__face--front"
-                            aria-labelledby="contact-panel-title">
-                            <div class="contact-panel__face-shell contact-panel__face-shell--front">
-                                <img class="contact-panel__icon" src="img/contact.svg" alt="" aria-hidden="true">
-                                <p class="contact-panel__eyebrow">Porozmawiajmy o Twoim projekcie</p>
-                                <h2 class="contact-panel__title" id="contact-panel-title">Kontakt</h2>
-                                <p class="contact-panel__lead">
-                                    Opowiedz mi, co chcesz zbudować, poprawić albo przyspieszyć realizację.
-                                </p>
-                                <div class="contact-panel__cta-wrap">
-                                    <button class="contact-panel__cta" type="button" data-contact-flip
-                                        data-contact-primary>
-                                        Napisz do mnie
-                                    </button>
-                                </div>
-                            </div>
-                        </section>
-
-                        <section class="contact-panel__face contact-panel__face--back"
-                            aria-labelledby="contact-form-title">
-                            <div class="contact-panel__face-shell contact-panel__face-shell--back">
-                                <div class="contact-back">
-                                    <div class="contact-back__aside">
-                                        <p class="contact-back__eyebrow">Kontakt</p>
-                                        <h3 class="contact-back__title" id="contact-form-title">Napisz do mnie</h3>
-                                        <p class="contact-back__lead">
-                                            Jeśli wolisz, możesz od razu podesłać szczegóły projektu albo skorzystać z
-                                            szybkich namiarow obok.
-                                        </p>
-
-                                        <div class="contact-back__cards">
-                                            <a class="contact-back__card" href="mailto:kontakt@lisieckidev.pl">
-                                                <span class="contact-back__card-icon" aria-hidden="true">
-                                                    <svg viewBox="0 0 24 24" focusable="false">
-                                                        <use href="#icon-mail"></use>
-                                                    </svg>
-                                                </span>
-                                                <span class="contact-back__card-copy">
-                                                    <span class="contact-back__card-label">Email</span>
-                                                    <span class="contact-back__card-value">kontakt@lisieckidev.pl</span>
-                                                </span>
-                                            </a>
-
-                                            <a class="contact-back__card" href="tel:+48791947493">
-                                                <span class="contact-back__card-icon" aria-hidden="true">
-                                                    <svg viewBox="0 0 24 24" focusable="false">
-                                                        <use href="#icon-phone"></use>
-                                                    </svg>
-                                                </span>
-                                                <span class="contact-back__card-copy">
-                                                    <span class="contact-back__card-label">Telefon</span>
-                                                    <span class="contact-back__card-value">+48 791 947 493</span>
-                                                </span>
-                                            </a>
-                                        </div>
-
-                                        <div class="contact-back__socials" aria-label="Szybkie akcje kontaktowe">
-                                            <a class="contact-back__social" href="mailto:kontakt@lisieckidev.pl"
-                                                aria-label="Napisz email">
-                                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                                    <use href="#icon-mail"></use>
-                                                </svg>
-                                            </a>
-                                            <a class="contact-back__social" href="tel:+48791947493"
-                                                aria-label="Zadzwon">
-                                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                                    <use href="#icon-phone"></use>
-                                                </svg>
-                                            </a>
-                                            <a class="contact-back__social" href="https://github.com/Straffix"
-                                                target="_blank" rel="noreferrer" aria-label="GitHub Straffix">
-                                                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                                                    <use href="#icon-github"></use>
-                                                </svg>
-                                            </a>
-                                        </div>
-
-                                        <p class="contact-back__badge">Zazwyczaj odpisuję w ciagu 24h</p>
-
-                                        <button class="contact-back__return" type="button" data-contact-flip-back>
-                                            Wroc do intro
-                                        </button>
-                                    </div>
-
-                                    <form class="contact-form" data-contact-form
-                                        data-contact-mail="kontakt@lisieckidev.pl">
-                                        <div class="contact-form__row">
-                                            <label class="contact-form__field">
-                                                <span class="contact-form__label">Imię / Firma</span>
-                                                <input type="text" name="name" autocomplete="name"
-                                                    placeholder="Twoje imie lub nazwa firmy" required>
-                                            </label>
-
-                                            <label class="contact-form__field">
-                                                <span class="contact-form__label">Email</span>
-                                                <input type="email" name="email" autocomplete="email"
-                                                    placeholder="twoj@email.pl" required>
-                                            </label>
-                                        </div>
-
-                                        <label class="contact-form__field">
-                                            <span class="contact-form__label">Temat</span>
-                                            <input type="text" name="subject" placeholder="W czym moge pomoc?" required>
-                                        </label>
-
-                                        <label class="contact-form__field">
-                                            <span class="contact-form__label">Wiadomość</span>
-                                            <textarea name="message" rows="8"
-                                                placeholder="Opisz swoj projekt, pomysl albo problem..." required
-                                                data-contact-focus></textarea>
-                                        </label>
-
-                                        <div class="contact-form__actions">
-                                            <button class="contact-form__submit" type="submit">
-                                                <span>Wyślij wiadomość</span>
-                                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                                    <use href="#icon-arrow-up-right"></use>
-                                                </svg>
-                                            </button>
-                                            <p class="contact-form__hint">Po kliknięciu otworzy się Twoja domyślna
-                                                aplikacja pocztowa.</p>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </section>
+            <div class="tile-panel__content tile-panel__content--contact">
+                <header class="tile-panel__contact-header">
+                    <div class="tile-panel__heading">
+                        <img class="tile-panel__heading-icon" src="img/contact.svg" alt="" aria-hidden="true">
+                        <h2 class="tile-panel__title" id="contact-panel-current-title">Kontakt</h2>
                     </div>
+                    <p class="tile-panel__lead">
+                        <!-- Masz pomysł, projekt strony albo chcesz poprawić obecny front-end? Napisz kilka słów, a odezwę
+                        się z konkretnym następnym krokiem. -->
+                    </p>
+                </header>
+
+                <div class="contact-layout">
+                    <aside class="contact-back" aria-label="Dane kontaktowe i social media">
+                        <p class="contact-back__eyebrow">Kontakt</p>
+                        <h3 class="contact-back__title" id="contact-form-current-title">Porozmawiajmy</h3>
+                        <p class="contact-back__intro">
+                            Najszybciej odpowiadam mailowo. Jeżeli masz makiety, grafiki albo brief, możesz dołączyć
+                            je od razu do formularza.
+                        </p>
+
+                        <div class="contact-back__cards">
+                            <a class="contact-back__card" href="mailto:kontakt@lisieckidev.pl">
+                                <span class="contact-back__card-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" focusable="false">
+                                        <use href="#icon-mail"></use>
+                                    </svg>
+                                </span>
+                                <span class="contact-back__card-copy">
+                                    <span class="contact-back__card-label">Email</span>
+                                    <span class="contact-back__card-value">kontakt@lisieckidev.pl</span>
+                                </span>
+                            </a>
+
+                            <a class="contact-back__card" href="tel:+48791947493">
+                                <span class="contact-back__card-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" focusable="false">
+                                        <use href="#icon-phone"></use>
+                                    </svg>
+                                </span>
+                                <span class="contact-back__card-copy">
+                                    <span class="contact-back__card-label">Telefon</span>
+                                    <span class="contact-back__card-value">+48 791 947 493</span>
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="contact-back__socials" aria-label="Social media">
+                            <a class="contact-back__social-link" href="https://github.com/Straffix" target="_blank"
+                                rel="noreferrer">GitHub</a>
+                            <span
+                                class="contact-back__social-link contact-back__social-link--placeholder">Instagram</span>
+                            <span
+                                class="contact-back__social-link contact-back__social-link--placeholder">Facebook</span>
+                            <span class="contact-back__social-link contact-back__social-link--placeholder">X</span>
+                        </div>
+                    </aside>
+
+                    <form class="contact-form" data-contact-form data-contact-mail="kontakt@lisieckidev.pl">
+                        <div class="contact-form__row">
+                            <label class="contact-form__field">
+                                <span class="contact-form__label">Imię / Firma</span>
+                                <input type="text" name="name" autocomplete="name"
+                                    placeholder="Twoje imię lub nazwa firmy" required>
+                            </label>
+
+                            <label class="contact-form__field">
+                                <span class="contact-form__label">Email</span>
+                                <input type="email" name="email" autocomplete="email" placeholder="twoj@email.pl"
+                                    required>
+                            </label>
+                        </div>
+
+                        <label class="contact-form__field">
+                            <span class="contact-form__label">Temat</span>
+                            <input type="text" name="subject" placeholder="W czym mogę pomóc?" required>
+                        </label>
+
+                        <label class="contact-form__field">
+                            <span class="contact-form__label">Wiadomość</span>
+                            <textarea name="message" rows="7" placeholder="Opisz swój projekt, pomysł albo problem..."
+                                required data-contact-focus></textarea>
+                        </label>
+
+                        <label class="contact-form__file">
+                            <span class="contact-form__label">Pliki</span>
+                            <span class="contact-form__file-box">
+                                <span data-file-label>Dołącz grafiki, brief albo projekt</span>
+                                <small>PNG, JPG, PDF, ZIP, FIG, PSD, AI, XD</small>
+                                <input type="file" name="attachments" multiple
+                                    accept="image/*,.pdf,.zip,.fig,.psd,.ai,.xd,.sketch">
+                            </span>
+                        </label>
+
+                        <label class="contact-check">
+                            <input type="checkbox" name="verification" required>
+                            <span class="contact-check__box" aria-hidden="true"></span>
+                            <span class="contact-check__copy">
+                                <strong>Nie jestem robotem</strong>
+                                <small>Krótka weryfikacja przed wysłaniem.</small>
+                            </span>
+                        </label>
+
+                        <div class="contact-form__actions">
+                            <button class="contact-form__submit" type="submit">
+                                <span>Wyślij wiadomość</span>
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <use href="#icon-arrow-up-right"></use>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
+
         </section>
     </main>
 </body>

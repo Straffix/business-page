@@ -1,7 +1,7 @@
 @mixin render {
 	@media (min-width: 621px) and (max-width: 979px) {
 		.page {
-			--page-bg-image: url('../../img/bg/bg_1920x1080.jpg');
+			--page-bg-image: url('../../img/bg/bg_1280x800.jpg');
 			--page-bg-position: 50% 50%;
 			height: 100svh;
 			min-height: 100svh;
@@ -17,8 +17,8 @@
 			grid-template-rows: 1.15fr repeat(3, 1fr);
 			grid-template-areas:
 				'strategic strategic'
-				'hosti tech'
-				'projects titanium'
+				'portfolio tech'
+				'projects latest'
 				'contact contact';
 		}
 
@@ -38,7 +38,7 @@
 		.brand {
 			top: 11%;
 			left: 5%;
-			font-size: clamp(2.6rem, 6vw, 4.2rem);
+			font-size: 4rem;
 			letter-spacing: 0.21em;
 		}
 
@@ -54,6 +54,63 @@
 			top: 18%;
 			max-width: 78%;
 			letter-spacing: 0.12em;
+		}
+
+		#stack-panel.tile-panel {
+			--panel-section-top-margin: clamp(9rem, 12vh, 10.8rem);
+			--stack-panel-header-icon-size: clamp(3.2rem, 4vw, 4rem);
+			--stack-panel-title-size: clamp(2.5rem, 4.1vw, 3.5rem);
+			--stack-panel-category-font-size: 1.45rem;
+			--stack-panel-category-padding-y: 1.25rem;
+			--stack-panel-category-padding-x: 1.55rem;
+			--stack-panel-category-min-height: 6.4rem;
+			--stack-panel-item-min-height: 10.2rem;
+			--stack-panel-item-padding: 1.1rem;
+			--stack-panel-item-gap: 0.7rem;
+			--stack-panel-logo-size: 3.8rem;
+			--stack-panel-name-size: 1rem;
+			--stack-panel-grid-gap: 0.35rem;
+		}
+
+		#stack-panel .tile-panel__content {
+			overflow: hidden;
+		}
+
+		.stack-panel__matrix-wrap {
+			padding-bottom: 0.5rem;
+		}
+
+		.stack-panel__matrix {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			grid-template-rows: none;
+			height: auto;
+		}
+
+		.stack-panel__category {
+			grid-column: 1 / -1;
+			justify-content: flex-start;
+			text-align: left;
+		}
+	}
+
+	@media (min-width: 760px) and (max-width: 979px) {
+		.stack-panel__matrix {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 900px) and (max-width: 979px) {
+		#contact-panel .contact-layout {
+			grid-template-columns: minmax(22rem, 30rem) minmax(0, 1fr);
+		}
+
+		#contact-panel .contact-back {
+			padding-right: 2.2rem;
+			border-right: 1px solid rgba(0, 0, 0, 0.12);
+		}
+
+		#contact-panel .contact-form__row {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 }
