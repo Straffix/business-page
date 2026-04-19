@@ -199,10 +199,13 @@ function initExpandingPanels() {
 }
 
 function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focusableSelector) {
+  const instantPanelQuery = panel.id === "contact-panel" ? window.matchMedia("(max-width: 640px)") : null;
   let isOpen = false;
   let closeTimerId = 0;
   let focusTimerId = 0;
   let shouldReturnFocusToTrigger = false;
+
+  const shouldSkipPanelMotion = () => reduceMotionQuery.matches || Boolean(instantPanelQuery && instantPanelQuery.matches);
 
   const syncPanelStart = () => {
     const rect = trigger.getBoundingClientRect();
@@ -246,7 +249,7 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
     document.documentElement.classList.add("tile-panel-active");
     document.body.classList.add("tile-panel-active");
 
-    if (reduceMotionQuery.matches) {
+    if (shouldSkipPanelMotion()) {
       panel.classList.add("is-open");
       if (openedWithKeyboard) {
         focusCloseButton();
@@ -297,7 +300,7 @@ function initExpandingPanel(trigger, panel, closeButton, reduceMotionQuery, focu
     panel.classList.add("is-closing");
     panel.classList.remove("is-open");
 
-    if (reduceMotionQuery.matches) {
+    if (shouldSkipPanelMotion()) {
       finishClose();
       return;
     }
@@ -458,6 +461,7 @@ function initNetworkCanvas(backgroundScene) {
   }
 
   const tiles = document.querySelector(".tiles");
+  const root = document.documentElement;
   const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const desktopQuery = window.matchMedia("(min-width: 801px)");
 
@@ -473,7 +477,7 @@ function initNetworkCanvas(backgroundScene) {
   let points = [];
 
   const syncEnabledState = () => {
-    const shouldEnable = desktopQuery.matches && !reduceMotionQuery.matches;
+    const shouldEnable = desktopQuery.matches && !reduceMotionQuery.matches && !root.classList.contains("tile-panel-active");
     if (shouldEnable === isEnabled) {
       if (isEnabled) {
         resizeCanvas();
@@ -572,6 +576,9 @@ function initNetworkCanvas(backgroundScene) {
   window.addEventListener("scroll", handleScroll, { passive: true });
   addMediaQueryListener(desktopQuery, syncEnabledState);
   addMediaQueryListener(reduceMotionQuery, syncEnabledState);
+
+  const panelStateObserver = new MutationObserver(syncEnabledState);
+  panelStateObserver.observe(root, { attributes: true, attributeFilter: ["class"] });
 
   handleScroll();
   syncEnabledState();

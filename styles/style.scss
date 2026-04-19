@@ -962,80 +962,97 @@ a {
 	text-transform: uppercase;
 }
 
+#contact-panel.tile-panel {
+	--tile-panel-bg-start: #{colors.$white};
+	--tile-panel-bg-active: #{colors.$white};
+	background-image: none;
+}
+
 #contact-panel.tile-panel.is-open {
-	padding: clamp(1.2rem, 2vw, 2.4rem);
-	padding-top: 0;
-	background-color: rgba(colors.$white, 0.985);
-	background-image:
-		radial-gradient(circle at 14% 18%, rgba(colors.$blue-soft, 0.14), transparent 32%),
-		radial-gradient(circle at 86% 80%, rgba(colors.$gold, 0.18), transparent 30%);
+	padding: 0;
+	background-color: colors.$white;
+	background-image: none;
 }
 
 #contact-panel .tile-panel__content--contact {
-	display: grid;
+	position: relative;
+	z-index: 1;
+	display: flex;
 	flex: 1 1 auto;
-	grid-template-rows: var(--panel-section-top-margin) minmax(0, 1fr);
+	flex-direction: column;
 	align-items: stretch;
-	width: min(116rem, 100%);
+	gap: clamp(2rem, 3vh, 3rem);
+	width: min(108rem, 100%);
 	min-height: 0;
-	max-height: none;
+	height: 100%;
+	max-height: 100%;
 	margin-top: 0;
-	overflow: hidden;
-	padding: clamp(2rem, 3.4vh, 3.6rem) clamp(1.8rem, 3vw, 3.4rem);
+	overflow: auto;
+	overscroll-behavior: contain;
+	-webkit-overflow-scrolling: touch;
+	padding: clamp(7rem, 10vh, 8.8rem) clamp(1.6rem, 3vw, 3.2rem) clamp(2rem, 4vh, 3.4rem);
 }
 
 #contact-panel .tile-panel__contact-header {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 1.6rem;
-	width: min(92rem, 100%);
-	height: 100%;
-	min-height: 100%;
+	display: grid;
+	gap: 1rem;
+	width: min(94rem, 100%);
 	margin: 0 auto;
-	text-align: center;
+	padding-right: clamp(4.8rem, 7vw, 6rem);
+	text-align: left;
+	align-content: start;
+	justify-items: start;
 }
 
 #contact-panel .tile-panel__heading {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	gap: 1.4rem;
-	width: min(92rem, 100%);
-	max-width: 100%;
-	margin: 0 auto;
+	justify-content: flex-start;
+	gap: 1.1rem;
+	width: 100%;
+	min-width: 0;
 }
 
 #contact-panel .tile-panel__heading-icon {
 	display: block;
 	flex: 0 0 auto;
-	width: 4.4rem;
-	height: 4.4rem;
+	width: clamp(2.6rem, 3vw, 4rem);
+	height: clamp(2.6rem, 3vw, 4rem);
 	object-fit: contain;
 	opacity: 0.88;
 }
 
 #contact-panel .tile-panel__contact-header .tile-panel__title {
 	margin: 0;
+	font-size: clamp(2.8rem, 4.4vw, 4.8rem);
+	line-height: 0.98;
+	letter-spacing: 0.1em;
+	text-align: left;
 }
 
 #contact-panel .tile-panel__contact-header .tile-panel__lead {
-	max-width: 78rem;
+	max-width: 68rem;
 	margin: 0;
 	color: rgba(colors.$black, 0.82);
-	font-size: clamp(1.55rem, 1.25vw, 1.8rem);
+	font-size: clamp(1.35rem, 1.8vw, 1.8rem);
 	font-weight: 500;
-	line-height: 1.55;
+	line-height: 1.6;
+	text-align: left;
 }
 
 #contact-panel .contact-layout {
 	display: grid;
-	grid-template-columns: 1fr;
-	gap: clamp(2rem, 3vw, 3.2rem);
+	grid-template-columns: minmax(0, 1fr);
+	grid-auto-rows: max-content;
+	gap: clamp(1.8rem, 2.6vw, 3rem);
 	width: 100%;
 	min-height: 0;
-	align-items: stretch;
+	align-items: start;
+}
+
+#contact-panel .contact-layout > * {
+	min-width: 0;
+	align-self: start;
 }
 
 #contact-panel .contact-form__submit:focus-visible,
@@ -1047,13 +1064,13 @@ a {
 }
 
 #contact-panel .contact-back {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 1.4rem;
+	display: grid;
+	gap: 1.2rem;
+	align-content: start;
 	width: 100%;
-	min-height: 0;
-	min-width: 0;
+	padding: clamp(1.4rem, 2vw, 2rem);
+	border: 1px solid rgba(colors.$black, 0.12);
+	background: colors.$white;
 	text-align: left;
 }
 
@@ -1090,15 +1107,15 @@ a {
 	display: grid;
 	gap: 0;
 	width: 100%;
-	margin-top: 0.2rem;
+	margin-top: 0;
 }
 
 #contact-panel .contact-back__card {
 	display: flex;
-	align-items: center;
-	gap: 1.2rem;
+	align-items: flex-start;
+	gap: 1rem;
 	width: 100%;
-	padding: 0.85rem 0;
+	padding: 1rem 0;
 	border: 0;
 	border-bottom: 1px solid rgba(colors.$black, 0.12);
 	border-radius: 0;
@@ -1142,7 +1159,7 @@ a {
 }
 
 #contact-panel .contact-back__card-value {
-	font-size: 1.35rem;
+	font-size: clamp(1.2rem, 1.5vw, 1.35rem);
 	font-weight: 500;
 	line-height: 1.35;
 	color: rgba(colors.$black, 0.9);
@@ -1154,6 +1171,7 @@ a {
 	flex: 0 0 auto;
 	font-size: 1.25rem;
 	line-height: 1;
+	margin-top: 0.1rem;
 	opacity: 0.58;
 }
 
@@ -1176,10 +1194,10 @@ a {
 
 #contact-panel .contact-back__socials {
 	display: grid;
-	gap: 0.5rem;
+	gap: 0.4rem;
 	width: 100%;
-	margin-top: auto;
-	padding-top: 1.4rem;
+	margin-top: 0;
+	padding-top: 0.35rem;
 }
 
 #contact-panel .contact-back__social-link {
@@ -1187,10 +1205,10 @@ a {
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
-	padding: 0.85rem 0;
+	padding: 0.8rem 0;
 	border-bottom: 1px solid rgba(colors.$black, 0.12);
 	color: rgba(colors.$black, 0.86);
-	font-size: 1.2rem;
+	font-size: 1.05rem;
 	font-weight: 700;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
@@ -1204,7 +1222,7 @@ a {
 }
 
 #contact-panel .contact-back__social-link--placeholder {
-	color: rgba(colors.$black, 0.46);
+	display: none;
 }
 
 #contact-panel .contact-back__social-link--placeholder::after {
@@ -1224,25 +1242,30 @@ a {
 #contact-panel .contact-form {
 	display: grid;
 	align-content: start;
-	min-height: 0;
+	width: 100%;
+	min-width: 0;
 	gap: 1rem;
 	padding: clamp(1.4rem, 2vw, 2.2rem);
 	border: 1px solid rgba(colors.$black, 0.12);
 	border-radius: 0;
-	background: rgba(colors.$white, 0.68);
-	box-shadow: 0 1.6rem 4rem rgba(colors.$black, 0.045);
+	background: colors.$white;
+	box-shadow: none;
 	text-align: left;
 }
 
 #contact-panel .contact-form__row {
 	display: grid;
 	gap: 1rem;
+	width: 100%;
+	min-width: 0;
 }
 
 #contact-panel .contact-form__field {
 	display: grid;
 	gap: 0.7rem;
 	min-height: 0;
+	width: 100%;
+	min-width: 0;
 }
 
 #contact-panel .contact-form__label {
@@ -1256,14 +1279,16 @@ a {
 
 #contact-panel .contact-form__field input,
 #contact-panel .contact-form__field textarea {
+	display: block;
 	width: 100%;
-	padding: 1.2rem 1.4rem;
+	max-width: 100%;
+	padding: clamp(0.95rem, 1.6vw, 1.2rem) clamp(1rem, 1.8vw, 1.3rem);
 	border: 1px solid rgba(colors.$black, 0.12);
 	border-radius: 0;
-	background: rgba(colors.$white, 0.88);
+	background: colors.$white;
 	color: rgba(colors.$black, 0.94);
 	font: inherit;
-	font-size: 1.55rem;
+	font-size: clamp(1.1rem, 1.4vw, 1.4rem);
 	font-weight: 500;
 	line-height: 1.35;
 	appearance: none;
@@ -1274,17 +1299,17 @@ a {
 }
 
 #contact-panel .contact-form__field textarea {
-	min-height: clamp(12rem, 17vh, 15rem);
+	min-height: clamp(14rem, 24vh, 18rem);
 	resize: none;
 }
 
 #contact-panel .contact-form__field--message {
-	gap: 0.9rem;
-	margin-top: 0.45rem;
+	gap: 0.75rem;
+	margin-top: 0;
 }
 
 #contact-panel .contact-form__field--message textarea {
-	min-height: clamp(14rem, 20vh, 18rem);
+	min-height: clamp(15rem, 28vh, 19rem);
 }
 
 #contact-panel .contact-form__field input::placeholder,
@@ -1314,24 +1339,30 @@ a {
 	display: grid;
 	gap: 0.8rem;
 	margin-top: 0;
+	width: 100%;
+	min-width: 0;
 }
 
 #contact-panel .contact-form__file {
 	display: grid;
 	gap: 0.7rem;
 	cursor: pointer;
+	width: 100%;
+	min-width: 0;
 }
 
 #contact-panel .contact-form__file-box {
 	position: relative;
 	display: grid;
-	gap: 0.35rem;
-	padding: 1.2rem 1.4rem;
+	width: 100%;
+	max-width: 100%;
+	gap: 0.5rem;
+	padding: 1rem 1.2rem;
 	border: 1px dashed rgba(colors.$black, 0.2);
 	border-radius: 0;
-	background: rgba(colors.$white, 0.74);
+	background: colors.$white;
 	color: rgba(colors.$black, 0.86);
-	font-size: 1.35rem;
+	font-size: clamp(1.05rem, 1.3vw, 1.2rem);
 	font-weight: 600;
 	line-height: 1.35;
 	overflow: hidden;
@@ -1387,16 +1418,18 @@ a {
 	grid-template-columns: auto minmax(0, 1fr);
 	gap: 1rem;
 	align-items: center;
+	width: 100%;
+	min-width: 0;
 	padding: 1.1rem 1.2rem;
 	border: 1px solid rgba(colors.$black, 0.12);
 	border-radius: 0;
-	background: rgba(colors.$white, 0.82);
+	background: colors.$white;
 	cursor: pointer;
 }
 
 #contact-panel .contact-check:focus-within {
 	border-color: rgba(colors.$black, 0.42);
-	background: rgba(colors.$white, 0.92);
+	background: colors.$white;
 	box-shadow: 0 0 0 0.3rem rgba(colors.$blue-soft, 0.12);
 }
 
@@ -1458,29 +1491,26 @@ a {
 	justify-content: space-between;
 	gap: 1.4rem;
 	width: 100%;
-	padding: 1.25rem 1.6rem;
+	max-width: 100%;
+	padding: 1rem 1.25rem;
 	border: 1px solid rgba(colors.$black, 0.94);
 	border-radius: 0;
 	background: rgba(colors.$black, 0.94);
 	color: rgba(colors.$white, 0.96);
 	font: inherit;
-	font-size: 1.6rem;
+	font-size: clamp(1.1rem, 1.4vw, 1.35rem);
 	font-weight: 700;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
 	cursor: pointer;
-	box-shadow: 0 1.4rem 3.4rem rgba(colors.$black, 0.08);
-	transition:
-		transform 0.22s ease,
-		box-shadow 0.22s ease,
-		filter 0.22s ease;
+	box-shadow: none;
+	transition: background 0.22s ease, filter 0.22s ease;
 }
 
 #contact-panel .contact-form__submit:hover,
 #contact-panel .contact-form__submit:focus-visible {
-	transform: translateY(-2px);
 	background: rgba(colors.$black, 0.98);
-	filter: saturate(1.04);
+	filter: none;
 }
 
 #contact-panel .contact-form__submit svg {
@@ -1498,6 +1528,18 @@ a {
 #contact-panel .contact-check__copy small {
 	font-weight: 700;
 	font-variation-settings: 'wght' 700;
+}
+
+@media (min-width: 700px) {
+	#contact-panel .contact-form__row {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1024px) {
+	#contact-panel .contact-layout {
+		grid-template-columns: minmax(24rem, 30rem) minmax(0, 1fr);
+	}
 }
 
 @media (max-width: 640px) {
@@ -1606,32 +1648,20 @@ a {
 	}
 
 	#contact-panel .tile-panel__content--contact {
-		display: flex;
-		flex-direction: column;
-		gap: 1.8rem;
+		gap: 1.4rem;
 		width: 100%;
-		align-items: stretch;
-		max-height: none;
-		padding: clamp(5.4rem, 18vw, 6.8rem) 1rem max(1.25rem, env(safe-area-inset-bottom));
-		overflow: auto;
+		padding: max(5.4rem, calc(env(safe-area-inset-top) + 4.4rem)) 1rem max(1.4rem, calc(env(safe-area-inset-bottom) + 0.9rem));
 	}
 
 	#contact-panel .tile-panel__contact-header {
-		align-items: flex-start;
-		justify-content: flex-start;
-		gap: 1rem;
+		gap: 0.9rem;
 		width: 100%;
-		height: auto;
-		min-height: 0;
 		margin: 0;
 		padding-right: clamp(4.8rem, 16vw, 5.8rem);
-		text-align: left;
 	}
 
 	#contact-panel .tile-panel__heading {
-		justify-content: flex-start;
 		gap: 0.85rem;
-		width: 100%;
 	}
 
 	#contact-panel .tile-panel__heading-icon {
@@ -1641,25 +1671,20 @@ a {
 
 	#contact-panel .tile-panel__contact-header .tile-panel__title {
 		font-size: clamp(1.9rem, 9.6vw, 2.9rem);
-		line-height: 1.04;
+		line-height: 1.02;
 		letter-spacing: 0.08em;
 	}
 
 	#contact-panel .tile-panel__lead {
-		font-size: 1.25rem;
-		text-align: left;
+		font-size: 1.15rem;
 	}
 
 	#contact-panel .contact-layout {
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-		gap: 1.6rem;
+		gap: 1.2rem;
 	}
 
 	#contact-panel .contact-back {
-		display: grid;
-		gap: 1rem;
+		padding: 1rem;
 	}
 
 	#contact-panel .contact-back__eyebrow {
@@ -1688,36 +1713,16 @@ a {
 	}
 
 	#contact-panel .contact-back__socials {
-		margin-top: 0;
 		padding-top: 0.15rem;
 	}
 
 	#contact-panel .contact-back__social-link {
 		padding: 0.7rem 0;
-		font-size: 1rem;
-	}
-
-	#contact-panel .contact-back__social-link--placeholder {
-		display: none;
-	}
-
-	#contact-panel .contact-back__title {
-		line-height: 1.02;
-	}
-
-	#contact-panel .contact-back__card,
-	#contact-panel .contact-back__social {
-		border-radius: 0;
+		font-size: 0.95rem;
 	}
 
 	#contact-panel .contact-form {
-		display: block;
-		position: relative;
-		z-index: 1;
-		isolation: isolate;
 		padding: 1rem;
-		background: rgba(colors.$white, 0.985);
-		box-shadow: 0 1rem 2.8rem rgba(colors.$black, 0.05);
 	}
 
 	#contact-panel .contact-form > * + * {
@@ -1725,25 +1730,17 @@ a {
 	}
 
 	#contact-panel .contact-form__row {
-		display: grid;
+		grid-template-columns: minmax(0, 1fr);
 		gap: 0.85rem;
 	}
 
 	#contact-panel .contact-form__field,
 	#contact-panel .contact-form__file {
-		position: relative;
-		z-index: 1;
 		gap: 0.5rem;
 	}
 
 	#contact-panel .contact-form__field--message {
 		gap: 0.7rem;
-	}
-
-	#contact-panel .contact-check,
-	#contact-panel .contact-form__actions {
-		position: relative;
-		z-index: 1;
 	}
 
 	#contact-panel .contact-form__label {
@@ -1757,24 +1754,22 @@ a {
 	#contact-panel .contact-form__field textarea,
 	#contact-panel .contact-form__submit,
 	#contact-panel .contact-form__file-box {
-		font-size: 1.25rem;
+		font-size: 1.15rem;
 	}
 
 	#contact-panel .contact-form__field input,
 	#contact-panel .contact-form__field textarea {
-		display: block;
 		padding: 0.95rem 1rem;
 		background: colors.$white;
 		line-height: 1.3;
 	}
 
 	#contact-panel .contact-form__field textarea {
-		min-height: 11rem;
+		min-height: 12rem;
 	}
 
 	#contact-panel .contact-form__field--message textarea {
-		height: 12rem;
-		min-height: 12rem;
+		min-height: 13rem;
 	}
 
 	#contact-panel .contact-form__file {
@@ -1829,13 +1824,13 @@ a {
 
 	#contact-panel .contact-form__submit {
 		padding: 1rem 1.15rem;
-		font-size: 1.15rem;
+		font-size: 1.1rem;
 	}
 }
 
 #stack-panel.tile-panel {
 	--tile-panel-bg-active: #{colors.$white};
-	--stack-panel-header-height: var(--panel-section-top-margin);
+	--stack-panel-header-height: calc(var(--panel-section-top-margin) * 2);
 	--stack-panel-header-gap: clamp(1rem, 1.6vw, 1.4rem);
 	--stack-panel-header-icon-size: clamp(3.6rem, 4vw, 5rem);
 	--stack-panel-title-size: clamp(2.8rem, 3.4vw, 4.6rem);
