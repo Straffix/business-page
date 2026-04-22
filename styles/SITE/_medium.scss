@@ -72,6 +72,18 @@
 			--stack-panel-grid-gap: 0.35rem;
 		}
 
+		#portfolio-panel.tile-panel {
+			--panel-section-top-margin: clamp(9rem, 12vh, 10.8rem);
+			--portfolio-panel-header-icon-size: clamp(3.2rem, 4vw, 4rem);
+			--portfolio-panel-title-size: clamp(2.5rem, 4.1vw, 3.5rem);
+		}
+
+		#about-panel.tile-panel {
+			--panel-section-top-margin: clamp(9rem, 12vh, 10.8rem);
+			--about-panel-header-icon-size: clamp(3.2rem, 4vw, 4rem);
+			--about-panel-title-size: clamp(2.5rem, 4.1vw, 3.5rem);
+		}
+
 		#stack-panel .tile-panel__content {
 			overflow: hidden;
 		}

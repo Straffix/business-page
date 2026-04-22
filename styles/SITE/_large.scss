@@ -76,6 +76,18 @@
 			padding-top: 0;
 		}
 
+		#portfolio-panel .tile-panel__content--portfolio {
+			display: grid;
+			grid-template-rows: var(--portfolio-panel-header-height) minmax(0, 1fr);
+			padding-top: 0;
+		}
+
+		#about-panel .tile-panel__content--about {
+			display: grid;
+			grid-template-rows: var(--about-panel-header-height) minmax(0, 1fr);
+			padding-top: 0;
+		}
+
 		.stack-panel__matrix-wrap {
 			margin-top: 0;
 		}
@@ -131,6 +143,18 @@
 			--stack-panel-name-size: 1rem;
 		}
 
+		#portfolio-panel.tile-panel {
+			--panel-section-top-margin: clamp(9.4rem, 12vh, 11.4rem);
+			--portfolio-panel-header-icon-size: clamp(3.5rem, 3.6vw, 4.4rem);
+			--portfolio-panel-title-size: clamp(2.8rem, 3vw, 3.8rem);
+		}
+
+		#about-panel.tile-panel {
+			--panel-section-top-margin: clamp(9.4rem, 12vh, 11.4rem);
+			--about-panel-header-icon-size: clamp(3.5rem, 3.6vw, 4.4rem);
+			--about-panel-title-size: clamp(2.8rem, 3vw, 3.8rem);
+		}
+
 		#stack-panel .tile-panel__content {
 			overflow: hidden;
 		}
@@ -164,6 +188,18 @@
 			--stack-panel-item-gap: 0.55rem;
 			--stack-panel-logo-size: 3.5rem;
 			--stack-panel-name-size: 0.92rem;
+		}
+
+		#portfolio-panel.tile-panel {
+			--panel-section-top-margin: clamp(8.2rem, 11vh, 9.8rem);
+			--portfolio-panel-header-icon-size: 3.6rem;
+			--portfolio-panel-title-size: clamp(2.6rem, 2.8vw, 3.4rem);
+		}
+
+		#about-panel.tile-panel {
+			--panel-section-top-margin: clamp(8.2rem, 11vh, 9.8rem);
+			--about-panel-header-icon-size: 3.6rem;
+			--about-panel-title-size: clamp(2.6rem, 2.8vw, 3.4rem);
 		}
 
 		#stack-panel.tile-panel.is-open,

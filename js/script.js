@@ -49,7 +49,7 @@ function initSiteIntro() {
 
     window.setTimeout(() => {
       intro.setAttribute("hidden", "");
-    }, 500);
+    }, 280);
   };
 
   if (reduceMotionQuery.matches) {
@@ -93,8 +93,8 @@ function initSiteIntro() {
 
       syncIntroMotion();
       intro.classList.add("is-flying");
-      fallbackTimerId = window.setTimeout(finishIntro, 1500);
-    }, 2200);
+      fallbackTimerId = window.setTimeout(finishIntro, 900);
+    }, 850);
   };
 
   introBrand.addEventListener("transitionend", (event) => {
@@ -105,11 +105,14 @@ function initSiteIntro() {
   window.addEventListener("resize", scheduleMotionSync);
 
   if (document.fonts && typeof document.fonts.ready === "object") {
-    document.fonts.ready.then(startIntro).catch(startIntro);
-    return;
+    document.fonts.ready.then(() => {
+      if (!isFinished && !intro.classList.contains("is-flying")) {
+        syncIntroMotion();
+      }
+    }).catch(() => {});
   }
 
-  startIntro();
+  window.requestAnimationFrame(startIntro);
 }
 
 function initProjectSliders() {
@@ -127,20 +130,46 @@ function initProjectSlider(slider) {
 
   const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const interval = Number(slider.dataset.sliderInterval) || 3200;
+  const preloadDelay = Math.max(interval - 1200, 1000);
   let activeIndex = Math.max(slides.findIndex((slide) => slide.classList.contains("is-active")), 0);
   let timerId = 0;
+  let preloadTimerId = 0;
+
+  const loadSlideMedia = (slide) => {
+    const lazyImages = slide.querySelectorAll("img[data-src]");
+
+    for (const image of lazyImages) {
+      image.src = image.dataset.src;
+      image.removeAttribute("data-src");
+    }
+  };
+
+  const preloadNextSlide = () => {
+    window.clearTimeout(preloadTimerId);
+    if (reduceMotionQuery.matches) {
+      return;
+    }
+
+    preloadTimerId = window.setTimeout(() => {
+      loadSlideMedia(slides[(activeIndex + 1) % slides.length]);
+    }, preloadDelay);
+  };
 
   const showSlide = (nextIndex) => {
     slides[activeIndex].classList.remove("is-active");
     slides[activeIndex].setAttribute("aria-hidden", "true");
+    slides[activeIndex].setAttribute("tabindex", "-1");
 
     activeIndex = (nextIndex + slides.length) % slides.length;
     const activeSlide = slides[activeIndex];
 
+    loadSlideMedia(activeSlide);
     activeSlide.classList.add("is-active");
     activeSlide.removeAttribute("aria-hidden");
+    activeSlide.removeAttribute("tabindex");
     slider.style.setProperty("--tile-bg", activeSlide.dataset.tileBg || "");
     slider.style.setProperty("--tile-hover-bg", activeSlide.dataset.tileHoverBg || "");
+    preloadNextSlide();
   };
 
   const pause = () => {
@@ -148,6 +177,7 @@ function initProjectSlider(slider) {
       window.clearInterval(timerId);
       timerId = 0;
     }
+    window.clearTimeout(preloadTimerId);
     slider.classList.add("is-paused");
   };
 
