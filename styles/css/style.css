@@ -567,19 +567,31 @@ a {
 }
 
 .project-slider {
+  --project-card-border: rgba(255, 255, 255, 0.16);
+  --project-card-muted: rgba(255, 255, 255, 0.58);
+  --project-card-text: rgba(255, 255, 255, 0.92);
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  border-color: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.22)), rgba(255, 255, 255, 0.08);
+}
+
+.project-slider:hover,
+.project-slider:focus-visible,
+.project-slider:focus-within {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.055), 0 1.4rem 3rem rgba(0, 0, 0, 0.12);
 }
 
 .project-slider-status {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  z-index: 1;
+  top: 1.1rem;
+  left: 1.1rem;
+  z-index: 4;
   display: flex;
   align-items: center;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.68);
   opacity: 0;
   transform: scale(0.94);
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -618,7 +630,7 @@ a {
   justify-content: center;
   min-width: 0;
   margin: 0;
-  padding: clamp(1.1rem, 2vw, 2.4rem);
+  padding: clamp(0.9rem, 1.7vw, 1.8rem);
   opacity: 0;
   pointer-events: none;
   transform: translateY(0.8rem);
@@ -638,106 +650,217 @@ a {
 
 .project-demo {
   position: relative;
-  display: flex;
-  width: min(100%, 54rem);
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: clamp(0.8rem, 1.35vw, 1.3rem);
+  width: min(100%, 55rem);
   max-width: 100%;
   height: 100%;
   min-width: 0;
   min-height: 0;
-  align-items: center;
-  justify-content: center;
+  padding: clamp(1rem, 1.9vw, 1.6rem);
   overflow: hidden;
+  border: 1px solid var(--project-card-border);
+  border-radius: 0.8rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02)), rgba(0, 0, 0, 0.36);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.045), 0 1.8rem 4.4rem rgba(0, 0, 0, 0.18);
   pointer-events: none;
 }
 
 .project-demo__collage {
   position: relative;
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
+  isolation: isolate;
+  justify-self: center;
+  align-self: center;
+  width: 112%;
+  height: auto;
+  aspect-ratio: 3/2;
   min-width: 0;
-  min-height: 9rem;
+  min-height: 0;
+  transform: translateY(9%);
+}
+
+.project-demo__collage::after {
+  content: none;
+}
+
+.project-demo__mockup {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  opacity: 0.9;
+  z-index: 0;
 }
 
 .project-demo__frame {
   position: absolute;
+  top: var(--screen-top, 0);
+  left: var(--screen-left, 0);
+  width: var(--screen-width, 100%);
+  height: var(--screen-height, 100%);
   margin: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 0.8rem;
-  background: rgba(0, 0, 0, 0.28);
-  box-shadow: 0 1.8rem 4rem rgba(0, 0, 0, 0.22);
+  z-index: 3;
+  border: 0;
+  border-radius: var(--screen-radius, 0.4rem);
+  background: rgba(0, 0, 0, 0.72);
+  box-shadow: none;
+  clip-path: polygon(var(--screen-clip-tl, 0% 0%), var(--screen-clip-tr, 100% 0%), var(--screen-clip-br, 100% 100%), var(--screen-clip-bl, 0% 100%));
+  transform: translate3d(var(--screen-offset-x, 0), var(--screen-offset-y, 0), 0) perspective(var(--screen-perspective, 120rem)) rotateX(var(--screen-rotate-x, 0deg)) rotateY(var(--screen-rotate-y, 0deg)) rotateZ(var(--screen-rotate, 0deg)) skew(var(--screen-skew-x, 0deg), var(--screen-skew-y, 0deg));
+  transform-origin: var(--screen-origin, 50% 50%);
+  backface-visibility: hidden;
 }
 
 .project-demo__frame::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  pointer-events: none;
+  content: none;
 }
 
 .project-demo__frame--main {
-  inset: 7% 13% 10% 7%;
-  z-index: 1;
+  --screen-top: 19%;
+  --screen-left: 24%;
+  --screen-width: 42.2%;
+  --screen-height: 45.85%;
+  --screen-radius: 0.48rem 0.52rem 0.22rem 0.22rem;
+  --screen-clip-tl: 5.2% 3%;
+  --screen-clip-tr: 99.6% 0%;
+  --screen-clip-br: 95.3% 100%;
+  --screen-clip-bl: 0% 94.7%;
+  --content-scale-x: 1.015;
 }
 
 .project-demo__frame--top {
-  top: 0;
-  right: 0;
-  z-index: 2;
-  width: 42%;
-  height: 42%;
-  transform: rotate(1.7deg);
+  --screen-top: 39%;
+  --screen-left: 45.15%;
+  --screen-width: 33.35%;
+  --screen-height: 36%;
+  --screen-radius: 0.72rem;
+  --screen-clip-tl: 0.5% 0%;
+  --screen-clip-tr: 99.3% 0%;
+  --screen-clip-br: 99.6% 99.7%;
+  --screen-clip-bl: 0.2% 100%;
+}
+
+.project-demo__frame--top::before {
+  content: none;
 }
 
 .project-demo__frame--bottom {
-  bottom: 0;
-  left: 0;
-  z-index: 3;
-  width: 40%;
-  height: 40%;
-  transform: rotate(-2deg);
+  display: block;
+  --screen-top: 39.65%;
+  --screen-left: 81.95%;
+  --screen-width: 9.42%;
+  --screen-height: 30.95%;
+  --screen-radius: 13% / 6%;
+  --screen-clip-tl: 2% 0%;
+  --screen-clip-tr: 98% 0%;
+  --screen-clip-br: 98% 100%;
+  --screen-clip-bl: 2% 100%;
 }
 
 .project-demo__image {
   display: block;
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
+  border-radius: inherit;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: top center;
+     object-position: top center;
+  transform: translate3d(var(--content-x, 0), var(--content-y, 0), 0) scaleX(var(--content-scale-x, 1)) scaleY(var(--content-scale-y, 1)) rotate(var(--content-rotate, 0deg)) skew(var(--content-skew-x, 0deg), var(--content-skew-y, 0deg));
+  transform-origin: var(--content-origin, 50% 0%);
+}
+
+.project-demo__frame--main .project-demo__image {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top center;
+     object-position: top center;
+}
+
+.project-demo__action {
+  position: absolute;
+  top: clamp(1rem, 1.6vw, 1.4rem);
+  right: clamp(1rem, 1.6vw, 1.4rem);
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 0.4rem;
+  color: rgba(255, 255, 255, 0.66);
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.project-demo__action svg {
+  display: block;
+  width: 1.65rem;
+  height: 1.65rem;
 }
 
 .project-demo__caption {
-  position: absolute;
-  right: 4%;
-  bottom: 5%;
+  position: relative;
   z-index: 4;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.24rem;
-  max-width: min(24rem, 82%);
+  display: grid;
+  justify-items: start;
+  gap: 0.4rem;
+  max-width: 100%;
   margin: 0;
-  padding: 0.78rem 0.95rem;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  background: rgba(0, 0, 0, 0.54);
-  box-shadow: 0 1rem 2.4rem rgba(0, 0, 0, 0.18);
-  color: rgba(255, 255, 255, 0.94);
-  text-align: right;
-  text-shadow: 0 0 16px rgba(0, 0, 0, 0.28);
+  padding: 0 0.3rem 0.1rem;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--project-card-text);
+  text-align: left;
+  text-shadow: none;
   white-space: normal;
   overflow-wrap: break-word;
+  text-transform: none;
 }
 
-.project-demo__caption span {
-  font-size: 0.82em;
-  opacity: 0.72;
+.project-demo__eyebrow {
+  color: var(--project-card-muted);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .project-demo__caption strong {
-  font-size: 0.96em;
-  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1.65rem, 2.1vw, 2.2rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.project-demo__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.25rem;
+}
+
+.project-demo__tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.35rem;
+  background: rgba(255, 255, 255, 0.055);
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 @keyframes slider-pause-pulse {
@@ -748,6 +871,38 @@ a {
   50% {
     opacity: 1;
     transform: scale(1.12);
+  }
+}
+@media (max-width: 979px) {
+  .project-slide {
+    padding: clamp(0.7rem, 1.6vw, 1.1rem);
+  }
+  .project-demo {
+    grid-template-columns: minmax(0, 1.35fr) minmax(12rem, 0.75fr);
+    grid-template-rows: minmax(0, 1fr);
+    gap: clamp(0.7rem, 1.4vw, 1rem);
+    width: 100%;
+    padding: clamp(0.85rem, 1.8vw, 1.15rem);
+  }
+  .project-demo__frame--top {
+    min-width: 0;
+    max-width: none;
+  }
+  .project-demo__caption {
+    align-self: center;
+    gap: 0.28rem;
+    padding: 0;
+  }
+  .project-demo__caption strong {
+    font-size: clamp(1.35rem, 2.8vw, 1.8rem);
+  }
+  .project-demo__tags {
+    gap: 0.3rem;
+  }
+  .project-demo__tags span {
+    min-height: 1.75rem;
+    padding: 0.26rem 0.4rem;
+    font-size: 0.76rem;
   }
 }
 .tile--portfolio {
@@ -1192,7 +1347,7 @@ a {
 
 .portfolio-work__link:hover,
 .portfolio-work__link:focus-visible {
-  background: rgb(0, 0, 0);
+  background: black;
   transform: translateY(-1px);
   outline: none;
 }
@@ -1205,11 +1360,11 @@ a {
 .portfolio-work__media {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(10rem, 0.72fr);
+  grid-template-columns: minmax(0, 2fr) minmax(8rem, 1fr);
   grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: 0.8rem;
   min-width: 0;
-  min-height: clamp(22rem, 32vw, 38rem);
+  min-height: 0;
   align-self: center;
   padding: clamp(0.8rem, 1.4vw, 1.3rem);
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -1232,29 +1387,25 @@ a {
   min-height: 0;
   margin: 0;
   overflow: hidden;
+  aspect-ratio: 16/9;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(0, 0, 0, 0.035);
   box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.035);
 }
 
 .portfolio-shot--main {
   grid-row: 1/span 2;
+  height: 100%;
 }
 
 .portfolio-shot img {
   display: block;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: top center;
-     object-position: top center;
-  transition: transform 0.5s ease;
-}
-
-.portfolio-work__media:hover .portfolio-shot--main img,
-.portfolio-work__media:focus-visible .portfolio-shot--main img {
-  transform: scale(1.025);
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
 }
 
 @media (max-width: 900px) {
@@ -1309,7 +1460,7 @@ a {
     padding: 0.65rem;
   }
   .portfolio-shot {
-    aspect-ratio: 16/10;
+    aspect-ratio: 16/9;
   }
   .portfolio-shot--main {
     grid-column: 1/-1;
@@ -1487,9 +1638,17 @@ a {
      object-fit: cover;
   -o-object-position: 50% 16%;
      object-position: 50% 16%;
-  transform: scale(1.04);
+  opacity: 0;
+  transform: translateY(1.8rem) scale(1.04);
+  animation: aboutPortraitReveal 0.85s ease 0.65s forwards;
 }
 
+@keyframes aboutPortraitReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1.04);
+  }
+}
 .about-story {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2363,10 +2522,10 @@ a {
     text-wrap: balance;
   }
   .tile--strategic {
-    padding: 1.1rem 1.2rem;
+    padding: 0.72rem;
   }
   .project-slide {
-    padding: 1.35rem;
+    padding: 0.58rem;
     line-height: 1.2;
     text-wrap: balance;
   }
@@ -2375,37 +2534,53 @@ a {
     letter-spacing: 0.06em;
   }
   .project-slide {
-    padding: 0.85rem;
+    padding: 0.58rem;
   }
   .project-demo {
+    grid-template-columns: minmax(0, 1fr) minmax(8.4rem, 0.76fr);
+    grid-template-rows: minmax(0, 1fr);
+    gap: 0.65rem;
     width: 100%;
+    padding: 0.72rem;
+    border-radius: 0.65rem;
   }
   .project-demo__collage {
-    min-height: 8rem;
-  }
-  .project-demo__frame--main {
-    inset: 5% 16% 12% 5%;
+    min-height: 0;
+    width: 108%;
   }
   .project-demo__frame--top {
-    width: 40%;
-    height: 38%;
+    display: block;
   }
   .project-demo__frame--bottom {
-    width: 38%;
-    height: 36%;
+    display: block;
+  }
+  .project-demo__action {
+    display: none;
   }
   .project-demo__caption {
-    right: 0.35rem;
-    bottom: 0.3rem;
-    max-width: min(13.6rem, 74%);
-    margin: 0;
-    padding: 0.55rem 0.62rem;
+    align-self: center;
+    gap: 0.18rem;
+    padding: 0 0.1rem;
     font-size: clamp(0.9rem, 3.3vw, 1.08rem);
     line-height: 1.1;
     letter-spacing: 0.06em;
   }
   .project-demo__caption strong {
-    font-size: 0.9em;
+    font-size: clamp(1.05rem, 4vw, 1.28rem);
+    letter-spacing: 0.11em;
+  }
+  .project-demo__eyebrow {
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
+  }
+  .project-demo__tags {
+    gap: 0.22rem;
+    margin-top: 0.08rem;
+  }
+  .project-demo__tags span {
+    min-height: 1.45rem;
+    padding: 0.18rem 0.28rem;
+    font-size: 0.62rem;
   }
   .project-slider-status {
     top: 0.75rem;
@@ -2841,6 +3016,10 @@ a {
   }
   .has-js .intro {
     display: none;
+  }
+  .about-portrait img {
+    opacity: 1;
+    transform: scale(1.04);
   }
 }
 @media (min-width: 621px) and (max-width: 979px) {
