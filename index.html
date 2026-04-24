@@ -26,7 +26,7 @@
     <script src="js/script.js" defer></script>
 </head>
 
-<body>
+<body class="is-project-screen-debug">
     <svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute;">
         <symbol id="icon-cloud" viewBox="0 0 100 100">
             <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
@@ -114,6 +114,7 @@
 
         <section class="tiles" aria-label="Sekcje strony">
             <article class="tile tile--strategic project-slider" data-project-slider data-slider-interval="3600"
+                data-slider-disabled="true"
                 aria-label="Moje prace front end developera - kliknij aktywne demo">
                 <span class="project-slider-status" aria-hidden="true">
                     <span class="project-slider-icon project-slider-icon--pause">
@@ -125,18 +126,23 @@
                     target="_blank" rel="noreferrer" data-project-slide aria-label="Otwórz demo Dashboard IT">
                     <div class="project-demo">
                         <div class="project-demo__collage" aria-hidden="true">
-                            <img class="project-demo__mockup" src="img/lap-tel-mock.png" width="1536" height="1024" alt="" decoding="async">
                             <figure class="project-demo__frame project-demo__frame--main">
-                                <img class="project-demo__image" src="img/site/dashboard/mock-laptop.jpg" width="1200"
-                                    height="840" alt="" decoding="async" fetchpriority="high">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" src="img/site/dashboard/mock-laptop.jpg" width="1200"
+                                        height="840" alt="" decoding="async" fetchpriority="high">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--top">
-                                <img class="project-demo__image" src="img/site/dashboard/mock-tablet.jpg" width="1180"
-                                    height="830" alt="" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" src="img/site/dashboard/mock-tablet.jpg" width="1180"
+                                        height="830" alt="" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--bottom">
-                                <img class="project-demo__image" src="img/site/dashboard/mock-phone.jpg" width="390"
-                                    height="856" alt="" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" src="img/site/dashboard/mock-phone.jpg" width="390"
+                                        height="856" alt="" decoding="async">
+                                </div>
                             </figure>
                         </div>
                         <span class="project-demo__action" aria-hidden="true">
@@ -160,20 +166,25 @@
                     tabindex="-1">
                     <div class="project-demo">
                         <div class="project-demo__collage" aria-hidden="true">
-                            <img class="project-demo__mockup" src="img/lap-tel-mock.png" width="1536" height="1024" alt="" decoding="async">
                             <figure class="project-demo__frame project-demo__frame--main">
-                                <img class="project-demo__image" data-src="img/site/designin/mock-laptop.jpg" width="1200"
-                                    height="840" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/designin/mock-laptop.jpg" width="1200"
+                                        height="840" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--top">
-                                <img class="project-demo__image"
-                                    data-src="img/site/designin/mock-tablet.jpg" width="1180"
-                                    height="830" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image"
+                                        data-src="img/site/designin/mock-tablet.jpg" width="1180"
+                                        height="830" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--bottom">
-                                <img class="project-demo__image"
-                                    data-src="img/site/designin/mock-phone.jpg" width="390"
-                                    height="856" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image"
+                                        data-src="img/site/designin/mock-phone.jpg" width="390"
+                                        height="856" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                         </div>
                         <span class="project-demo__action" aria-hidden="true">
@@ -197,18 +208,23 @@
                     tabindex="-1">
                     <div class="project-demo">
                         <div class="project-demo__collage" aria-hidden="true">
-                            <img class="project-demo__mockup" src="img/lap-tel-mock.png" width="1536" height="1024" alt="" decoding="async">
                             <figure class="project-demo__frame project-demo__frame--main">
-                                <img class="project-demo__image" data-src="img/site/dgm-company/mock-laptop.jpg" width="1200"
-                                    height="840" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/dgm-company/mock-laptop.jpg" width="1200"
+                                        height="840" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--top">
-                                <img class="project-demo__image" data-src="img/site/dgm-company/mock-tablet.jpg"
-                                    width="1180" height="830" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/dgm-company/mock-tablet.jpg"
+                                        width="1180" height="830" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--bottom">
-                                <img class="project-demo__image" data-src="img/site/dgm-company/mock-phone.jpg"
-                                    width="390" height="856" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/dgm-company/mock-phone.jpg"
+                                        width="390" height="856" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                         </div>
                         <span class="project-demo__action" aria-hidden="true">
@@ -232,18 +248,23 @@
                     tabindex="-1">
                     <div class="project-demo">
                         <div class="project-demo__collage" aria-hidden="true">
-                            <img class="project-demo__mockup" src="img/lap-tel-mock.png" width="1536" height="1024" alt="" decoding="async">
                             <figure class="project-demo__frame project-demo__frame--main">
-                                <img class="project-demo__image" data-src="img/site/folkshop/mock-laptop.jpg" width="1200"
-                                    height="840" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/folkshop/mock-laptop.jpg" width="1200"
+                                        height="840" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--top">
-                                <img class="project-demo__image" data-src="img/site/folkshop/mock-tablet.jpg" width="1180"
-                                    height="830" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/folkshop/mock-tablet.jpg" width="1180"
+                                        height="830" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--bottom">
-                                <img class="project-demo__image" data-src="img/site/folkshop/mock-phone.jpg" width="390"
-                                    height="856" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/folkshop/mock-phone.jpg" width="390"
+                                        height="856" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                         </div>
                         <span class="project-demo__action" aria-hidden="true">
@@ -267,20 +288,25 @@
                     tabindex="-1">
                     <div class="project-demo">
                         <div class="project-demo__collage" aria-hidden="true">
-                            <img class="project-demo__mockup" src="img/lap-tel-mock.png" width="1536" height="1024" alt="" decoding="async">
                             <figure class="project-demo__frame project-demo__frame--main">
-                                <img class="project-demo__image" data-src="img/site/lisieckidev/mock-laptop.jpg" width="1200"
-                                    height="840" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/lisieckidev/mock-laptop.jpg" width="1200"
+                                        height="840" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--top">
-                                <img class="project-demo__image"
-                                    data-src="img/site/lisieckidev/mock-tablet.jpg" width="1180"
-                                    height="830" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image"
+                                        data-src="img/site/lisieckidev/mock-tablet.jpg" width="1180"
+                                        height="830" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--bottom">
-                                <img class="project-demo__image"
-                                    data-src="img/site/lisieckidev/mock-phone.jpg" width="390"
-                                    height="856" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image"
+                                        data-src="img/site/lisieckidev/mock-phone.jpg" width="390"
+                                        height="856" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                         </div>
                         <span class="project-demo__action" aria-hidden="true">
@@ -304,21 +330,26 @@
                     tabindex="-1">
                     <div class="project-demo">
                         <div class="project-demo__collage" aria-hidden="true">
-                            <img class="project-demo__mockup" src="img/lap-tel-mock.png" width="1536" height="1024" alt="" decoding="async">
                             <figure class="project-demo__frame project-demo__frame--main">
-                                <img class="project-demo__image"
-                                    data-src="img/site/minimal_port/mock-laptop.jpg" width="1200"
-                                    height="840" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image"
+                                        data-src="img/site/minimal_port/mock-laptop.jpg" width="1200"
+                                        height="840" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--top">
-                                <img class="project-demo__image"
-                                    data-src="img/site/minimal_port/mock-tablet.jpg" width="1180"
-                                    height="830" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image"
+                                        data-src="img/site/minimal_port/mock-tablet.jpg" width="1180"
+                                        height="830" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--bottom">
-                                <img class="project-demo__image"
-                                    data-src="img/site/minimal_port/mock-phone.jpg" width="390"
-                                    height="856" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image"
+                                        data-src="img/site/minimal_port/mock-phone.jpg" width="390"
+                                        height="856" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                         </div>
                         <span class="project-demo__action" aria-hidden="true">
@@ -342,18 +373,23 @@
                     tabindex="-1">
                     <div class="project-demo">
                         <div class="project-demo__collage" aria-hidden="true">
-                            <img class="project-demo__mockup" src="img/lap-tel-mock.png" width="1536" height="1024" alt="" decoding="async">
                             <figure class="project-demo__frame project-demo__frame--main">
-                                <img class="project-demo__image" data-src="img/site/resume/mock-laptop.jpg" width="1200"
-                                    height="840" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/resume/mock-laptop.jpg" width="1200"
+                                        height="840" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--top">
-                                <img class="project-demo__image" data-src="img/site/resume/mock-tablet.jpg" width="1180"
-                                    height="830" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/resume/mock-tablet.jpg" width="1180"
+                                        height="830" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--bottom">
-                                <img class="project-demo__image" data-src="img/site/resume/mock-phone.jpg" width="390"
-                                    height="856" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/resume/mock-phone.jpg" width="390"
+                                        height="856" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                         </div>
                         <span class="project-demo__action" aria-hidden="true">
@@ -377,18 +413,23 @@
                     tabindex="-1">
                     <div class="project-demo">
                         <div class="project-demo__collage" aria-hidden="true">
-                            <img class="project-demo__mockup" src="img/lap-tel-mock.png" width="1536" height="1024" alt="" decoding="async">
                             <figure class="project-demo__frame project-demo__frame--main">
-                                <img class="project-demo__image" data-src="img/site/showfm/mock-laptop.jpg" width="1200"
-                                    height="840" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/showfm/mock-laptop.jpg" width="1200"
+                                        height="840" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--top">
-                                <img class="project-demo__image" data-src="img/site/showfm/mock-tablet.jpg" width="1180"
-                                    height="830" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/showfm/mock-tablet.jpg" width="1180"
+                                        height="830" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--bottom">
-                                <img class="project-demo__image" data-src="img/site/showfm/mock-phone.jpg" width="390"
-                                    height="856" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/showfm/mock-phone.jpg" width="390"
+                                        height="856" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                         </div>
                         <span class="project-demo__action" aria-hidden="true">
@@ -412,18 +453,23 @@
                     tabindex="-1">
                     <div class="project-demo">
                         <div class="project-demo__collage" aria-hidden="true">
-                            <img class="project-demo__mockup" src="img/lap-tel-mock.png" width="1536" height="1024" alt="" decoding="async">
                             <figure class="project-demo__frame project-demo__frame--main">
-                                <img class="project-demo__image" data-src="img/site/tropical-paradise/mock-laptop.jpg"
-                                    width="1200" height="840" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/tropical-paradise/mock-laptop.jpg"
+                                        width="1200" height="840" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--top">
-                                <img class="project-demo__image" data-src="img/site/tropical-paradise/mock-tablet.jpg"
-                                    width="1180" height="830" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/tropical-paradise/mock-tablet.jpg"
+                                        width="1180" height="830" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                             <figure class="project-demo__frame project-demo__frame--bottom">
-                                <img class="project-demo__image" data-src="img/site/tropical-paradise/mock-phone.jpg"
-                                    width="390" height="856" alt="" loading="lazy" decoding="async">
+                                <div class="project-demo__screen">
+                                    <img class="project-demo__image" data-src="img/site/tropical-paradise/mock-phone.jpg"
+                                        width="390" height="856" alt="" loading="lazy" decoding="async">
+                                </div>
                             </figure>
                         </div>
                         <span class="project-demo__action" aria-hidden="true">

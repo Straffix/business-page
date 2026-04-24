@@ -738,30 +738,51 @@ a {
 	content: none;
 }
 
-.project-demo__mockup {
+.project-demo__frame {
 	position: absolute;
-	inset: 0;
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: contain;
-	opacity: 0.9;
-	z-index: 0;
+	top: var(--device-top, 0);
+	left: var(--device-left, 0);
+	width: var(--device-width, 100%);
+	height: var(--device-height, auto);
+	aspect-ratio: var(--device-ratio, 3 / 2);
+	margin: 0;
+	overflow: visible;
+	z-index: var(--device-z, 1);
+	border: 0;
+	background: transparent;
+	box-shadow: none;
+	transform: translate3d(var(--device-offset-x, 0), var(--device-offset-y, 0), 0);
+	transform-origin: var(--device-origin, 50% 50%);
+	backface-visibility: hidden;
+	isolation: isolate;
 }
 
-.project-demo__frame {
+.project-demo__frame::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	display: block;
+	background-image: var(--device-mockup);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100% 100%;
+	pointer-events: none;
+}
+
+.project-demo__frame::after {
+	content: none;
+}
+
+.project-demo__screen {
 	position: absolute;
 	top: var(--screen-top, 0);
 	left: var(--screen-left, 0);
+	z-index: 1;
 	width: var(--screen-width, 100%);
 	height: var(--screen-height, 100%);
-	margin: 0;
 	overflow: hidden;
-	z-index: 3;
-	border: 0;
-	border-radius: var(--screen-radius, 0.4rem);
-	background: rgba(colors.$black, 0.72);
-	box-shadow: none;
+	border-radius: var(--screen-radius, 0);
 	-webkit-clip-path: polygon(
 		var(--screen-clip-tl, 0% 0%),
 		var(--screen-clip-tr, 100% 0%),
@@ -775,78 +796,118 @@ a {
 		var(--screen-clip-bl, 0% 100%)
 	);
 	transform: translate3d(var(--screen-offset-x, 0), var(--screen-offset-y, 0), 0)
-		perspective(var(--screen-perspective, 120rem)) rotateX(var(--screen-rotate-x, 0deg))
-		rotateY(var(--screen-rotate-y, 0deg)) rotateZ(var(--screen-rotate, 0deg))
+		rotate(var(--screen-rotate, 0deg))
 		skew(var(--screen-skew-x, 0deg), var(--screen-skew-y, 0deg));
 	transform-origin: var(--screen-origin, 50% 50%);
-	backface-visibility: hidden;
 }
 
-.project-demo__frame::after {
-	content: none;
+.is-project-screen-debug .project-demo__screen {
+	background: #fff;
+	box-shadow: inset 0 0 0 1px rgba(colors.$black, 0.08);
 }
 
-// Screen calibration values are relative to img/lap-tel-mock.png.
 .project-demo__frame--main {
-	--screen-top: 19%;
-	--screen-left: 24%;
-	--screen-width: 42.2%;
-	--screen-height: 45.85%;
-	--screen-radius: 0.48rem 0.52rem 0.22rem 0.22rem;
-	--screen-clip-tl: 5.2% 3%;
-	--screen-clip-tr: 99.6% 0%;
-	--screen-clip-br: 95.3% 100%;
-	--screen-clip-bl: 0% 94.7%;
-	--content-scale-x: 1.015;
+	--device-z: 1;
+	--device-top: 10.8%;
+	--device-left: 2.5%;
+	--device-width: 66%;
+	--device-height: 65.6%;
+	--device-ratio: 1292 / 856;
+	--device-mockup: url('../../img/laptop_mock.png');
+	--screen-top: 4.9%;
+	--screen-left: 28.6%;
+	--screen-width: 67.5%;
+	--screen-height: 70%;
+	--screen-radius: 4px;
+	--screen-clip-tl: 6% 5%;
+	--screen-clip-tr: 99% 0%;
+	--screen-clip-br: 94% 100%;
+	--screen-clip-bl: 0.2% 94%;
+	--content-fit: fill;
+	--content-position: center;
+	--content-scale-x: 1;
+	--content-scale-y: 1.085;
+	--content-rotate: 0deg;
+	--content-skew-x: 0deg;
+	--content-skew-y: 0deg;
+	--content-origin: 50% 0%;
 }
 
 .project-demo__frame--top {
-	--screen-top: 39%;
-	--screen-left: 45.15%;
-	--screen-width: 33.35%;
-	--screen-height: 36%;
-	--screen-radius: 0.72rem;
-	--screen-clip-tl: 0.5% 0%;
-	--screen-clip-tr: 99.3% 0%;
-	--screen-clip-br: 99.6% 99.7%;
-	--screen-clip-bl: 0.2% 100%;
-}
-
-.project-demo__frame--top::before {
-	content: none;
+	--device-z: 3;
+	--device-top: 30.3%;
+	--device-left: 34.2%;
+	--device-width: 58%;
+	--device-height: 58%;
+	--device-ratio: 1536 / 1024;
+	--device-mockup: url('../../img/tel_mock.png');
+	--screen-top: 15%;
+	--screen-left: 15%;
+	--screen-width: 68.6%;
+	--screen-height: 69%;
+	--screen-radius: 0.6rem;
+	--screen-clip-tl: 0% 0%;
+	--screen-clip-tr: 100% 0%;
+	--screen-clip-br: 100% 100%;
+	--screen-clip-bl: 0% 100%;
+	--content-fit: fill;
+	--content-position: center;
+	--content-scale-x: 1;
+	--content-scale-y: 1.14;
+	--content-rotate: 0deg;
+	--content-skew-x: 0deg;
+	--content-skew-y: 0deg;
+	--content-origin: 50% 0%;
 }
 
 .project-demo__frame--bottom {
-	display: block;
-	--screen-top: 39.65%;
-	--screen-left: 81.95%;
-	--screen-width: 9.42%;
-	--screen-height: 30.95%;
-	--screen-radius: 13% / 6%;
-	--screen-clip-tl: 2% 0%;
-	--screen-clip-tr: 98% 0%;
-	--screen-clip-br: 98% 100%;
-	--screen-clip-bl: 2% 100%;
+	--device-z: 2;
+	--device-top: 35.6%;
+	--device-left: 80.2%;
+	--device-width: 14.2%;
+	--device-height: 40.8%;
+	--device-ratio: 486 / 931;
+	--device-mockup: url('../../img/phone_mock.png');
+	--screen-top: 6%;
+	--screen-left: 18%;
+	--screen-width: 62%;
+	--screen-height: 88%;
+	--screen-radius: 0.6rem;
+	--screen-clip-tl: 0% 0%;
+	--screen-clip-tr: 100% 0%;
+	--screen-clip-br: 100% 100%;
+	--screen-clip-bl: 10% 98%;
+	--screen-offset-x: 0.18%;
+	--screen-offset-y: 0%;
+	--screen-skew-x: -6deg;
+	--screen-skew-y: 0deg;
+	--screen-origin: 50% 50%;
+	--content-fit: fill;
+	--content-position: center;
+	--content-scale-x: 1;
+	--content-scale-y: 1.09;
+	--content-rotate: 0deg;
+	--content-skew-x: 0deg;
+	--content-skew-y: 0deg;
+	--content-origin: 50% 0%;
 }
 
 .project-demo__image {
+	position: absolute;
+	inset: 0;
 	display: block;
-	position: relative;
-	z-index: 1;
 	width: 100%;
 	height: 100%;
-	border-radius: inherit;
-	object-fit: cover;
-	object-position: top center;
+	object-fit: var(--content-fit, fill);
+	object-position: var(--content-position, center);
 	transform: translate3d(var(--content-x, 0), var(--content-y, 0), 0) scaleX(var(--content-scale-x, 1))
 		scaleY(var(--content-scale-y, 1)) rotate(var(--content-rotate, 0deg))
 		skew(var(--content-skew-x, 0deg), var(--content-skew-y, 0deg));
 	transform-origin: var(--content-origin, 50% 0%);
 }
 
-.project-demo__frame--main .project-demo__image {
-	object-fit: cover;
-	object-position: top center;
+.is-project-screen-debug .project-demo__image {
+	opacity: 0;
 }
 
 .project-demo__action {

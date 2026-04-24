@@ -128,6 +128,7 @@ function initProjectSlider(slider) {
     return;
   }
 
+  const isDisabled = slider.dataset.sliderDisabled === "true";
   const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const interval = Number(slider.dataset.sliderInterval) || 3200;
   const preloadDelay = Math.max(interval - 1200, 1000);
@@ -202,6 +203,10 @@ function initProjectSlider(slider) {
   });
 
   showSlide(activeIndex);
+  if (isDisabled) {
+    pause();
+    return;
+  }
   if (reduceMotionQuery.matches) {
     pause();
     return;
