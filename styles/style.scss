@@ -801,11 +801,6 @@ a {
 	transform-origin: var(--screen-origin, 50% 50%);
 }
 
-.is-project-screen-debug .project-demo__screen {
-	background: #fff;
-	box-shadow: inset 0 0 0 1px rgba(colors.$black, 0.08);
-}
-
 .project-demo__frame--main {
 	--device-z: 1;
 	--device-top: 10.8%;
@@ -904,10 +899,6 @@ a {
 		scaleY(var(--content-scale-y, 1)) rotate(var(--content-rotate, 0deg))
 		skew(var(--content-skew-x, 0deg), var(--content-skew-y, 0deg));
 	transform-origin: var(--content-origin, 50% 0%);
-}
-
-.is-project-screen-debug .project-demo__image {
-	opacity: 0;
 }
 
 .project-demo__action {
