@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   document.documentElement.classList.add("has-js");
 
+  initTaglineRotator();
   initSiteIntro();
   initProjectSliders();
   initExpandingPanels();
@@ -19,6 +20,146 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initNetworkCanvas(backgroundScene);
 });
+
+function initTaglineRotator() {
+  const tagline = document.querySelector("[data-tagline-rotator]");
+  const taglineText = tagline ? tagline.querySelector("[data-tagline-text]") : null;
+
+  if (!tagline || !taglineText) {
+    return;
+  }
+
+  const phrases = String(tagline.dataset.taglinePhrases || "")
+    .split("|")
+    .map((phrase) => phrase.trim())
+    .filter(Boolean);
+
+  if (!phrases.length) {
+    return;
+  }
+
+  const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let timerId = 0;
+  let started = false;
+  let introObserver = null;
+
+  const writeDelay = 78;
+  const deleteDelay = 42;
+  const phrasePause = 1450;
+  const resetPause = 320;
+
+  const setPhrase = (value) => {
+    taglineText.textContent = value;
+    tagline.setAttribute("aria-label", value);
+  };
+
+  const clearTimer = () => {
+    if (timerId) {
+      window.clearTimeout(timerId);
+      timerId = 0;
+    }
+  };
+
+  const renderStaticPhrase = () => {
+    clearTimer();
+    if (introObserver) {
+      introObserver.disconnect();
+      introObserver = null;
+    }
+
+    started = false;
+    phraseIndex = 0;
+    charIndex = 0;
+    isDeleting = false;
+    setPhrase(phrases[0]);
+  };
+
+  const step = () => {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (!isDeleting) {
+      charIndex += 1;
+      setPhrase(currentPhrase.slice(0, charIndex));
+
+      if (charIndex >= currentPhrase.length) {
+        isDeleting = true;
+        timerId = window.setTimeout(step, phrasePause);
+        return;
+      }
+
+      timerId = window.setTimeout(step, writeDelay);
+      return;
+    }
+
+    charIndex -= 1;
+    setPhrase(currentPhrase.slice(0, Math.max(charIndex, 0)));
+
+    if (charIndex <= 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      timerId = window.setTimeout(step, resetPause);
+      return;
+    }
+
+    timerId = window.setTimeout(step, deleteDelay);
+  };
+
+  const start = () => {
+    if (started || reduceMotionQuery.matches) {
+      return;
+    }
+
+    started = true;
+    clearTimer();
+    setPhrase("");
+    phraseIndex = 0;
+    charIndex = 0;
+    isDeleting = false;
+    timerId = window.setTimeout(step, 260);
+  };
+
+  const startWhenIntroIsDone = () => {
+    if (reduceMotionQuery.matches) {
+      renderStaticPhrase();
+      return true;
+    }
+
+    if (document.documentElement.classList.contains("intro-complete")) {
+      start();
+      return true;
+    }
+
+    return false;
+  };
+
+  if (!startWhenIntroIsDone()) {
+    introObserver = new MutationObserver(() => {
+      if (startWhenIntroIsDone() && introObserver) {
+        introObserver.disconnect();
+        introObserver = null;
+      }
+    });
+
+    introObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+
+  addMediaQueryListener(reduceMotionQuery, () => {
+    if (reduceMotionQuery.matches) {
+      renderStaticPhrase();
+      return;
+    }
+
+    if (document.documentElement.classList.contains("intro-complete")) {
+      start();
+    }
+  });
+}
 
 function initSiteIntro() {
   const intro = document.querySelector("[data-site-intro]");

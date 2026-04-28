@@ -36,11 +36,15 @@
 
 		.tagline {
 			top: 23.8%;
-			left: 57.4%;
+			left: 58%;
 			right: auto;
-			max-width: 34rem;
+			width: min(45vw, 52rem);
+			max-width: none;
 			font-size: 1.6rem;
-			letter-spacing: 0.12em;
+			letter-spacing: 0.1em;
+			white-space: nowrap;
+			justify-content: flex-start;
+			text-align: left;
 		}
 
 		.tiles {
@@ -116,10 +120,15 @@
 
 		.tagline {
 			top: 23.7%;
-			left: 57.4%;
+			left: 60%;
 			right: auto;
-			max-width: 42rem;
-			font-size: 2.6rem;
+			width: min(53vw, 72rem);
+			max-width: none;
+			font-size: clamp(1.75rem, 1.95vw, 2.05rem);
+			letter-spacing: 0.1em;
+			white-space: nowrap;
+			justify-content: flex-start;
+			text-align: left;
 		}
 
 		.tile--strategic {

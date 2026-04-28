@@ -471,14 +471,45 @@ a {
   z-index: 4;
   margin: 0;
   max-width: 86%;
+  min-height: 1.4em;
   font-size: 1rem;
   font-weight: 100;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   text-shadow: 0 0 18px rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.78);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15em;
 }
-.tagline span {
-  color: rgb(139, 139, 139);
+
+.tagline__text {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.tagline__cursor {
+  display: inline-block;
+  width: 0.08em;
+  height: 1.05em;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.24);
+  animation: taglineCursorBlink 0.95s steps(1, end) infinite;
+}
+
+@keyframes taglineCursorBlink {
+  0%, 48% {
+    opacity: 1;
+  }
+  49%, 100% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tagline__cursor {
+    animation: none;
+    opacity: 0.78;
+  }
 }
 
 .tiles {
@@ -728,6 +759,7 @@ a {
   height: var(--screen-height, 100%);
   overflow: hidden;
   border-radius: var(--screen-radius, 0);
+  background: var(--screen-bg, transparent);
   clip-path: polygon(var(--screen-clip-tl, 0% 0%), var(--screen-clip-tr, 100% 0%), var(--screen-clip-br, 100% 100%), var(--screen-clip-bl, 0% 100%));
   transform: translate3d(var(--screen-offset-x, 0), var(--screen-offset-y, 0), 0) rotate(var(--screen-rotate, 0deg)) skew(var(--screen-skew-x, 0deg), var(--screen-skew-y, 0deg));
   transform-origin: var(--screen-origin, 50% 50%);
@@ -752,12 +784,12 @@ a {
   --screen-clip-bl: 0.2% 94%;
   --content-fit: cover;
   --content-position: 50% 0%;
-  --content-x: -1.1%;
-  --content-y: -0.8%;
-  --content-scale-x: 1.06;
-  --content-scale-y: 1.035;
-  --content-rotate: -0.2deg;
-  --content-skew-x: -4deg;
+  --content-x: -0.2%;
+  --content-y: -0.2%;
+  --content-scale-x: 1.01;
+  --content-scale-y: 1.01;
+  --content-rotate: 0deg;
+  --content-skew-x: -1deg;
   --content-skew-y: 0deg;
   --content-origin: 50% 0%;
 }
@@ -781,12 +813,12 @@ a {
   --screen-clip-bl: 0% 100%;
   --content-fit: cover;
   --content-position: 50% 0%;
-  --content-x: -0.3%;
-  --content-y: -0.4%;
-  --content-scale-x: 1.03;
-  --content-scale-y: 1.015;
+  --content-x: 0%;
+  --content-y: 0%;
+  --content-scale-x: 1;
+  --content-scale-y: 1;
   --content-rotate: 0deg;
-  --content-skew-x: -1deg;
+  --content-skew-x: 0deg;
   --content-skew-y: 0deg;
   --content-origin: 50% 0%;
 }
@@ -815,12 +847,12 @@ a {
   --screen-origin: 50% 50%;
   --content-fit: cover;
   --content-position: 50% 0%;
-  --content-x: -3.8%;
-  --content-y: -0.4%;
-  --content-scale-x: 1.08;
-  --content-scale-y: 1.015;
+  --content-x: -1.2%;
+  --content-y: 0%;
+  --content-scale-x: 1.02;
+  --content-scale-y: 1;
   --content-rotate: 0deg;
-  --content-skew-x: -3deg;
+  --content-skew-x: -1deg;
   --content-skew-y: 0deg;
   --content-origin: 50% 0%;
 }
@@ -837,6 +869,17 @@ a {
      object-position: var(--content-position, 50% 0%);
   transform: translate3d(var(--content-x, 0), var(--content-y, 0), 0) scaleX(var(--content-scale-x, 1)) scaleY(var(--content-scale-y, 1)) rotate(var(--content-rotate, 0deg)) skew(var(--content-skew-x, 0deg), var(--content-skew-y, 0deg));
   transform-origin: var(--content-origin, 50% 0%);
+}
+
+.project-slide--designin .project-demo__frame--main {
+  --screen-bg: #ffffff;
+  --content-fit: contain;
+  --content-position: 50% 0%;
+  --content-x: 0%;
+  --content-y: 0%;
+  --content-scale-x: 1;
+  --content-scale-y: 1;
+  --content-skew-x: 0deg;
 }
 
 .project-demo__action {
@@ -1694,15 +1737,23 @@ a {
      object-fit: cover;
   -o-object-position: 50% 16%;
      object-position: 50% 16%;
-  opacity: 0;
-  transform: translateY(1.8rem) scale(1.04);
-  animation: aboutPortraitReveal 0.85s ease 0.65s forwards;
+  opacity: 1;
+  transform: translateY(0) scale(1.04);
 }
 
 @keyframes aboutPortraitReveal {
+  from {
+    opacity: 0;
+    transform: translateY(1.8rem) scale(1.04);
+  }
   to {
     opacity: 1;
     transform: translateY(0) scale(1.04);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #about-panel.tile-panel.is-open .about-portrait img {
+    animation: aboutPortraitReveal 0.85s ease 0.12s both;
   }
 }
 .about-story {
@@ -3198,11 +3249,15 @@ a {
   }
   .tagline {
     top: 23.8%;
-    left: 57.4%;
+    left: 58%;
     right: auto;
-    max-width: 34rem;
+    width: min(45vw, 52rem);
+    max-width: none;
     font-size: 1.6rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    justify-content: flex-start;
+    text-align: left;
   }
   .tiles {
     position: absolute;
@@ -3263,10 +3318,15 @@ a {
   }
   .tagline {
     top: 23.7%;
-    left: 57.4%;
+    left: 60%;
     right: auto;
-    max-width: 42rem;
-    font-size: 2.6rem;
+    width: min(53vw, 72rem);
+    max-width: none;
+    font-size: clamp(1.75rem, 1.95vw, 2.05rem);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    justify-content: flex-start;
+    text-align: left;
   }
   .tile--strategic {
     padding: clamp(2rem, 4vw, 5.2rem);
