@@ -52,6 +52,11 @@ a {
   min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
+  --hero-brand-letter-spacing: 0.2em;
+  --hero-brand-word-size: clamp(2.4rem, 3.2vw, 3.8rem);
+  --hero-brand-trademark-size: clamp(1rem, 0.9vw, 1.35rem);
+  --hero-brand-trademark-gap: 0.2em;
+  --hero-brand-max-width: calc(100vw - 3rem);
   --page-bg-image: url('../../img/bg/bg_768x1024.jpg');
   --page-bg-position: 50% 50%;
   background-color: #070a0d;
@@ -59,6 +64,27 @@ a {
   background-position: var(--page-bg-position);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.page-theme-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-position: var(--page-bg-position);
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity 0.82s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.page-theme-layer--base {
+  opacity: 1;
+}
+
+.page-theme-layer--incoming.is-visible {
+  opacity: 1;
 }
 
 .page::before {
@@ -361,30 +387,34 @@ a {
 .intro-brand {
   display: inline-flex;
   align-items: flex-start;
-  max-width: calc(100vw - 3rem);
+  max-width: var(--hero-brand-max-width);
+  font-size: 1rem;
   font-weight: 300;
   line-height: 0.92;
-  letter-spacing: 0.2em;
+  letter-spacing: var(--hero-brand-letter-spacing);
   text-shadow: 0 0 24px rgba(255, 255, 255, 0.14);
   transform: translate3d(0, 0, 0) scale(1);
   transform-origin: center center;
-  transition: transform 0.72s cubic-bezier(0.68, 0, 0.18, 1), opacity 0.18s ease;
+  transition: transform 0.78s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.16s ease;
   will-change: transform;
 }
 
 .intro-brand-word {
   display: inline-block;
-  font-size: 2.2rem;
+  font-size: var(--hero-brand-word-size);
+  line-height: 1;
   white-space: nowrap;
 }
 
 .intro-brand-trademark {
-  margin-left: 0.2em;
-  font-size: 0.8rem;
+  display: inline-block;
+  margin-left: var(--hero-brand-trademark-gap);
+  font-size: var(--hero-brand-trademark-size);
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0;
   text-transform: uppercase;
+  vertical-align: top;
 }
 
 .intro.is-flying {
@@ -394,6 +424,8 @@ a {
 
 .intro.is-flying .intro-brand {
   transform: translate3d(var(--intro-move-x, 0), var(--intro-move-y, 0), 0) scale(var(--intro-scale, 0.42));
+  opacity: 0;
+  transition-delay: 0s, 0.58s;
 }
 
 .intro.is-done {
@@ -406,11 +438,18 @@ a {
   opacity: 0;
 }
 
-.social {
+.top-actions {
   position: absolute;
   top: 1rem;
   right: 1rem;
   z-index: 4;
+  display: grid;
+  justify-items: center;
+  gap: 0.82rem;
+}
+
+.social {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -419,12 +458,63 @@ a {
   line-height: 1;
   opacity: 0.88;
   text-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
+  transition: opacity 0.22s ease, transform 0.22s ease, text-shadow 0.22s ease;
 }
 
 .social svg {
   display: block;
   width: 1em;
   height: 1em;
+}
+
+.social:hover,
+.social:focus-visible {
+  opacity: 1;
+  transform: translateY(-1px);
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.24);
+}
+
+.social:focus-visible,
+.theme-switcher:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.72);
+  outline-offset: 0.25rem;
+}
+
+.theme-switcher {
+  --theme-switcher-accent: #b6628f;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  padding: 0;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid rgba(214, 220, 228, 0.96);
+  border-radius: 999px;
+  background: rgba(219, 224, 231, 0.884);
+  box-shadow: 0 0.35rem 1.2rem rgba(0, 0, 0, 0.18), inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.theme-switcher:hover,
+.theme-switcher:focus-visible {
+  transform: translateY(-1px) scale(1.04);
+  border-color: rgb(232, 236, 242);
+  background: rgb(232, 236, 242);
+  box-shadow: 0 0.45rem 1.5rem rgba(0, 0, 0, 0.24), inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.theme-switcher__icon {
+  width: 2rem;
+  height: 2rem;
+  background: var(--theme-switcher-accent);
+  -webkit-mask: url("../../img/icons/palette-solid-full.svg") center/contain no-repeat;
+  mask: url("../../img/icons/palette-solid-full.svg") center/contain no-repeat;
+  filter: drop-shadow(0 0 0.45rem rgba(255, 255, 255, 0.12)) drop-shadow(0 0 0.2rem rgba(255, 255, 255, 0.08));
 }
 
 .brand {
@@ -435,32 +525,42 @@ a {
   display: inline-flex;
   align-items: flex-start;
   margin: 0;
-  font-size: 2.6rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 0.92;
-  letter-spacing: 0.2em;
+  letter-spacing: var(--hero-brand-letter-spacing);
   text-transform: none;
   text-shadow: 0 0 24px rgba(255, 255, 255, 0.12);
+  transition: opacity 0.16s ease;
 }
 
 .brand-word {
   display: inline-block;
   opacity: 0.94;
-  font-size: 2.2rem;
+  font-size: var(--hero-brand-word-size);
+  line-height: 1;
   white-space: nowrap;
 }
 
 .brand-trademark {
-  margin-left: 0.2em;
-  font-size: 1rem;
+  display: inline-block;
+  margin-left: var(--hero-brand-trademark-gap);
+  font-size: var(--hero-brand-trademark-size);
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0;
   text-transform: uppercase;
+  vertical-align: top;
 }
 
 .has-js:not(.intro-complete) .brand {
   opacity: 0;
+  transition-delay: 0s;
+}
+
+.intro.is-flying ~ .brand {
+  opacity: 1;
+  transition-delay: 0.58s;
 }
 
 .tagline {
@@ -472,8 +572,9 @@ a {
   margin: 0;
   max-width: 86%;
   min-height: 1.4em;
-  font-size: 1rem;
+  font-size: clamp(1.15rem, 1.55vw, 1.9rem);
   font-weight: 100;
+  line-height: 1.2;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   text-shadow: 0 0 18px rgba(255, 255, 255, 0.08);
@@ -511,7 +612,6 @@ a {
     opacity: 0.78;
   }
 }
-
 .tiles {
   display: grid;
   position: absolute;
@@ -571,12 +671,14 @@ a {
 
 .tile .label {
   margin: 0;
-  margin-top: 0.65rem;
   max-width: 100%;
-  font-size: 1.5rem;
+  font-size: clamp(1.45rem, 1.4vw, 1.95rem);
   font-weight: 300;
+  line-height: 1.18;
   letter-spacing: 0.08em;
   overflow-wrap: break-word;
+  text-align: center;
+  text-wrap: balance;
   text-transform: uppercase;
   transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
@@ -594,13 +696,14 @@ a {
 }
 
 .tile--strategic .label {
-  font-size: 1.2rem;
+  font-size: clamp(1.25rem, 1.15vw, 1.7rem);
 }
 
 .project-slider {
   --project-card-border: rgba(255, 255, 255, 0.16);
   --project-card-muted: rgba(255, 255, 255, 0.58);
   --project-card-text: rgba(255, 255, 255, 0.92);
+  --project-demo-lift: -2.2rem;
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -661,7 +764,6 @@ a {
   align-items: stretch;
   justify-content: center;
   min-width: 0;
-  margin: 0;
   padding: clamp(0.9rem, 1.7vw, 1.8rem);
   opacity: 0;
   pointer-events: none;
@@ -695,6 +797,7 @@ a {
   background: transparent;
   box-shadow: none;
   pointer-events: none;
+  transform: translateY(var(--project-demo-lift));
 }
 
 .project-demo__collage {
@@ -704,7 +807,7 @@ a {
   align-self: center;
   width: 112%;
   height: auto;
-  aspect-ratio: 3/2;
+  aspect-ratio: 3/2.18;
   min-width: 0;
   min-height: 0;
   transform: translateY(9%);
@@ -759,7 +862,7 @@ a {
   height: var(--screen-height, 100%);
   overflow: hidden;
   border-radius: var(--screen-radius, 0);
-  background: var(--screen-bg, transparent);
+  background: var(--screen-bg, rgba(0, 0, 0, 0.82));
   clip-path: polygon(var(--screen-clip-tl, 0% 0%), var(--screen-clip-tr, 100% 0%), var(--screen-clip-br, 100% 100%), var(--screen-clip-bl, 0% 100%));
   transform: translate3d(var(--screen-offset-x, 0), var(--screen-offset-y, 0), 0) rotate(var(--screen-rotate, 0deg)) skew(var(--screen-skew-x, 0deg), var(--screen-skew-y, 0deg));
   transform-origin: var(--screen-origin, 50% 50%);
@@ -773,25 +876,25 @@ a {
   --device-height: 65.6%;
   --device-ratio: 1292 / 856;
   --device-mockup: url('../../img/laptop_mock.png');
-  --screen-top: 4.9%;
+  --screen-top: 11.6%;
   --screen-left: 28.6%;
   --screen-width: 67.5%;
-  --screen-height: 70%;
+  --screen-height: 56.4%;
   --screen-radius: 4px;
   --screen-clip-tl: 6% 5%;
   --screen-clip-tr: 99% 0%;
   --screen-clip-br: 94% 100%;
   --screen-clip-bl: 0.2% 94%;
   --content-fit: cover;
-  --content-position: 50% 0%;
-  --content-x: -0.2%;
-  --content-y: -0.2%;
-  --content-scale-x: 1.01;
-  --content-scale-y: 1.01;
+  --content-position: 50% 50%;
+  --content-x: 0%;
+  --content-y: 0%;
+  --content-scale-x: 1;
+  --content-scale-y: 1;
   --content-rotate: 0deg;
-  --content-skew-x: -1deg;
+  --content-skew-x: 0deg;
   --content-skew-y: 0deg;
-  --content-origin: 50% 0%;
+  --content-origin: 50% 50%;
 }
 
 .project-demo__frame--top {
@@ -802,17 +905,17 @@ a {
   --device-height: 58%;
   --device-ratio: 1536 / 1024;
   --device-mockup: url('../../img/tel_mock.png');
-  --screen-top: 15%;
+  --screen-top: 21%;
   --screen-left: 15%;
   --screen-width: 68.6%;
-  --screen-height: 69%;
+  --screen-height: 56.6%;
   --screen-radius: 0.6rem;
   --screen-clip-tl: 0% 0%;
   --screen-clip-tr: 100% 0%;
   --screen-clip-br: 100% 100%;
   --screen-clip-bl: 0% 100%;
   --content-fit: cover;
-  --content-position: 50% 0%;
+  --content-position: 50% 50%;
   --content-x: 0%;
   --content-y: 0%;
   --content-scale-x: 1;
@@ -820,7 +923,7 @@ a {
   --content-rotate: 0deg;
   --content-skew-x: 0deg;
   --content-skew-y: 0deg;
-  --content-origin: 50% 0%;
+  --content-origin: 50% 50%;
 }
 
 .project-demo__frame--bottom {
@@ -846,15 +949,15 @@ a {
   --screen-skew-y: 0deg;
   --screen-origin: 50% 50%;
   --content-fit: cover;
-  --content-position: 50% 0%;
-  --content-x: -1.2%;
+  --content-position: 50% 50%;
+  --content-x: 0%;
   --content-y: 0%;
-  --content-scale-x: 1.02;
+  --content-scale-x: 1;
   --content-scale-y: 1;
   --content-rotate: 0deg;
-  --content-skew-x: -1deg;
+  --content-skew-x: 0deg;
   --content-skew-y: 0deg;
-  --content-origin: 50% 0%;
+  --content-origin: 50% 50%;
 }
 
 .project-demo__image {
@@ -865,10 +968,10 @@ a {
   height: 100%;
   -o-object-fit: var(--content-fit, cover);
      object-fit: var(--content-fit, cover);
-  -o-object-position: var(--content-position, 50% 0%);
-     object-position: var(--content-position, 50% 0%);
+  -o-object-position: var(--content-position, 50% 50%);
+     object-position: var(--content-position, 50% 50%);
   transform: translate3d(var(--content-x, 0), var(--content-y, 0), 0) scaleX(var(--content-scale-x, 1)) scaleY(var(--content-scale-y, 1)) rotate(var(--content-rotate, 0deg)) skew(var(--content-skew-x, 0deg), var(--content-skew-y, 0deg));
-  transform-origin: var(--content-origin, 50% 0%);
+  transform-origin: var(--content-origin, 50% 50%);
 }
 
 .project-slide--designin .project-demo__frame--main {
@@ -880,6 +983,14 @@ a {
   --content-scale-x: 1;
   --content-scale-y: 1;
   --content-skew-x: 0deg;
+}
+
+.project-slide--tropical .project-demo__caption strong {
+  display: block;
+  max-width: 11.2ch;
+  line-height: 0.98;
+  letter-spacing: 0.14em;
+  text-wrap: balance;
 }
 
 .project-demo__action {
@@ -926,7 +1037,7 @@ a {
 
 .project-demo__eyebrow {
   color: var(--project-card-muted);
-  font-size: 1rem;
+  font-size: clamp(1rem, 0.85vw, 1.18rem);
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -934,7 +1045,7 @@ a {
 
 .project-demo__caption strong {
   color: rgba(255, 255, 255, 0.9);
-  font-size: clamp(1.65rem, 2.1vw, 2.2rem);
+  font-size: clamp(1.9rem, 2.35vw, 2.8rem);
   font-weight: 300;
   line-height: 0.95;
   letter-spacing: 0.18em;
@@ -957,7 +1068,7 @@ a {
   border-radius: 0.35rem;
   background: rgba(255, 255, 255, 0.055);
   color: rgba(255, 255, 255, 0.68);
-  font-size: 0.92rem;
+  font-size: clamp(0.92rem, 0.7vw, 1rem);
   font-weight: 700;
   letter-spacing: 0.04em;
 }
@@ -973,14 +1084,21 @@ a {
   }
 }
 @media (max-width: 979px) {
+  .project-slider {
+    --project-demo-lift: -3.2rem;
+  }
   .project-slide {
+    align-items: flex-start;
     padding: clamp(0.7rem, 1.6vw, 1.1rem);
   }
   .project-demo {
+    align-self: flex-start;
     grid-template-columns: minmax(0, 1.35fr) minmax(12rem, 0.75fr);
-    grid-template-rows: minmax(0, 1fr);
+    grid-template-rows: auto;
     gap: clamp(0.7rem, 1.4vw, 1rem);
     width: 100%;
+    height: auto;
+    max-height: 100%;
     padding: clamp(0.85rem, 1.8vw, 1.15rem);
   }
   .project-demo__frame--top {
@@ -1006,6 +1124,7 @@ a {
 }
 .tile--portfolio {
   grid-area: portfolio;
+  border-top-left-radius: 40px;
 }
 
 .tile--tech {
@@ -1247,14 +1366,6 @@ a {
   text-transform: uppercase;
 }
 
-.tile-panel__lead {
-  max-width: 76rem;
-  margin: clamp(2.2rem, 4vw, 4rem) 0 0;
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 1.55;
-}
-
 .tile-panel__details {
   display: flex;
   flex-wrap: wrap;
@@ -1376,6 +1487,10 @@ a {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
+.portfolio-work--reverse {
+  grid-template-columns: minmax(0, 1.42fr) minmax(24rem, 0.78fr);
+}
+
 .portfolio-work--reverse .portfolio-work__copy {
   order: 2;
 }
@@ -1459,13 +1574,14 @@ a {
 .portfolio-work__media {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(8rem, 1fr);
+  grid-template-columns: minmax(0, 2fr) minmax(9rem, 0.96fr);
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem;
+  gap: clamp(1rem, 1.55vw, 1.45rem);
   min-width: 0;
   min-height: 0;
   align-self: center;
-  padding: clamp(0.8rem, 1.4vw, 1.3rem);
+  align-items: center;
+  padding: clamp(1rem, 1.6vw, 1.5rem);
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.035), rgba(0, 0, 0, 0.015)), rgba(0, 0, 0, 0.025);
   box-shadow: 0 1.8rem 4.2rem rgba(0, 0, 0, 0.055);
@@ -1474,7 +1590,7 @@ a {
 .portfolio-work__media::before {
   content: "";
   position: absolute;
-  inset: clamp(0.8rem, 1.4vw, 1.3rem);
+  inset: clamp(1rem, 1.6vw, 1.5rem);
   border: 1px solid rgba(255, 255, 255, 0.58);
   pointer-events: none;
 }
@@ -1487,14 +1603,31 @@ a {
   margin: 0;
   overflow: hidden;
   aspect-ratio: 16/9;
+  border-radius: 0.45rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background: rgba(0, 0, 0, 0.035);
-  box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.035);
+  box-shadow: 0 1.2rem 2.6rem rgba(0, 0, 0, 0.06);
 }
 
 .portfolio-shot--main {
   grid-row: 1/span 2;
   height: 100%;
+  align-self: center;
+  margin-right: clamp(0.1rem, 0.45vw, 0.45rem);
+}
+
+.portfolio-shot:nth-child(2),
+.portfolio-shot:nth-child(3) {
+  width: calc(100% - clamp(0.3rem, 0.55vw, 0.55rem));
+  justify-self: start;
+}
+
+.portfolio-shot:nth-child(2) {
+  transform: translateY(-0.18rem);
+}
+
+.portfolio-shot:nth-child(3) {
+  transform: translateY(0.18rem);
 }
 
 .portfolio-shot img {
@@ -1554,9 +1687,9 @@ a {
   .portfolio-work__media {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: auto auto;
-    gap: 0.55rem;
+    gap: 0.7rem;
     min-height: 0;
-    padding: 0.65rem;
+    padding: 0.75rem;
   }
   .portfolio-shot {
     aspect-ratio: 16/9;
@@ -1564,6 +1697,13 @@ a {
   .portfolio-shot--main {
     grid-column: 1/-1;
     grid-row: auto;
+    margin-right: 0;
+  }
+  .portfolio-shot:nth-child(2),
+  .portfolio-shot:nth-child(3) {
+    width: 100%;
+    justify-self: stretch;
+    transform: none;
   }
 }
 #about-panel.tile-panel {
@@ -2013,13 +2153,23 @@ a {
 #contact-panel.tile-panel {
   --tile-panel-bg-start: #ffffff;
   --tile-panel-bg-active: #ffffff;
+  --contact-panel-header-height: calc(var(--panel-section-top-margin) * 2);
+  --contact-panel-header-gap: clamp(1rem, 1.6vw, 1.4rem);
+  --contact-panel-header-icon-size: clamp(3.6rem, 4vw, 5rem);
+  --contact-panel-title-size: clamp(2.8rem, 3.4vw, 4.6rem);
+  background-image: none;
+}
+
+#contact-panel.tile-panel.is-open,
+#contact-panel.tile-panel.is-closing {
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0;
   background-image: none;
 }
 
 #contact-panel.tile-panel.is-open {
-  padding: 0;
   background-color: #ffffff;
-  background-image: none;
 }
 
 #contact-panel .tile-panel__content--contact {
@@ -2030,7 +2180,7 @@ a {
   flex-direction: column;
   align-items: stretch;
   gap: clamp(1.2rem, 1.8vh, 2rem);
-  width: min(108rem, 100%);
+  width: 100%;
   min-height: 0;
   height: 100%;
   max-height: 100%;
@@ -2038,25 +2188,30 @@ a {
   overflow: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
-  padding: clamp(4.8rem, 6vh, 6rem) clamp(1.6rem, 3vw, 3.2rem) clamp(1.2rem, 2vh, 1.8rem);
+  padding: 0 clamp(1.6rem, 3vw, 3.2rem) clamp(1.2rem, 2vh, 1.8rem);
+  color: rgba(0, 0, 0, 0.94);
+  text-align: left;
 }
 
 #contact-panel .tile-panel__contact-header {
   display: grid;
-  gap: 0.65rem;
-  width: min(94rem, 100%);
+  align-content: center;
+  justify-items: center;
+  align-self: stretch;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: none;
+  min-height: var(--contact-panel-header-height);
   margin: 0 auto;
-  padding-right: clamp(4.8rem, 7vw, 6rem);
-  text-align: left;
-  align-content: start;
-  justify-items: start;
+  padding-inline: clamp(1.6rem, 3vw, 3rem);
+  text-align: center;
 }
 
 #contact-panel .tile-panel__heading {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 1.1rem;
+  justify-content: center;
+  gap: var(--contact-panel-header-gap);
   width: 100%;
   min-width: 0;
 }
@@ -2064,8 +2219,8 @@ a {
 #contact-panel .tile-panel__heading-icon {
   display: block;
   flex: 0 0 auto;
-  width: clamp(2.6rem, 3vw, 4rem);
-  height: clamp(2.6rem, 3vw, 4rem);
+  width: var(--contact-panel-header-icon-size);
+  height: var(--contact-panel-header-icon-size);
   -o-object-fit: contain;
      object-fit: contain;
   opacity: 0.88;
@@ -2073,20 +2228,20 @@ a {
 
 #contact-panel .tile-panel__contact-header .tile-panel__title {
   margin: 0;
-  font-size: clamp(2.8rem, 4.4vw, 4.8rem);
-  line-height: 0.98;
+  font-size: var(--contact-panel-title-size);
+  line-height: 1;
   letter-spacing: 0.1em;
-  text-align: left;
+  text-align: center;
 }
 
 #contact-panel .tile-panel__contact-header .tile-panel__lead {
-  max-width: 94rem;
-  margin: 0;
+  max-width: min(72rem, 100%);
+  margin: 0 auto;
   color: rgba(0, 0, 0, 0.82);
   font-size: clamp(1.25rem, 1.4vw, 1.55rem);
   font-weight: 500;
   line-height: 1.38;
-  text-align: left;
+  text-align: center;
 }
 
 #contact-panel .contact-layout {
@@ -2094,9 +2249,10 @@ a {
   grid-template-columns: minmax(0, 1fr);
   grid-auto-rows: max-content;
   gap: clamp(1.2rem, 1.8vw, 2rem);
-  width: 100%;
+  width: min(108rem, 100%);
   min-height: 0;
   align-items: start;
+  margin: 0 auto;
 }
 
 #contact-panel .contact-layout > * {
@@ -2265,7 +2421,7 @@ a {
 }
 
 #contact-panel .contact-back__social-link--placeholder {
-  display: none;
+  display: flex;
 }
 
 #contact-panel .contact-back__social-link--placeholder::after {
@@ -2584,35 +2740,51 @@ a {
   }
 }
 @media (max-width: 640px) {
-  .social {
+  .page {
+    --hero-brand-letter-spacing: 0.14em;
+    --hero-brand-word-size: clamp(1.8rem, 6.9vw, 1.8rem);
+    --hero-brand-trademark-size: clamp(0.95rem, 2.2vw, 1.1rem);
+    --hero-brand-trademark-gap: 0.14em;
+    --hero-brand-max-width: calc(100vw - 2.8rem);
+  }
+  .project-slider {
+    --project-demo-lift: -3.6rem;
+  }
+  .intro-brand {
+    max-width: var(--hero-brand-max-width);
+  }
+  .top-actions {
     top: 1.4rem;
     right: 1.4rem;
+    gap: 0.68rem;
+  }
+  .social {
     font-size: 2rem;
   }
+  .theme-switcher {
+    width: 2rem;
+    height: 2rem;
+  }
+  .theme-switcher__icon {
+    width: 1.28rem;
+    height: 1.28rem;
+  }
   .brand {
-    top: 8.6%;
+    top: 3.8%;
     left: 6%;
-    font-size: 2.2rem;
-    letter-spacing: 0.16em;
-  }
-  .brand-word {
-    font-size: clamp(1.9rem, 8vw, 2.35rem);
-  }
-  .brand-trademark {
-    margin-left: 0.14em;
-    font-size: 0.9rem;
   }
   .tagline {
-    top: 15.2%;
+    top: 8%;
     left: 6%;
-    max-width: 74%;
-    font-size: 0.95rem;
-    letter-spacing: 0.08em;
+    max-width: 73%;
+    font-size: 0.9rem;
+    letter-spacing: 0.075em;
   }
   .tiles {
-    height: min(58svh, 44rem);
+    height: min(64svh, 50rem);
     padding: 0 0.85rem 0.85rem;
     gap: 0.55rem;
+    grid-template-rows: 1.75fr repeat(3, 0.78fr);
   }
   .tile {
     gap: 0.5rem;
@@ -2622,8 +2794,8 @@ a {
     width: clamp(2.4rem, 7vw, 3.5rem);
   }
   .tile .label {
-    margin-top: 0.35rem;
-    font-size: clamp(1.15rem, 4vw, 1.35rem);
+    margin-top: 0;
+    font-size: clamp(1.28rem, 4.4vw, 1.56rem);
     line-height: 1.18;
     letter-spacing: 0.07em;
     text-wrap: balance;
@@ -2637,23 +2809,25 @@ a {
     text-wrap: balance;
   }
   .tile--strategic .label {
-    font-size: clamp(1rem, 3.8vw, 1.24rem);
+    font-size: clamp(1.12rem, 3.9vw, 1.38rem);
     letter-spacing: 0.06em;
   }
   .project-slide {
     padding: 0.58rem;
   }
   .project-demo {
-    grid-template-columns: minmax(0, 1fr) minmax(8.4rem, 0.76fr);
+    grid-template-columns: minmax(0, 1fr) minmax(7.4rem, 0.68fr);
     grid-template-rows: minmax(0, 1fr);
     gap: 0.65rem;
     width: 100%;
     padding: 0.72rem;
+    overflow: visible;
     border-radius: 0.65rem;
   }
   .project-demo__collage {
     min-height: 0;
-    width: 108%;
+    width: 96%;
+    transform: translateY(-1%);
   }
   .project-demo__frame--top {
     display: block;
@@ -2668,16 +2842,16 @@ a {
     align-self: center;
     gap: 0.18rem;
     padding: 0 0.1rem;
-    font-size: clamp(0.9rem, 3.3vw, 1.08rem);
+    font-size: clamp(1rem, 3.5vw, 1.16rem);
     line-height: 1.1;
     letter-spacing: 0.06em;
   }
   .project-demo__caption strong {
-    font-size: clamp(1.05rem, 4vw, 1.28rem);
+    font-size: clamp(1.18rem, 4.4vw, 1.5rem);
     letter-spacing: 0.11em;
   }
   .project-demo__eyebrow {
-    font-size: 0.76rem;
+    font-size: clamp(0.82rem, 2.4vw, 0.94rem);
     letter-spacing: 0.12em;
   }
   .project-demo__tags {
@@ -2687,20 +2861,22 @@ a {
   .project-demo__tags span {
     min-height: 1.45rem;
     padding: 0.18rem 0.28rem;
-    font-size: 0.62rem;
+    font-size: clamp(0.66rem, 2vw, 0.74rem);
   }
   .project-slider-status {
     top: 0.75rem;
     left: 0.75rem;
   }
   .tile--latest .label {
-    max-width: 10ch;
+    max-width: 11ch;
   }
   .tile--contact {
     min-height: 8.4rem;
   }
   #contact-panel.tile-panel {
     --panel-section-top-margin: clamp(7.6rem, 10vh, 8.6rem);
+    --contact-panel-header-icon-size: clamp(2.4rem, 5.4vw, 3rem);
+    --contact-panel-title-size: clamp(1.65rem, 5.8vw, 2.35rem);
   }
   .tile-panel__title {
     font-size: clamp(3.2rem, 8vw, 4.2rem);
@@ -2720,24 +2896,19 @@ a {
   #contact-panel .tile-panel__content--contact {
     gap: 1.4rem;
     width: 100%;
-    padding: max(5.4rem, env(safe-area-inset-top) + 4.4rem) 1rem max(1.4rem, env(safe-area-inset-bottom) + 0.9rem);
+    padding: 0 1rem max(1.4rem, env(safe-area-inset-bottom) + 0.9rem);
   }
   #contact-panel .tile-panel__contact-header {
-    gap: 0.9rem;
+    gap: 0.75rem;
     width: 100%;
     margin: 0;
-    padding-right: clamp(4.8rem, 16vw, 5.8rem);
+    padding-inline: clamp(1rem, 5vw, 1.8rem);
   }
   #contact-panel .tile-panel__heading {
-    gap: 0.85rem;
-  }
-  #contact-panel .tile-panel__heading-icon {
-    width: clamp(2.7rem, 8vw, 3.2rem);
-    height: clamp(2.7rem, 8vw, 3.2rem);
+    gap: 0.75rem;
   }
   #contact-panel .tile-panel__contact-header .tile-panel__title {
-    font-size: clamp(1.9rem, 9.6vw, 2.9rem);
-    line-height: 1.02;
+    line-height: 1.08;
     letter-spacing: 0.08em;
   }
   #contact-panel .tile-panel__lead {
@@ -3050,6 +3221,70 @@ a {
   opacity: 0.92;
 }
 
+@media (min-width: 520px) and (max-width: 640px) {
+  .project-slider {
+    --project-demo-lift: -3.8rem;
+  }
+  .project-slider {
+    overflow: visible;
+  }
+  .tiles {
+    height: min(62svh, 48rem);
+    grid-template-rows: 1.68fr repeat(3, 0.8fr);
+  }
+  .project-slide {
+    padding: 0.46rem;
+  }
+  .project-demo {
+    grid-template-columns: minmax(0, 1fr) minmax(6.8rem, 0.62fr);
+    gap: 0.5rem;
+    padding: 0.56rem;
+  }
+  .project-demo__collage {
+    width: 92%;
+    transform: translateY(-2%);
+  }
+  .project-demo__caption {
+    gap: 0.14rem;
+    padding: 0;
+  }
+  .project-demo__caption strong {
+    font-size: clamp(1.08rem, 2.5vw, 1.32rem);
+  }
+  .project-demo__tags span {
+    padding: 0.16rem 0.24rem;
+    font-size: clamp(0.62rem, 1.45vw, 0.7rem);
+  }
+}
+@media (max-width: 520px) {
+  .project-slider {
+    --project-demo-lift: -2.4rem;
+  }
+  .tiles {
+    height: min(66svh, 52rem);
+    grid-template-rows: 1.9fr repeat(3, 0.72fr);
+  }
+  .project-demo {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    justify-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 0.45rem 0.3rem;
+  }
+  .project-demo__collage {
+    width: min(100%, 21rem);
+    transform: translateY(0);
+  }
+  .project-demo__caption {
+    justify-items: center;
+    gap: 0.14rem;
+    padding: 0;
+    text-align: center;
+  }
+  .project-demo__tags {
+    justify-content: center;
+  }
+}
 @media (max-width: 640px) {
   #stack-panel.tile-panel {
     --panel-section-top-margin: clamp(8.4rem, 12vh, 9.8rem);
@@ -3133,17 +3368,19 @@ a {
   .page {
     --page-bg-image: url('../../img/bg/bg_1280x800.jpg');
     --page-bg-position: 50% 50%;
+    --hero-brand-letter-spacing: 0.21em;
+    --hero-brand-word-size: clamp(3.3rem, 4.3vw, 4.3rem);
     height: 100svh;
     min-height: 100svh;
   }
   .tiles {
     position: absolute;
     inset: auto 0 0;
-    height: min(50svh, 34rem);
+    height: min(58svh, 42rem);
     margin-top: 0;
     padding: 0 1rem 1rem;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: 1.15fr repeat(3, 1fr);
+    grid-template-rows: 1.82fr repeat(3, 0.76fr);
     grid-template-areas: "strategic strategic" "portfolio tech" "projects latest" "contact contact";
   }
   .tile {
@@ -3152,26 +3389,68 @@ a {
   .tile--strategic {
     min-height: 0;
   }
-  .social {
+  .top-actions {
     top: 1.5rem;
     right: 1.5rem;
   }
   .brand {
     top: 11%;
     left: 5%;
-    font-size: 4rem;
-    letter-spacing: 0.21em;
-  }
-  .brand-word {
-    font-size: 3rem;
-  }
-  .intro-brand-word {
-    font-size: 4rem;
   }
   .tagline {
     top: 18%;
     max-width: 78%;
+    font-size: clamp(1.35rem, 1.8vw, 1.8rem);
     letter-spacing: 0.12em;
+  }
+  .tile {
+    gap: 0.8rem;
+    padding: clamp(1.1rem, 1.7vw, 1.5rem);
+  }
+  .tile-icon {
+    width: clamp(3.4rem, 5.8vw, 4.5rem);
+  }
+  .tile .label {
+    font-size: clamp(1.55rem, 1.7vw, 1.9rem);
+  }
+  .tile--strategic {
+    padding: clamp(1.5rem, 2.6vw, 2.4rem);
+  }
+  .tile--strategic .label {
+    font-size: clamp(1.35rem, 1.45vw, 1.7rem);
+  }
+  .project-slider {
+    overflow: visible;
+    --project-demo-lift: -3.4rem;
+  }
+  .project-slide {
+    padding: clamp(0.65rem, 1vw, 0.95rem);
+  }
+  .project-demo {
+    gap: clamp(0.55rem, 0.95vw, 0.8rem);
+    padding: clamp(0.72rem, 1.1vw, 0.95rem);
+    overflow: visible;
+    grid-template-columns: minmax(0, 1.18fr) minmax(10.6rem, 0.72fr);
+  }
+  .project-demo__collage {
+    width: clamp(86%, 46vw, 94%);
+    aspect-ratio: 3/2.22;
+    transform: translateY(-1%);
+  }
+  .project-demo__caption {
+    gap: 0.16rem;
+    padding: 0;
+  }
+  .project-demo__eyebrow {
+    font-size: clamp(0.82rem, 0.82vw, 0.96rem);
+  }
+  .project-demo__caption strong {
+    font-size: clamp(1.28rem, 1.55vw, 1.72rem);
+    letter-spacing: 0.12em;
+  }
+  .project-demo__tags span {
+    padding: 0.22rem 0.34rem;
+    font-size: clamp(0.68rem, 0.68vw, 0.82rem);
   }
   #stack-panel.tile-panel {
     --panel-section-top-margin: clamp(9rem, 12vh, 10.8rem);
@@ -3220,44 +3499,106 @@ a {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+@media (min-width: 761px) and (max-width: 979px) {
+  .tile {
+    gap: 0.55rem;
+    padding: 1.35rem 1.15rem;
+  }
+  .tile-icon {
+    width: clamp(2.7rem, 3vw, 3.4rem);
+  }
+  .tile .label {
+    font-size: clamp(1.22rem, 1.18vw, 1.42rem);
+    line-height: 1.16;
+    letter-spacing: 0.06em;
+  }
+  .tile--latest .label {
+    max-width: 12ch;
+  }
+  .project-slider {
+    --project-demo-lift: -5.6rem;
+  }
+  .tiles {
+    height: min(62svh, 46rem);
+    grid-template-rows: 2.08fr repeat(3, 0.67fr);
+  }
+  .project-demo__collage {
+    width: clamp(78%, 36vw, 84%);
+    transform: translateY(-3%);
+  }
+}
+@media (min-width: 621px) and (max-width: 760px) {
+  .project-slider {
+    --project-demo-lift: -4.4rem;
+  }
+  .tiles {
+    height: min(60svh, 44rem);
+    grid-template-rows: 1.98fr repeat(3, 0.72fr);
+  }
+  .project-demo__collage {
+    width: clamp(80%, 42vw, 86%);
+    aspect-ratio: 3/2.24;
+    transform: translateY(-3%);
+  }
+  .tile:not(.tile--strategic) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    text-align: center;
+  }
+  .tile:not(.tile--strategic) .tile-icon {
+    width: clamp(2.4rem, 4.2vw, 3rem);
+    flex: 0 0 auto;
+  }
+  .tile:not(.tile--strategic) .label {
+    margin-top: 0;
+    font-size: clamp(1.12rem, 2.15vw, 1.32rem);
+    line-height: 1.08;
+    text-align: center;
+  }
+}
 @media (min-width: 980px) {
   .page {
     --page-bg-image: url('../../img/bg/bg_1920x1080.jpg');
     --page-bg-position: 50% 50%;
+    --hero-brand-letter-spacing: 0.22em;
+    --hero-brand-word-size: clamp(3.4rem, 2.85vw, 4.6rem);
     height: 100svh;
     min-height: 100svh;
   }
   .lower-band {
     height: min(53vh, 34rem);
   }
-  .social {
+  .top-actions {
     top: 1.75rem;
     right: 1.75rem;
-    text-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
   }
   .brand {
     top: 23.6%;
     left: 8.9%;
-    font-size: 3rem;
-    letter-spacing: 0.22em;
-  }
-  .brand-word {
-    font-size: 3rem;
-  }
-  .intro-brand-word {
-    font-size: 4.6rem;
   }
   .tagline {
-    top: 23.8%;
-    left: 58%;
-    right: auto;
-    width: min(45vw, 52rem);
+    top: 25.1%;
+    left: auto;
+    right: clamp(4.8rem, 6vw, 9rem);
+    width: auto;
     max-width: none;
-    font-size: 1.6rem;
-    letter-spacing: 0.1em;
+    font-size: clamp(2rem, 1.8vw, 2.55rem);
+    letter-spacing: 0.11em;
     white-space: nowrap;
     justify-content: flex-start;
     text-align: left;
+  }
+  .tile {
+    gap: clamp(0.8rem, 0.9vw, 1rem);
+    padding: clamp(1.2rem, 1.6vw, 1.8rem);
+  }
+  .tile-icon {
+    width: clamp(3.4rem, 3.2vw, 4.6rem);
+  }
+  .tile .label {
+    font-size: clamp(1.65rem, 1vw, 1.95rem);
   }
   .tiles {
     position: absolute;
@@ -3277,8 +3618,34 @@ a {
     min-height: 0;
     padding: clamp(2rem, 4vw, 4rem);
   }
+  .tile--strategic .label {
+    font-size: clamp(1.45rem, 0.95vw, 1.8rem);
+  }
   .tile--contact {
     min-height: 0;
+  }
+  .project-slide {
+    padding: clamp(1rem, 1.3vw, 1.6rem);
+  }
+  .project-demo {
+    gap: clamp(0.72rem, 0.82vw, 1rem);
+    width: min(100%, 56rem);
+    padding: clamp(1.15rem, 1.4vw, 1.6rem);
+  }
+  .project-demo__collage {
+    width: 102%;
+  }
+  .project-demo__caption {
+    margin-top: -0.65rem;
+  }
+  .project-demo__eyebrow {
+    font-size: clamp(1.06rem, 0.76vw, 1.24rem);
+  }
+  .project-demo__caption strong {
+    font-size: clamp(2.25rem, 1.75vw, 2.95rem);
+  }
+  .project-demo__tags span {
+    font-size: clamp(0.95rem, 0.62vw, 1.06rem);
   }
   #stack-panel .tile-panel__content {
     display: grid;
@@ -3305,31 +3672,60 @@ a {
   }
 }
 @media (min-width: 1180px) {
-  .social {
+  .page {
+    --hero-brand-letter-spacing: 0.24em;
+    --hero-brand-word-size: clamp(3.7rem, 2.55vw, 4.8rem);
+  }
+  .top-actions {
     top: 2rem;
     right: 2.2rem;
-    text-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
   }
   .brand {
     top: 24%;
     left: 8.9%;
-    font-size: 1rem;
-    letter-spacing: 0.24em;
   }
   .tagline {
-    top: 23.7%;
-    left: 60%;
-    right: auto;
-    width: min(53vw, 72rem);
+    top: 24.8%;
+    left: auto;
+    right: clamp(7rem, 9vw, 15rem);
+    width: auto;
     max-width: none;
-    font-size: clamp(1.75rem, 1.95vw, 2.05rem);
-    letter-spacing: 0.1em;
+    font-size: clamp(2rem, 2vw, 2rem);
+    letter-spacing: 0.11em;
     white-space: nowrap;
     justify-content: flex-start;
     text-align: left;
   }
+  .tile-icon {
+    width: clamp(3.6rem, 2.9vw, 5rem);
+  }
+  .tile .label {
+    font-size: clamp(1.75rem, 0.95vw, 2rem);
+  }
   .tile--strategic {
     padding: clamp(2rem, 4vw, 5.2rem);
+  }
+  .project-demo {
+    gap: clamp(0.68rem, 0.76vw, 0.95rem);
+    width: min(100%, 58rem);
+  }
+  .project-demo__caption {
+    margin-top: -0.8rem;
+  }
+  .project-demo__eyebrow {
+    font-size: clamp(1.1rem, 0.68vw, 1.28rem);
+  }
+  .project-demo__caption strong {
+    font-size: clamp(2.45rem, 1.65vw, 3.1rem);
+  }
+  .project-demo__tags span {
+    font-size: clamp(0.98rem, 0.58vw, 1.08rem);
+  }
+}
+@media (min-width: 1600px) {
+  .tagline {
+    right: clamp(18rem, 15vw, 42rem);
+    font-size: clamp(2.35rem, 1.15vw, 2.95rem);
   }
 }
 @media (min-width: 980px) and (max-width: 1279px) {
@@ -3407,5 +3803,152 @@ a {
   }
   #stack-panel .tile-panel__title {
     line-height: 0.96;
+  }
+}
+@media (max-width: 979px) and (max-height: 540px) and (orientation: landscape) {
+  .page {
+    --hero-brand-letter-spacing: 0.12em;
+    --hero-brand-word-size: clamp(1.9rem, 3vw, 2.6rem);
+    --hero-brand-trademark-size: clamp(0.82rem, 1.2vw, 0.95rem);
+    --hero-brand-trademark-gap: 0.12em;
+    --hero-brand-max-width: min(44vw, calc(100vw - 10rem));
+  }
+  .top-actions {
+    top: 0.6rem;
+    right: 0.75rem;
+    grid-template-columns: repeat(2, max-content);
+    grid-auto-flow: column;
+    align-items: center;
+    gap: 0.28rem;
+  }
+  .social {
+    font-size: 1.8rem;
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .theme-switcher {
+    grid-column: 1;
+    grid-row: 1;
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+  .theme-switcher__icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .brand {
+    top: 1rem;
+    left: 1.3rem;
+  }
+  .tagline {
+    top: 2.95rem;
+    left: 1.35rem;
+    max-width: 42%;
+    min-height: auto;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tiles {
+    inset: 5rem 0.65rem 0.65rem;
+    height: auto;
+    padding: 0;
+    gap: 0.35rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    grid-template-areas: "strategic strategic portfolio tech" "strategic strategic projects latest" "strategic strategic contact contact";
+  }
+  .tile {
+    gap: 0.32rem;
+    padding: 0.5rem 0.45rem;
+  }
+  .tile-icon {
+    width: clamp(1.8rem, 2.8vw, 2.35rem);
+  }
+  .tile .label {
+    font-size: clamp(0.92rem, 1.3vw, 1.08rem);
+    line-height: 1.06;
+    letter-spacing: 0.05em;
+  }
+  .tile--latest .label {
+    max-width: 10ch;
+  }
+  .tile--strategic {
+    padding: 0.35rem;
+  }
+  .project-slider {
+    --project-demo-lift: 0;
+  }
+  .project-slider-status {
+    display: none;
+  }
+  .project-slide {
+    align-items: center;
+    justify-content: center;
+    padding: 0.28rem;
+  }
+  .project-demo {
+    align-self: center;
+    justify-self: center;
+    grid-template-columns: minmax(0, 1.22fr) minmax(8.6rem, 0.72fr);
+    grid-template-rows: minmax(0, 1fr);
+    gap: 0.45rem;
+    width: min(100%, 29rem);
+    height: auto;
+    min-height: auto;
+    padding: 0.38rem 0.42rem;
+    border-radius: 0.55rem;
+  }
+  .project-demo__collage {
+    width: clamp(84%, 31vw, 92%);
+    aspect-ratio: 3/2.08;
+    transform: translateY(0);
+  }
+  .project-demo__caption {
+    align-self: center;
+    gap: 0.12rem;
+    padding: 0;
+    line-height: 1.03;
+    letter-spacing: 0.05em;
+  }
+  .project-demo__eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.11em;
+  }
+  .project-demo__caption strong {
+    font-size: clamp(1.12rem, 1.8vw, 1.45rem);
+    letter-spacing: 0.08em;
+  }
+  .project-demo__tags {
+    gap: 0.18rem;
+    margin-top: 0.06rem;
+  }
+  .project-demo__tags span {
+    min-height: 1.32rem;
+    padding: 0.12rem 0.22rem;
+    font-size: 0.56rem;
+  }
+}
+@media (max-width: 640px), (max-width: 979px) and (max-height: 540px) and (orientation: landscape) {
+  .project-demo {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    justify-items: center;
+    gap: 0;
+    width: min(100%, 22rem);
+  }
+  .project-demo__collage {
+    width: min(100%, 22rem);
+    transform: translateY(0);
+  }
+  .project-demo__caption {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .project-slider {
+    --project-demo-lift: -0.9rem;
   }
 }/*# sourceMappingURL=style.css.map */

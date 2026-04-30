@@ -101,17 +101,23 @@
             </div>
         </div>
 
-        <a class="social" href="https://github.com/Straffix" target="_blank" rel="noreferrer"
-            aria-label="GitHub Straffix">
-            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                <use href="#icon-github"></use>
-            </svg>
-        </a>
+        <div class="top-actions">
+            <a class="social" href="https://github.com/Straffix" target="_blank" rel="noreferrer"
+                aria-label="GitHub Straffix">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                    <use href="#icon-github"></use>
+                </svg>
+            </a>
+            <button class="theme-switcher" type="button" data-theme-toggle aria-label="Zmien wariant tla strony"
+                title="Zmien wariant tla strony">
+                <span class="theme-switcher__icon" aria-hidden="true"></span>
+            </button>
+        </div>
         <h1 class="brand" aria-label="Arkadiusz Lisiecki">
             <span class="brand-word">Arkadiusz Lisiecki</span><sup class="brand-trademark">TM</sup>
         </h1>
         <p class="tagline" data-tagline-rotator
-            data-tagline-phrases="tworzę strony www|buduję aplikacje webowe|html / css / js / WordPress|od projektu do kodu|wdrażam i uruchamiam projekty">
+            data-tagline-phrases="tworzę nowoczesne strony internetowe|projektuję i buduję aplikacje webowe|buduję narzędzia dla twojego biznesu|od pomysłu do gotowego produktu|rozwijam i optymalizuję projekty">
             <span class="tagline__text" data-tagline-text>tworzę strony internetowe</span>
             <span class="tagline__cursor" aria-hidden="true"></span>
         </p>
@@ -410,9 +416,9 @@
                         </div>
                     </div>
                 </a>
-                <a class="project-slide" href="https://arkadiuszlisiecki.pl/job/tropical/index.html" target="_blank"
-                    rel="noreferrer" data-project-slide aria-label="Otwórz demo Tropical Paradise" aria-hidden="true"
-                    tabindex="-1">
+                <a class="project-slide project-slide--tropical"
+                    href="https://arkadiuszlisiecki.pl/job/tropical/index.html" target="_blank" rel="noreferrer"
+                    data-project-slide aria-label="Otwórz demo Tropical Paradise" aria-hidden="true" tabindex="-1">
                     <div class="project-demo">
                         <div class="project-demo__collage" aria-hidden="true">
                             <figure class="project-demo__frame project-demo__frame--main">
@@ -449,31 +455,31 @@
 
             <article class="tile tile--portfolio" data-expand-trigger data-expand-target="portfolio-panel" role="button"
                 tabindex="0" aria-controls="portfolio-panel" aria-expanded="false">
-                <img class="tile-icon" src="img/projects.svg" alt="" aria-hidden="true">
+                <img class="tile-icon" src="img/icons/projects.svg" alt="" aria-hidden="true">
                 <p class="label">Portfolio</p>
             </article>
 
             <article class="tile tile--tech" data-expand-trigger data-expand-target="stack-panel" role="button"
                 tabindex="0" aria-controls="stack-panel" aria-expanded="false">
-                <img class="tile-icon" src="img/stack.svg" alt="" aria-hidden="true">
+                <img class="tile-icon" src="img/icons/stack.svg" alt="" aria-hidden="true">
                 <p class="label">Stack</p>
             </article>
 
             <article class="tile tile--projects" data-expand-trigger data-expand-target="about-panel" role="button"
                 tabindex="0" aria-controls="about-panel" aria-expanded="false">
-                <img class="tile-icon" src="img/about.svg" alt="" aria-hidden="true">
+                <img class="tile-icon" src="img/icons/about.svg" alt="" aria-hidden="true">
                 <p class="label">O mnie</p>
             </article>
 
             <a class="tile tile--latest" href="https://www.arkadiuszlisiecki.pl/job/new/index.html" target="_blank"
                 rel="noreferrer" aria-label="Otwórz najnowszy projekt">
-                <img class="tile-icon" src="img/new.svg" alt="" aria-hidden="true">
-                <p class="label">Najnowszy projekt</p>
+                <img class="tile-icon" src="img/icons/new.svg" alt="" aria-hidden="true">
+                <p class="label">Featured</p>
             </a>
 
             <article class="tile tile--contact" data-expand-trigger data-expand-target="contact-panel" role="button"
                 tabindex="0" aria-controls="contact-panel" aria-expanded="false">
-                <img class="tile-icon" src="img/contact.svg" alt="" aria-hidden="true">
+                <img class="tile-icon" src="img/icons/contact.svg" alt="" aria-hidden="true">
                 <p class="label">Kontakt</p>
             </article>
         </section>
@@ -486,111 +492,121 @@
             </button>
 
             <div class="tile-panel__tile-mark" aria-hidden="true">
-                <img class="tile-panel__tile-icon" src="img/stack.svg" alt="">
+                <img class="tile-panel__tile-icon" src="img/icons/stack.svg" alt="">
                 <p class="tile-panel__tile-label">Stack</p>
             </div>
 
             <div class="tile-panel__content">
                 <div class="stack-panel__header">
-                    <img class="stack-panel__header-icon" src="img/stack.svg" alt="" aria-hidden="true">
+                    <img class="stack-panel__header-icon" src="img/icons/stack.svg" alt="" aria-hidden="true">
                     <h2 class="tile-panel__title" id="stack-panel-title">Moje umiejętności</h2>
                 </div>
                 <div class="stack-panel__matrix-wrap">
                     <div class="stack-panel__matrix" aria-label="Stack technologiczny">
                         <p class="stack-panel__category">Front-end</p>
                         <article class="stack-panel__item" style="--stack-accent: #ff8a4c;">
-                            <img class="stack-panel__logo" src="img/stack-logos/html5.svg" alt="" aria-hidden="true">
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/html5.svg" alt=""
+                                aria-hidden="true">
                             <span class="stack-panel__name">HTML5</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #aeea72;">
-                            <img class="stack-panel__logo" src="img/stack-logos/css3.svg" alt="" aria-hidden="true">
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/css3.svg" alt=""
+                                aria-hidden="true">
                             <span class="stack-panel__name">CSS3</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #f8d84a;">
-                            <img class="stack-panel__logo" src="img/stack-logos/javascript.svg" alt=""
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/javascript.svg" alt=""
                                 aria-hidden="true">
                             <span class="stack-panel__name">JavaScript</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #f08ac0;">
-                            <img class="stack-panel__logo" src="img/stack-logos/sass.svg" alt="" aria-hidden="true">
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/sass.svg" alt=""
+                                aria-hidden="true">
                             <span class="stack-panel__name">SCSS</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #85d7ff;">
-                            <img class="stack-panel__logo" src="img/stack-logos/bootstrap.svg" alt=""
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/bootstrap.svg" alt=""
                                 aria-hidden="true">
                             <span class="stack-panel__name">Bootstrap</span>
                         </article>
 
                         <p class="stack-panel__category">Wdrożenia</p>
                         <article class="stack-panel__item" style="--stack-accent: #8ed6ff;">
-                            <img class="stack-panel__logo" src="img/stack-logos/wordpress.svg" alt=""
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/wordpress.svg" alt=""
                                 aria-hidden="true">
                             <span class="stack-panel__name">WordPress</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #ffb86b;">
-                            <img class="stack-panel__logo" src="img/stack-logos/git.svg" alt="" aria-hidden="true">
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/git.svg" alt=""
+                                aria-hidden="true">
                             <span class="stack-panel__name">Git</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #b8e986;">
-                            <img class="stack-panel__logo" src="img/stack-logos/responsive.svg" alt=""
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/responsive.svg" alt=""
                                 aria-hidden="true">
                             <span class="stack-panel__name">Responsive</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #d6c6ff;">
-                            <img class="stack-panel__logo" src="img/stack-logos/seo.svg" alt="" aria-hidden="true">
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/seo.svg" alt=""
+                                aria-hidden="true">
                             <span class="stack-panel__name">SEO basics</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #9ee6d6;">
-                            <img class="stack-panel__logo" src="img/stack-logos/ui.svg" alt="" aria-hidden="true">
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/ui.svg" alt="" aria-hidden="true">
                             <span class="stack-panel__name">Interface</span>
                         </article>
 
                         <p class="stack-panel__category">Design i motion</p>
                         <article class="stack-panel__item" style="--stack-accent: #ff9fda;">
-                            <img class="stack-panel__logo" src="img/stack-logos/figma.svg" alt="" aria-hidden="true">
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/figma.svg" alt=""
+                                aria-hidden="true">
                             <span class="stack-panel__name">Figma</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #b8d9ff;">
-                            <img class="stack-panel__logo" src="img/stack-logos/photoshop.svg" alt=""
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/photoshop.svg" alt=""
                                 aria-hidden="true">
                             <span class="stack-panel__name">Photoshop</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #ffd36e;">
-                            <img class="stack-panel__logo" src="img/stack-logos/illustrator.svg" alt=""
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/illustrator.svg" alt=""
                                 aria-hidden="true">
                             <span class="stack-panel__name">Illustrator</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #c8b6ff;">
-                            <img class="stack-panel__logo" src="img/stack-logos/after-effects.svg" alt=""
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/after-effects.svg" alt=""
                                 aria-hidden="true">
                             <span class="stack-panel__name">After Effects</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #ffb4a2;">
-                            <img class="stack-panel__logo" src="img/stack-logos/logic-pro.svg" alt=""
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/logic-pro.svg" alt=""
                                 aria-hidden="true">
                             <span class="stack-panel__name">Logic Pro</span>
                         </article>
 
                         <p class="stack-panel__category">AI i rozwój</p>
                         <article class="stack-panel__item" style="--stack-accent: #7ee2b8;">
-                            <img class="stack-panel__logo" src="img/stack-logos/chatgpt.svg" alt="" aria-hidden="true">
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/chatgpt.svg" alt=""
+                                aria-hidden="true">
                             <span class="stack-panel__name">ChatGPT</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #9cc9ff;">
-                            <img class="stack-panel__logo" src="img/stack-logos/codex.svg" alt="" aria-hidden="true">
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/codex.svg" alt=""
+                                aria-hidden="true">
                             <span class="stack-panel__name">Codex</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #7dd3fc;">
-                            <img class="stack-panel__logo" src="img/stack-logos/react.svg" alt="" aria-hidden="true">
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/react.svg" alt=""
+                                aria-hidden="true">
                             <span class="stack-panel__name">React</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #8bd3ff;">
-                            <img class="stack-panel__logo" src="img/stack-logos/typescript.svg" alt=""
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/typescript.svg" alt=""
                                 aria-hidden="true">
                             <span class="stack-panel__name">TypeScript</span>
                         </article>
                         <article class="stack-panel__item" style="--stack-accent: #98e58e;">
-                            <img class="stack-panel__logo" src="img/stack-logos/nodejs.svg" alt="" aria-hidden="true">
+                            <img class="stack-panel__logo" src="img/icons/stack-logos/nodejs.svg" alt=""
+                                aria-hidden="true">
                             <span class="stack-panel__name">Node.js</span>
                         </article>
                     </div>
@@ -606,13 +622,13 @@
             </button>
 
             <div class="tile-panel__tile-mark" aria-hidden="true">
-                <img class="tile-panel__tile-icon" src="img/projects.svg" alt="">
+                <img class="tile-panel__tile-icon" src="img/icons/projects.svg" alt="">
                 <p class="tile-panel__tile-label">Portfolio</p>
             </div>
 
             <div class="tile-panel__content tile-panel__content--portfolio">
                 <header class="portfolio-panel__header">
-                    <img class="portfolio-panel__header-icon" src="img/projects.svg" alt="" aria-hidden="true">
+                    <img class="portfolio-panel__header-icon" src="img/icons/projects.svg" alt="" aria-hidden="true">
                     <h2 class="portfolio-title" id="portfolio-panel-title">Portfolio</h2>
                 </header>
 
@@ -991,13 +1007,13 @@
             </button>
 
             <div class="tile-panel__tile-mark" aria-hidden="true">
-                <img class="tile-panel__tile-icon" src="img/about.svg" alt="">
+                <img class="tile-panel__tile-icon" src="img/icons/about.svg" alt="">
                 <p class="tile-panel__tile-label">O mnie</p>
             </div>
 
             <div class="tile-panel__content tile-panel__content--about">
                 <header class="about-panel__header">
-                    <img class="about-panel__header-icon" src="img/about.svg" alt="" aria-hidden="true">
+                    <img class="about-panel__header-icon" src="img/icons/about.svg" alt="" aria-hidden="true">
                     <h2 class="about-title" id="about-panel-title">O mnie</h2>
                 </header>
 
@@ -1138,20 +1154,16 @@
             </button>
 
             <div class="tile-panel__tile-mark" aria-hidden="true">
-                <img class="tile-panel__tile-icon" src="img/contact.svg" alt="">
+                <img class="tile-panel__tile-icon" src="img/icons/contact.svg" alt="">
                 <p class="tile-panel__tile-label">Kontakt</p>
             </div>
 
             <div class="tile-panel__content tile-panel__content--contact">
                 <header class="tile-panel__contact-header">
                     <div class="tile-panel__heading">
-                        <img class="tile-panel__heading-icon" src="img/contact.svg" alt="" aria-hidden="true">
+                        <img class="tile-panel__heading-icon" src="img/icons/contact.svg" alt="" aria-hidden="true">
                         <h2 class="tile-panel__title" id="contact-panel-current-title">Kontakt</h2>
                     </div>
-                    <p class="tile-panel__lead">
-                        Masz pomysł, projekt strony albo chcesz poprawić obecny front-end? Napisz kilka słów, a odezwę
-                        się z konkretnym następnym krokiem.
-                    </p>
                 </header>
 
                 <div class="contact-layout">

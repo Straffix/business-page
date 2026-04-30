@@ -5,6 +5,8 @@
 		.page {
 			--page-bg-image: url('../../img/bg/bg_1920x1080.jpg');
 			--page-bg-position: 50% 50%;
+			--hero-brand-letter-spacing: 0.22em;
+			--hero-brand-word-size: clamp(3.4rem, 2.85vw, 4.6rem);
 			height: 100svh;
 			min-height: 100svh;
 		}
@@ -13,38 +15,40 @@
 			height: min(53vh, 34rem);
 		}
 
-		.social {
+		.top-actions {
 			top: 1.75rem;
 			right: 1.75rem;
-			text-shadow: 0 0 14px rgba(colors.$white, 0.18);
 		}
 
 		.brand {
 			top: 23.6%;
 			left: 8.9%;
-			font-size: 3rem;
-			letter-spacing: 0.22em;
-		}
-
-		.brand-word {
-			font-size: 3rem;
-		}
-
-		.intro-brand-word {
-			font-size: 4.6rem;
 		}
 
 		.tagline {
-			top: 23.8%;
-			left: 58%;
-			right: auto;
-			width: min(45vw, 52rem);
+			top: 25.1%;
+			left: auto;
+			right: clamp(4.8rem, 6vw, 9rem);
+			width: auto;
 			max-width: none;
-			font-size: 1.6rem;
-			letter-spacing: 0.1em;
+			font-size: clamp(2rem, 1.8vw, 2.55rem);
+			letter-spacing: 0.11em;
 			white-space: nowrap;
 			justify-content: flex-start;
 			text-align: left;
+		}
+
+		.tile {
+			gap: clamp(0.8rem, 0.9vw, 1rem);
+			padding: clamp(1.2rem, 1.6vw, 1.8rem);
+		}
+
+		.tile-icon {
+			width: clamp(3.4rem, 3.2vw, 4.6rem);
+		}
+
+		.tile .label {
+			font-size: clamp(1.65rem, 1vw, 1.95rem);
 		}
 
 		.tiles {
@@ -70,8 +74,42 @@
 			padding: clamp(2rem, 4vw, 4rem);
 		}
 
+		.tile--strategic .label {
+			font-size: clamp(1.45rem, 0.95vw, 1.8rem);
+		}
+
 		.tile--contact {
 			min-height: 0;
+		}
+
+		.project-slide {
+			padding: clamp(1rem, 1.3vw, 1.6rem);
+		}
+
+		.project-demo {
+			gap: clamp(0.72rem, 0.82vw, 1rem);
+			width: min(100%, 56rem);
+			padding: clamp(1.15rem, 1.4vw, 1.6rem);
+		}
+
+		.project-demo__collage {
+			width: 102%;
+		}
+
+		.project-demo__caption {
+			margin-top: -0.65rem;
+		}
+
+		.project-demo__eyebrow {
+			font-size: clamp(1.06rem, 0.76vw, 1.24rem);
+		}
+
+		.project-demo__caption strong {
+			font-size: clamp(2.25rem, 1.75vw, 2.95rem);
+		}
+
+		.project-demo__tags span {
+			font-size: clamp(0.95rem, 0.62vw, 1.06rem);
 		}
 
 		#stack-panel .tile-panel__content {
@@ -95,7 +133,6 @@
 		.stack-panel__matrix-wrap {
 			margin-top: 0;
 		}
-
 	}
 
 	@media (min-width: 1440px) {
@@ -105,34 +142,72 @@
 	}
 
 	@media (min-width: 1180px) {
-		.social {
+		.page {
+			--hero-brand-letter-spacing: 0.24em;
+			--hero-brand-word-size: clamp(3.7rem, 2.55vw, 4.8rem);
+		}
+
+		.top-actions {
 			top: 2rem;
 			right: 2.2rem;
-			text-shadow: 0 0 14px rgba(colors.$white, 0.18);
 		}
 
 		.brand {
 			top: 24%;
 			left: 8.9%;
-			font-size: 1rem;
-			letter-spacing: 0.24em;
 		}
 
 		.tagline {
-			top: 23.7%;
-			left: 60%;
-			right: auto;
-			width: min(53vw, 72rem);
+			top: 24.8%;
+			left: auto;
+			right: clamp(7rem, 9vw, 15rem);
+			width: auto;
 			max-width: none;
-			font-size: clamp(1.75rem, 1.95vw, 2.05rem);
-			letter-spacing: 0.1em;
+			font-size: clamp(2rem, 2vw, 2rem);
+			letter-spacing: 0.11em;
 			white-space: nowrap;
 			justify-content: flex-start;
 			text-align: left;
 		}
 
+		.tile-icon {
+			width: clamp(3.6rem, 2.9vw, 5rem);
+		}
+
+		.tile .label {
+			font-size: clamp(1.75rem, 0.95vw, 2rem);
+		}
+
 		.tile--strategic {
 			padding: clamp(2rem, 4vw, 5.2rem);
+		}
+
+		.project-demo {
+			gap: clamp(0.68rem, 0.76vw, 0.95rem);
+			width: min(100%, 58rem);
+		}
+
+		.project-demo__caption {
+			margin-top: -0.8rem;
+		}
+
+		.project-demo__eyebrow {
+			font-size: clamp(1.1rem, 0.68vw, 1.28rem);
+		}
+
+		.project-demo__caption strong {
+			font-size: clamp(2.45rem, 1.65vw, 3.1rem);
+		}
+
+		.project-demo__tags span {
+			font-size: clamp(0.98rem, 0.58vw, 1.08rem);
+		}
+	}
+
+	@media (min-width: 1600px) {
+		.tagline {
+			right: clamp(18rem, 15vw, 42rem);
+			font-size: clamp(2.35rem, 1.15vw, 2.95rem);
 		}
 	}
 
